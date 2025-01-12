@@ -1,6 +1,10 @@
-import kaplay from "kaplay";
-import { displayDialogue, makeBackground, setCamScale } from "./utils";
+import kaplay, { GameObj } from "kaplay";
+import * as tiled from "@kayahr/tiled";
+import mapData from "../maps/level1.map.json";
+import { drawTiles, setCamScale } from "./utils";
 import { SCALE_FACTOR } from "./contants";
+import { makePlayer } from "./entities/player";
+import { makeGuard } from "./entities/guard";
 
 const k = kaplay({
   global: false,
@@ -8,85 +12,75 @@ const k = kaplay({
 
 k.loadRoot("./"); // A good idea for Itch.io publishing later
 
-k.loadSprite("spritesheet", "./tilemap_packed.png", {
-  sliceX: 16,
-  sliceY: 16,
+k.loadSprite("spritesheet", "../maps/tilemap_packed.png", {
+  sliceX: 12,
+  sliceY: 11,
   anims: {
-    "idle-down": 114,
-    "walk-down": { from: 114, to: 114, loop: true, speed: 8 },
-    "idle-side": 114,
-    "walk-side": { from: 114, to: 114, loop: true, speed: 8 },
-    "idle-up": 114,
-    "walk-up": { from: 114, to: 114, loop: true, speed: 8 },
+    player: 112,
+    guard: 96,
   },
 });
 
-k.setBackground(k.Color.fromHex("#311047"));
+k.setBackground(k.Color.fromHex("#000000"));
+
+export interface Entities {
+  player: GameObj;
+  guards: GameObj[];
+}
 
 k.scene("start", async (): Promise<void> => {
-  makeBackground(k);
+  const map = k.add([k.pos(0, 0)]);
 
-  const mapData = await (await fetch("./level1.json")).json();
-  const layers = mapData.layers;
+  const entities: Entities = {
+    player: null,
+    guards: [],
+  };
 
-  const map = k.add([k.sprite("spritesheet"), k.pos(0), k.scale(SCALE_FACTOR)]);
+  mapData.layers.forEach((layer) => {
+    // Tiles
+    if (tiled.isTileLayer(layer)) {
+      drawTiles(k, map, layer, mapData.tileheight, mapData.tilewidth);
+    }
 
-  const player = k.make([
-    k.sprite("spritesheet", { anim: "walk-down" }),
-    k.area({
-      shape: new k.Rect(k.vec2(0, 3), 10, 10),
-    }),
-    k.body(),
-    k.anchor("center"),
-    k.pos(),
-    k.scale(SCALE_FACTOR),
-    {
-      speed: 250,
-      direction: "down",
-      isInDialogue: false,
-    },
-    "player",
-  ]);
+    // Objects
+    if (tiled.isObjectGroup(layer)) {
+      if (layer.name === "Boundaries") {
+        layer.objects.forEach((boundary) => {
+          map.add([
+            k.area({
+              shape: new k.Rect(k.vec2(0), boundary.width, boundary.height),
+            }),
+            k.body({ isStatic: true }),
+            k.pos(boundary.x, boundary.y),
+            boundary.name,
+          ]);
+        });
+      }
 
-  for (const layer of layers) {
-    if (layer.name === "boundaries") {
-      for (const boundary of layer.objects) {
-        map.add([
-          k.area({
-            shape: new k.Rect(k.vec2(0), boundary.width, boundary.height),
-          }),
-          k.body({ isStatic: true }),
-          k.pos(boundary.x, boundary.y),
-          boundary.name,
-        ]);
-
-        if (boundary.name) {
-          player.onCollide(boundary.name, () => {
-            player.isInDialogue = true;
-            displayDialogue(
-              "Hello, I'm some dialogue!",
-              () => (player.isInDialogue = false),
+      if (layer.name === "SpawnPoints") {
+        layer.objects.forEach((spawnPoint) => {
+          if (spawnPoint.name === "player") {
+            const pos = k.vec2(
+              (map.pos.x + spawnPoint.x) * SCALE_FACTOR,
+              (map.pos.y + spawnPoint.y) * SCALE_FACTOR,
             );
-          });
-        }
-      }
-
-      continue;
-    }
-
-    if (layer.name === "spawnpoints") {
-      for (const entity of layer.objects) {
-        if (entity.name === "player") {
-          player.pos = k.vec2(
-            (map.pos.x + entity.x) * SCALE_FACTOR,
-            (map.pos.y + entity.y) * SCALE_FACTOR,
-          );
-          k.add(player);
-          continue;
-        }
+            const player = makePlayer(k, pos);
+            entities.player = player;
+            k.add(player);
+          }
+          if (spawnPoint.name === "guard") {
+            const pos = k.vec2(
+              (map.pos.x + spawnPoint.x) * SCALE_FACTOR,
+              (map.pos.y + spawnPoint.y) * SCALE_FACTOR,
+            );
+            const guard = makeGuard(k, pos);
+            entities.guards.push(guard);
+            k.add(guard);
+          }
+        });
       }
     }
-  }
+  });
 
   setCamScale(k);
 
@@ -95,7 +89,7 @@ k.scene("start", async (): Promise<void> => {
   });
 
   k.onUpdate(() => {
-    k.camPos(player.worldPos().x, player.worldPos().y - 100);
+    k.camPos(entities.player.worldPos().x, entities.player.worldPos().y - 100);
   });
 });
 

@@ -9,6 +9,7 @@
         "check": "tsc"
     },
     "dependencies": {
+        "@kayahr/tiled": "^0.0.1",
         "kaplay": "^3001.0.6"
     },
     "devDependencies": {
