@@ -134,3 +134,11 @@ export function generateColliderBoxComponents(k, width, height, pos, tag) {
     tag,
   ];
 }
+
+export function areAnyOfTheseKeysDown(k, keys) {
+  for (const key of keys) {
+    if (k.isKeyDown(key)) return true;
+  }
+
+  return false;
+}

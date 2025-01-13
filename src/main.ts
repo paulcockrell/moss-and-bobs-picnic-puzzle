@@ -2,7 +2,7 @@ import kaplay, { GameObj } from "kaplay";
 import * as tiled from "@kayahr/tiled";
 import mapData from "../maps/level1.map.json";
 import { drawTiles, setCamScale } from "./utils";
-import { SCALE_FACTOR } from "./contants";
+import { SCALE_FACTOR, SPAWN_Y_OFFSET } from "./contants";
 import { makePlayer } from "./entities/player";
 import { makeGuard } from "./entities/guard";
 
@@ -62,7 +62,7 @@ k.scene("start", async (): Promise<void> => {
           if (spawnPoint.name === "player") {
             const pos = k.vec2(
               (map.pos.x + spawnPoint.x) * SCALE_FACTOR,
-              (map.pos.y + spawnPoint.y) * SCALE_FACTOR,
+              (map.pos.y + spawnPoint.y + SPAWN_Y_OFFSET) * SCALE_FACTOR,
             );
             const player = makePlayer(k, pos);
             entities.player = player;
@@ -71,7 +71,7 @@ k.scene("start", async (): Promise<void> => {
           if (spawnPoint.name === "guard") {
             const pos = k.vec2(
               (map.pos.x + spawnPoint.x) * SCALE_FACTOR,
-              (map.pos.y + spawnPoint.y) * SCALE_FACTOR,
+              (map.pos.y + spawnPoint.y + SPAWN_Y_OFFSET) * SCALE_FACTOR,
             );
             const guard = makeGuard(k, pos);
             entities.guards.push(guard);
@@ -81,6 +81,8 @@ k.scene("start", async (): Promise<void> => {
       }
     }
   });
+
+  //setPlayerControls(k, entities.player);
 
   setCamScale(k);
 
