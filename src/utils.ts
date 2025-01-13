@@ -81,12 +81,15 @@ export function drawTiles(
   tilewidth: number,
 ) {
   let nbOfDrawnTiles = 0;
-  const tilePos = k.vec2(0, 100);
+  const tilePos = k.vec2(0);
 
   if (tiled.isUnencodedTileLayer(layer)) {
     layer.data.forEach((tile) => {
-      if (nbOfDrawnTiles % layer.width === 0) {
-        tilePos.x = 0 * SCALE_FACTOR;
+      if (nbOfDrawnTiles === 0) {
+        tilePos.x = 0;
+        tilePos.y = 0;
+      } else if (nbOfDrawnTiles % layer.width === 0) {
+        tilePos.x = 0;
         tilePos.y += tileheight * SCALE_FACTOR;
       } else {
         tilePos.x += tilewidth * SCALE_FACTOR;
