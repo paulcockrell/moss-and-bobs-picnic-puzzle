@@ -33,6 +33,7 @@ export interface Entities {
   guards: GameObj[];
   collectables: GameObj[];
   portals: GameObj[];
+  inventory: GameObj[];
 }
 
 k.scene("start", async (): Promise<void> => {
@@ -43,6 +44,7 @@ k.scene("start", async (): Promise<void> => {
     guards: [],
     collectables: [],
     portals: [],
+    inventory: [],
   };
 
   mapData.layers.forEach((layer) => {
@@ -141,25 +143,30 @@ k.scene("start", async (): Promise<void> => {
         return;
       }
 
+      // hit bottom of portal, move player to top of portal
       if (
         entities.player.pos.y >= portal.pos.y + portal.area.shape.height / 2 &&
         entities.player.direction === "up"
       ) {
-        // hit bottom of portal, move player to top of portal
         entities.player.pos.y = portal.pos.y - 16;
         return;
       }
 
+      // hit top of portal, move player to bottom of portal
       if (
         entities.player.pos.y <= portal.pos.y + portal.area.shape.height / 2 &&
         entities.player.direction === "down"
       ) {
-        // hit top of portal, move player to bottom of portal
         entities.player.pos.y = portal.pos.y + portal.area.shape.height + 16;
         return;
       }
     },
   );
+
+  entities.player.onCollide("collectable", async (collectable: GameObj) => {
+    entities.collectables.push(collectable);
+    k.destroy(collectable);
+  });
 
   setCamScale(k);
 

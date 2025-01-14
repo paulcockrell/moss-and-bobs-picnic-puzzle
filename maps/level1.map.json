@@ -88,15 +88,15 @@
          "name":"Portals",
          "objects":[
                 {
-                 "height":66,
+                 "height":64,
                  "id":30,
                  "name":"Red potion,Hammer",
                  "rotation":0,
                  "type":"Portal",
                  "visible":true,
-                 "width":4,
-                 "x":390,
-                 "y":111
+                 "width":0,
+                 "x":392,
+                 "y":112
                 }, 
                 {
                  "height":64,
