@@ -1,4 +1,4 @@
-import kaplay, { Game, GameObj } from "kaplay";
+import kaplay, { Collision, Game, GameObj } from "kaplay";
 import * as tiled from "@kayahr/tiled";
 import mapData from "../maps/level1.map.json";
 import { drawTiles, setCamScale } from "./utils";
@@ -132,15 +132,34 @@ k.scene("start", async (): Promise<void> => {
     }
   });
 
-  entities.player.onCollide("portal", async (portal: GameObj) => {
-    if (entities.player.pos.y >= portal.pos.y + portal.area.shape.height / 2) {
-      // hit bottom of portal, move player to top of portal
-      entities.player.pos.y = portal.pos.y;
-    } else {
-      // hit top of portal, move player to bottom of portal
-      entities.player.pos.y = portal.pos.y + portal.area.shape.height;
-    }
-  });
+  entities.player.onCollideUpdate(
+    "portal",
+    async (portal: GameObj, collision: Collision) => {
+      // If the user is not walking 'into' the portal then skip teleport
+      // Portal doors are only on the vertical plane
+      if (["left", "right"].includes(entities.player.direction)) {
+        return;
+      }
+
+      if (
+        entities.player.pos.y >= portal.pos.y + portal.area.shape.height / 2 &&
+        entities.player.direction === "up"
+      ) {
+        // hit bottom of portal, move player to top of portal
+        entities.player.pos.y = portal.pos.y - 16;
+        return;
+      }
+
+      if (
+        entities.player.pos.y <= portal.pos.y + portal.area.shape.height / 2 &&
+        entities.player.direction === "down"
+      ) {
+        // hit top of portal, move player to bottom of portal
+        entities.player.pos.y = portal.pos.y + portal.area.shape.height + 16;
+        return;
+      }
+    },
+  );
 
   setCamScale(k);
 

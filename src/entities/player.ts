@@ -6,7 +6,7 @@ export function makePlayer(k: KAPLAYCtx, pos: Vec2) {
   const player = k.make([
     k.sprite("spritesheet", { anim: "player" }),
     k.area({
-      shape: new k.Rect(k.vec2(0, 0), 10, 10),
+      shape: new k.Rect(k.vec2(0, 5), 16, 6),
     }),
     k.body(),
     k.anchor("center"),
