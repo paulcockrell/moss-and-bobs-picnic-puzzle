@@ -1,4 +1,4 @@
-import kaplay, { GameObj } from "kaplay";
+import kaplay, { Game, GameObj } from "kaplay";
 import * as tiled from "@kayahr/tiled";
 import mapData from "../maps/level1.map.json";
 import { drawTiles, setCamScale } from "./utils";
@@ -32,6 +32,7 @@ export interface Entities {
   player: GameObj;
   guards: GameObj[];
   collectables: GameObj[];
+  portals: GameObj[];
 }
 
 k.scene("start", async (): Promise<void> => {
@@ -41,6 +42,7 @@ k.scene("start", async (): Promise<void> => {
     player: null,
     guards: [],
     collectables: [],
+    portals: [],
   };
 
   mapData.layers.forEach((layer) => {
@@ -63,7 +65,7 @@ k.scene("start", async (): Promise<void> => {
             }),
             k.body({ isStatic: true }),
             k.pos(boundary.x * SCALE_FACTOR, boundary.y * SCALE_FACTOR),
-            boundary.name || layer.name,
+            "boundary",
           ]);
         });
       }
@@ -105,10 +107,40 @@ k.scene("start", async (): Promise<void> => {
           }
         });
       }
+
+      if (layer.name === "Portals") {
+        layer.objects.forEach((portal) => {
+          const entity = map.add([
+            k.area({
+              shape: new k.Rect(
+                k.vec2(0),
+                portal.width * SCALE_FACTOR,
+                portal.height * SCALE_FACTOR,
+              ),
+            }),
+            k.body({ isStatic: true }),
+            k.pos(portal.x * SCALE_FACTOR, portal.y * SCALE_FACTOR),
+            {
+              keys: portal.name.split(","),
+            },
+            "portal",
+          ]);
+
+          entities.portals.push(entity);
+        });
+      }
     }
   });
 
-  entities.player.onCollide("boundaries", async () => {});
+  entities.player.onCollide("portal", async (portal: GameObj) => {
+    if (entities.player.pos.y >= portal.pos.y + portal.area.shape.height / 2) {
+      // hit bottom of portal, move player to top of portal
+      entities.player.pos.y = portal.pos.y;
+    } else {
+      // hit top of portal, move player to bottom of portal
+      entities.player.pos.y = portal.pos.y + portal.area.shape.height;
+    }
+  });
 
   setCamScale(k);
 
