@@ -52,7 +52,7 @@ export function displayDialogue(text: string, onDisplayEnd: () => void) {
     }
 
     clearInterval(intervalRef);
-  }, 1);
+  }, 25);
 
   const closeBtn = document.getElementById("close");
 
