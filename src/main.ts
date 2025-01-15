@@ -107,11 +107,7 @@ k.scene("start", async (): Promise<void> => {
             k.add(guard);
           }
 
-          if (
-            ["greenpotion", "redpotion", "hammer", "axe"].includes(
-              spawnPoint.type,
-            )
-          ) {
+          if (spawnPoint.type === "collectable") {
             const pos = k.vec2(
               (map.pos.x + spawnPoint.x) * SCALE_FACTOR,
               (map.pos.y + spawnPoint.y) * SCALE_FACTOR,

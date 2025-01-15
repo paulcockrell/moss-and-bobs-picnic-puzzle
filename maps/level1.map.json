@@ -177,7 +177,7 @@
                 {
                  "height":0,
                  "id":99,
-                 "name":"green potion",
+                 "name":"greenpotion",
                  "point":true,
                  "rotation":0,
                  "type":"collectable",
@@ -189,14 +189,14 @@
                 {
                  "height":0,
                  "id":100,
-                 "name":"red potion",
+                 "name":"redpotion",
                  "point":true,
                  "rotation":0,
                  "type":"collectable",
                  "visible":true,
                  "width":0,
-                 "x":247.643046443933,
-                 "y":87.3267584828605
+                 "x":312,
+                 "y":104
                 }, 
                 {
                  "height":0,
@@ -207,8 +207,8 @@
                  "type":"collectable",
                  "visible":true,
                  "width":0,
-                 "x":305.426423947517,
-                 "y":193.769822305253
+                 "x":304,
+                 "y":192
                 }],
          "opacity":1,
          "type":"objectgroup",
