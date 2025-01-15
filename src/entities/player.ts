@@ -27,6 +27,7 @@ export function makePlayer(k: KAPLAYCtx, pos: Vec2) {
 
 function setPlayerControls(k: KAPLAYCtx, player: GameObj) {
   k.onKeyDown("left", () => {
+    if (player.isInDialogue) return;
     if (areAnyOfTheseKeysDown(k, ["up", "down"])) return;
 
     player.move(-player.speed, 0);
@@ -34,6 +35,7 @@ function setPlayerControls(k: KAPLAYCtx, player: GameObj) {
   });
 
   k.onKeyDown("right", () => {
+    if (player.isInDialogue) return;
     if (areAnyOfTheseKeysDown(k, ["up", "down"])) return;
 
     player.move(player.speed, 0);
@@ -41,6 +43,7 @@ function setPlayerControls(k: KAPLAYCtx, player: GameObj) {
   });
 
   k.onKeyDown("up", () => {
+    if (player.isInDialogue) return;
     if (areAnyOfTheseKeysDown(k, ["left", "right"])) return;
 
     player.move(0, -player.speed);
@@ -48,6 +51,7 @@ function setPlayerControls(k: KAPLAYCtx, player: GameObj) {
   });
 
   k.onKeyDown("down", () => {
+    if (player.isInDialogue) return;
     if (areAnyOfTheseKeysDown(k, ["left", "right"])) return;
 
     player.move(0, player.speed);

@@ -1,7 +1,7 @@
 import { KAPLAYCtx, Vec2 } from "kaplay";
 import { SCALE_FACTOR } from "../contants";
 
-export function makeGuard(k: KAPLAYCtx, pos: Vec2) {
+export function makeGuard(k: KAPLAYCtx, pos: Vec2, dialogue: string) {
   return k.make([
     k.sprite("spritesheet", { anim: "guard" }),
     k.area({
@@ -15,6 +15,7 @@ export function makeGuard(k: KAPLAYCtx, pos: Vec2) {
       speed: 250,
       direction: "down",
       isInDialogue: false,
+      dialogue: dialogue,
     },
     "guard",
   ]);

@@ -1,14 +1,18 @@
-import kaplay, { Collision, Game, GameObj } from "kaplay";
+import kaplay, { Collision, GameObj } from "kaplay";
 import * as tiled from "@kayahr/tiled";
 import mapData from "../maps/level1.map.json";
-import { drawTiles, setCamScale } from "./utils";
-import { SCALE_FACTOR, SPAWN_Y_OFFSET } from "./contants";
+import { displayDialogue, drawTiles, setCamScale } from "./utils";
+import { SCALE_FACTOR } from "./contants";
 import { makePlayer } from "./entities/player";
 import { makeGuard } from "./entities/guard";
 import { makeCollectable } from "./entities/collectable";
 
 const k = kaplay({
   global: false,
+  touchToMouse: true,
+  // @ts-expect-error issue with HTMLElement?
+  canvas: document.getElementById("game"),
+  debug: true, // set to false once ready for production
 });
 
 k.loadRoot("./"); // A good idea for Itch.io publishing later
@@ -74,7 +78,7 @@ k.scene("start", async (): Promise<void> => {
 
       if (layer.name === "SpawnPoints") {
         layer.objects.forEach((spawnPoint) => {
-          if (spawnPoint.name === "player") {
+          if (spawnPoint.type === "player") {
             const pos = k.vec2(
               (map.pos.x + spawnPoint.x) * SCALE_FACTOR,
               (map.pos.y + spawnPoint.y) * SCALE_FACTOR,
@@ -84,19 +88,28 @@ k.scene("start", async (): Promise<void> => {
             k.add(player);
           }
 
-          if (spawnPoint.name === "guard") {
+          if (spawnPoint.type === "guard") {
             const pos = k.vec2(
               (map.pos.x + spawnPoint.x) * SCALE_FACTOR,
               (map.pos.y + spawnPoint.y) * SCALE_FACTOR,
             );
-            const guard = makeGuard(k, pos);
+
+            const dialogueProp = spawnPoint.properties?.find(
+              (prop) => prop.name === "dialogue" && prop.type === "string",
+            );
+
+            const dialogue = dialogueProp
+              ? (dialogueProp.value as string)
+              : "Halt";
+
+            const guard = makeGuard(k, pos, dialogue);
             entities.guards.push(guard);
             k.add(guard);
           }
 
           if (
             ["greenpotion", "redpotion", "hammer", "axe"].includes(
-              spawnPoint.name,
+              spawnPoint.type,
             )
           ) {
             const pos = k.vec2(
@@ -166,6 +179,13 @@ k.scene("start", async (): Promise<void> => {
   entities.player.onCollide("collectable", async (collectable: GameObj) => {
     entities.collectables.push(collectable);
     k.destroy(collectable);
+  });
+
+  entities.player.onCollide("guard", async (guard: GameObj) => {
+    entities.player.isInDialogue = true;
+    displayDialogue(guard.dialogue, () => {
+      entities.player.isInDialogue = false;
+    });
   });
 
   setCamScale(k);
