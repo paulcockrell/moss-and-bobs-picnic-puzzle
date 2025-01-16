@@ -7,7 +7,6 @@ export function makeCollectable(k: KAPLAYCtx, pos: Vec2, name: string) {
     k.area({
       shape: new k.Rect(k.vec2(0, 3), 16, 16),
     }),
-    k.body(),
     k.anchor("center"),
     k.pos(pos),
     k.scale(SCALE_FACTOR),

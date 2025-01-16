@@ -1,4 +1,4 @@
-import kaplay, { Collision, GameObj } from "kaplay";
+import kaplay, { Collision, GameObj, Vec2 } from "kaplay";
 import * as tiled from "@kayahr/tiled";
 import mapData from "../maps/level1.map.json";
 import { displayDialogue, drawTiles, setCamScale } from "./utils";
@@ -6,7 +6,6 @@ import { SCALE_FACTOR } from "./contants";
 import { makePlayer } from "./entities/player";
 import { makeGuard } from "./entities/guard";
 import { makeCollectable } from "./entities/collectable";
-import { addUI } from "./ui/ui";
 
 const k = kaplay({
   global: false,
@@ -44,9 +43,13 @@ export interface Entities {
 
 k.scene("start", async (): Promise<void> => {
   const map = k.add([k.pos(0, 0)]);
-  const inventory = k.add(["inventory"]);
 
-  addUI(k);
+  const inventory = k.add([
+    k.pos(20, 10),
+    k.text("Inventory"),
+    k.fixed(),
+    "inventory",
+  ]);
 
   const entities: Entities = {
     player: null,
@@ -180,9 +183,15 @@ k.scene("start", async (): Promise<void> => {
   entities.player.onCollide("collectable", async (collectable: GameObj) => {
     if (inventory.get(collectable.type).length > 0) return;
 
-    collectable.parent.remove(collectable);
-    inventory.add(collectable);
-    collectable.hidden = true;
+    k.destroy(collectable);
+
+    const collectables = inventory.get("collectable");
+    const pos = k.vec2(
+      collectables.length * (SCALE_FACTOR * 16) + (inventory.width + 50),
+      inventory.pos.y + inventory.height / 2,
+    );
+    const newCollectable = makeCollectable(k, pos, collectable.type);
+    inventory.add(newCollectable);
   });
 
   entities.player.onCollide("guard", async (guard: GameObj) => {
