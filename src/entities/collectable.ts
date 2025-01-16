@@ -2,7 +2,6 @@ import { KAPLAYCtx, Vec2 } from "kaplay";
 import { SCALE_FACTOR } from "../contants";
 
 export function makeCollectable(k: KAPLAYCtx, pos: Vec2, name: string) {
-  console.log(name);
   return k.make([
     k.sprite("spritesheet", { anim: name }),
     k.area({

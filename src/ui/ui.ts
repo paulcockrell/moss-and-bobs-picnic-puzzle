@@ -1,5 +1,6 @@
 import { KAPLAYCtx } from "kaplay";
 
+// Take a look at this inventory system for hints! https://editor.p5js.org/MartiansParlor/sketches/VQqmhbLWK
 export const addUI = (k: KAPLAYCtx) => {
   const ui = k.make([
     k.text("Inventory"),

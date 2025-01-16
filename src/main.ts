@@ -28,7 +28,7 @@ k.loadSprite("spritesheet", "../maps/tilemap_packed.png", {
     greenpotion: 114,
     redpotion: 115,
     axe: 118,
-    hammer: 116,
+    hammer: 117,
   },
 });
 
@@ -199,7 +199,10 @@ k.scene("start", async (): Promise<void> => {
   });
 
   k.onUpdate(() => {
-    k.camPos(entities.player.worldPos().x, entities.player.worldPos().y - 100);
+    k.setCamPos(
+      entities.player.worldPos().x,
+      entities.player.worldPos().y - 100,
+    );
   });
 });
 
