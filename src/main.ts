@@ -1,7 +1,7 @@
 import kaplay, { Collision, GameObj, Vec2 } from "kaplay";
 import * as tiled from "@kayahr/tiled";
 import mapData from "../maps/level1.map.json";
-import { displayDialogue, drawTiles, setCamScale } from "./utils";
+import { compArray, displayDialogue, drawTiles, setCamScale } from "./utils";
 import { SCALE_FACTOR } from "./contants";
 import { makePlayer } from "./entities/player";
 import { makeGuard } from "./entities/guard";
@@ -124,6 +124,10 @@ k.scene("start", async (): Promise<void> => {
 
       if (layer.name === "Portals") {
         layer.objects.forEach((portal) => {
+          const keys = portal.properties?.find(
+            (prop) => prop.name === "keys",
+          ).value;
+
           const entity = map.add([
             k.area({
               shape: new k.Rect(
@@ -135,7 +139,7 @@ k.scene("start", async (): Promise<void> => {
             k.body({ isStatic: true }),
             k.pos(portal.x * SCALE_FACTOR, portal.y * SCALE_FACTOR),
             {
-              keys: portal.name.split(","),
+              keys: keys || "",
             },
             "portal",
           ]);
@@ -146,34 +150,44 @@ k.scene("start", async (): Promise<void> => {
     }
   });
 
-  entities.player.onCollideUpdate(
-    "portal",
-    async (portal: GameObj, collision: Collision) => {
-      // If the user is not walking 'into' the portal then skip teleport
-      // Portal doors are only on the vertical plane
-      if (["left", "right"].includes(entities.player.direction)) {
-        return;
-      }
+  entities.player.onCollideUpdate("portal", async (portal: GameObj) => {
+    // If the user is not walking 'into' the portal then skip teleport
+    // Portal doors are only on the vertical plane
+    if (["left", "right"].includes(entities.player.direction)) {
+      return;
+    }
 
-      // hit bottom of portal, move player to top of portal
-      if (
-        entities.player.pos.y >= portal.pos.y + portal.area.shape.height / 2 &&
-        entities.player.direction === "up"
-      ) {
-        entities.player.pos.y = portal.pos.y - 16;
-        return;
-      }
+    // Check if the player holds the correct items in his inventory
+    // to pass through the portal
+    const inventory = k.get("inventory")[0];
+    const collectables = inventory.get("collectable");
+    const requiredKeys: string[] = portal.keys.split(",");
+    const keys: string[] = collectables.map((c) => c.type);
+    const unlocked = compArray<string>(requiredKeys, keys);
 
-      // hit top of portal, move player to bottom of portal
-      if (
-        entities.player.pos.y <= portal.pos.y + portal.area.shape.height / 2 &&
-        entities.player.direction === "down"
-      ) {
-        entities.player.pos.y = portal.pos.y + portal.area.shape.height + 16;
-        return;
-      }
-    },
-  );
+    if (!unlocked) {
+      console.log("You may not pass!");
+      return;
+    }
+
+    // hit bottom of portal, move player to top of portal
+    if (
+      entities.player.pos.y >= portal.pos.y + portal.area.shape.height / 2 &&
+      entities.player.direction === "up"
+    ) {
+      entities.player.pos.y = portal.pos.y - 16;
+      return;
+    }
+
+    // hit top of portal, move player to bottom of portal
+    if (
+      entities.player.pos.y <= portal.pos.y + portal.area.shape.height / 2 &&
+      entities.player.direction === "down"
+    ) {
+      entities.player.pos.y = portal.pos.y + portal.area.shape.height + 16;
+      return;
+    }
+  });
 
   entities.player.onCollide("collectable", async (collectable: GameObj) => {
     if (inventory.get(collectable.type).length > 0) return;

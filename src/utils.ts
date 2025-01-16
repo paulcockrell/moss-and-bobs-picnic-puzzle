@@ -145,3 +145,7 @@ export function areAnyOfTheseKeysDown(k, keys) {
 
   return false;
 }
+
+export function compArray<T>(arr1: T[], arr2: T[]) {
+  return arr1.length === arr2.length && arr1.every((el) => arr2.includes(el));
+}

@@ -90,7 +90,13 @@
                 {
                  "height":64,
                  "id":30,
-                 "name":"Red potion,Hammer",
+                 "name":"Portal two",
+                 "properties":[
+                        {
+                         "name":"keys",
+                         "type":"string",
+                         "value":"redpotion,hammer"
+                        }],
                  "rotation":0,
                  "type":"Portal",
                  "visible":true,
@@ -101,7 +107,13 @@
                 {
                  "height":64,
                  "id":33,
-                 "name":"Green potion,Axe",
+                 "name":"Portal one",
+                 "properties":[
+                        {
+                         "name":"keys",
+                         "type":"string",
+                         "value":"greenpotion,axe"
+                        }],
                  "rotation":0,
                  "type":"Portal",
                  "visible":true,
