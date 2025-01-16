@@ -44,12 +44,7 @@ export interface Entities {
 k.scene("start", async (): Promise<void> => {
   const map = k.add([k.pos(0, 0)]);
 
-  const inventory = k.add([
-    k.pos(20, 10),
-    k.text("Inventory"),
-    k.fixed(),
-    "inventory",
-  ]);
+  const inventory = k.add([k.pos(20, 10), k.fixed(), "inventory"]);
 
   const entities: Entities = {
     player: null,
@@ -187,8 +182,8 @@ k.scene("start", async (): Promise<void> => {
 
     const collectables = inventory.get("collectable");
     const pos = k.vec2(
-      collectables.length * (SCALE_FACTOR * 16) + (inventory.width + 50),
-      inventory.pos.y + inventory.height / 2,
+      collectables.length * (SCALE_FACTOR * 16) + 20 /* padding */,
+      inventory.pos.y + 20,
     );
     const newCollectable = makeCollectable(k, pos, collectable.type);
     inventory.add(newCollectable);
