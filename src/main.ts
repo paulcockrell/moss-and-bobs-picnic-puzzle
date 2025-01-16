@@ -6,10 +6,12 @@ import { SCALE_FACTOR } from "./contants";
 import { makePlayer } from "./entities/player";
 import { makeGuard } from "./entities/guard";
 import { makeCollectable } from "./entities/collectable";
+import { addUI } from "./ui/ui";
 
 const k = kaplay({
   global: false,
   touchToMouse: true,
+  font: "monogram",
   // @ts-expect-error issue with HTMLElement?
   canvas: document.getElementById("game"),
   debug: true, // set to false once ready for production
@@ -42,6 +44,9 @@ export interface Entities {
 
 k.scene("start", async (): Promise<void> => {
   const map = k.add([k.pos(0, 0)]);
+  const inventory = k.add(["inventory"]);
+
+  addUI(k);
 
   const entities: Entities = {
     player: null,
@@ -173,8 +178,11 @@ k.scene("start", async (): Promise<void> => {
   );
 
   entities.player.onCollide("collectable", async (collectable: GameObj) => {
-    entities.collectables.push(collectable);
-    k.destroy(collectable);
+    if (inventory.get(collectable.type).length > 0) return;
+
+    collectable.parent.remove(collectable);
+    inventory.add(collectable);
+    collectable.hidden = true;
   });
 
   entities.player.onCollide("guard", async (guard: GameObj) => {

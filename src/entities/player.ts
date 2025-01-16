@@ -12,6 +12,7 @@ export function makePlayer(k: KAPLAYCtx, pos: Vec2) {
     k.anchor("center"),
     k.pos(pos),
     k.scale(SCALE_FACTOR),
+    k.z(10),
     {
       speed: 250,
       direction: "down",
