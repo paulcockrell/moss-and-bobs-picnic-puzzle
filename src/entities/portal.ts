@@ -1,7 +1,6 @@
 import { GameObj, KAPLAYCtx } from "kaplay";
 import { SCALE_FACTOR } from "../contants";
 import { MapObject } from "@kayahr/tiled";
-import { compArray } from "../utils";
 
 export function makePortal(k: KAPLAYCtx, mapObject: MapObject) {
   const portal = k.make([
@@ -27,30 +26,12 @@ export function makePortal(k: KAPLAYCtx, mapObject: MapObject) {
       return;
     }
 
-    // Check if the player holds the correct items in his inventory
-    // to pass through the portal
-    const inventory = k.get("inventory")[0];
-    const collectables = inventory.get("collectable");
-
-    const requiredKeys: string[] = portal.properties
-      .filter((p) => p.name.startsWith("key"))
-      .reduce((a: string[], b) => [...a, b.value as string], []);
-
-    const keys: string[] = collectables.reduce((a: string[], collectable) => {
-      const props = collectable.properties;
-      return [...a, props.type, props.variant];
-    }, []);
-
     const door = k.get(
       portal.properties.find((p) => p.name === "door").value as string,
     )[0];
 
-    const unlocked = compArray<string>(requiredKeys, keys);
-    if (!unlocked) {
-      door.play("doorClosed");
+    if (!door.unlocked) {
       return;
-    } else {
-      door.play("doorOpen");
     }
 
     // hit bottom of portal, move player to top of portal

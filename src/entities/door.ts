@@ -7,6 +7,9 @@ export function makeDoor(k: KAPLAYCtx, pos: Vec2, name: string) {
     k.anchor("center"),
     k.pos(pos),
     k.scale(SCALE_FACTOR),
+    {
+      unlocked: false,
+    },
     "door",
     name,
   ]);

@@ -136,7 +136,7 @@ k.scene("start", async (): Promise<void> => {
       if (layer.name === "Portals") {
         layer.objects.forEach((portal) => {
           const newPortal = makePortal(k, portal);
-          map.add(newPortal);
+          k.add(newPortal);
         });
       }
     }
