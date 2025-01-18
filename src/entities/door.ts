@@ -11,12 +11,5 @@ export function makeDoor(k: KAPLAYCtx, pos: Vec2, name: string) {
     name,
   ]);
 
-  // guard.onCollide("player", async (player: GameObj) => {
-  //   player.isInDialogue = true;
-  //   displayDialogue(guard.dialogue, () => {
-  //     player.isInDialogue = false;
-  //   });
-  // });
-
   return door;
 }

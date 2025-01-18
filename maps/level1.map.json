@@ -420,8 +420,13 @@
                 {
                  "height":64,
                  "id":30,
-                 "name":"Portal two",
+                 "name":"Door two portal",
                  "properties":[
+                        {
+                         "name":"door",
+                         "type":"string",
+                         "value":"door2"
+                        }, 
                         {
                          "name":"key_one_type",
                          "type":"string",
@@ -452,8 +457,13 @@
                 {
                  "height":64,
                  "id":33,
-                 "name":"Portal one",
+                 "name":"Door one portal",
                  "properties":[
+                        {
+                         "name":"door",
+                         "type":"string",
+                         "value":"door1"
+                        }, 
                         {
                          "name":"key_one_type",
                          "type":"string",
@@ -642,7 +652,7 @@
                  "visible":true,
                  "width":0,
                  "x":392,
-                 "y":170
+                 "y":168
                 }, 
                 {
                  "height":0,

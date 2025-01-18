@@ -32,19 +32,25 @@ export function makePortal(k: KAPLAYCtx, mapObject: MapObject) {
     const inventory = k.get("inventory")[0];
     const collectables = inventory.get("collectable");
 
-    const requiredKeys: string[] = portal.properties.reduce(
-      (a: string[], b) => [...a, b.value as string],
-      [],
-    );
+    const requiredKeys: string[] = portal.properties
+      .filter((p) => p.name.startsWith("key"))
+      .reduce((a: string[], b) => [...a, b.value as string], []);
 
     const keys: string[] = collectables.reduce((a: string[], collectable) => {
       const props = collectable.properties;
       return [...a, props.type, props.variant];
     }, []);
 
+    const door = k.get(
+      portal.properties.find((p) => p.name === "door").value as string,
+    )[0];
+
     const unlocked = compArray<string>(requiredKeys, keys);
     if (!unlocked) {
+      door.play("doorClosed");
       return;
+    } else {
+      door.play("doorOpen");
     }
 
     // hit bottom of portal, move player to top of portal
