@@ -30,21 +30,23 @@ export function makeCollectable(
 
   collectable.onCollide("player", (player) => {
     const inventory = k.get("inventory")[0];
-    const matchingInventoryType = inventory.get([
+    const matchingInventoryItem = inventory.get([
       "collectable",
       collectable.properties.type,
-    ]);
+    ])[0];
 
     // We can only hold one type of item at a time
-    if (matchingInventoryType.length) {
-      matchingInventoryType.forEach((item) => k.destroy(item));
+    if (matchingInventoryItem) {
+      k.destroy(matchingInventoryItem);
     }
 
     const allInventory = inventory.get("collectable");
-    const pos = k.vec2(
-      allInventory.length * (SCALE_FACTOR * 16) + 20 /* padding */,
-      inventory.pos.y + 20,
-    );
+    const pos =
+      matchingInventoryItem?.pos ||
+      k.vec2(
+        allInventory.length * (SCALE_FACTOR * 16) + 20 /* padding */,
+        inventory.pos.y + 20,
+      );
 
     const newCollectable = makeCollectable(
       k,
