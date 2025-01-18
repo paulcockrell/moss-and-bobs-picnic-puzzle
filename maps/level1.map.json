@@ -524,13 +524,18 @@
                          "name":"dialogue",
                          "type":"string",
                          "value":"To pass through this door you must hold the green potion and axe"
+                        }, 
+                        {
+                         "name":"door",
+                         "type":"string",
+                         "value":"door1"
                         }],
                  "rotation":0,
                  "type":"guard",
                  "visible":true,
                  "width":0,
-                 "x":151.454305547588,
-                 "y":137.972577591647
+                 "x":152,
+                 "y":132
                 }, 
                 {
                  "height":0,
@@ -542,13 +547,18 @@
                          "name":"dialogue",
                          "type":"string",
                          "value":"To pass through this door you must hold the red potion and hammer"
+                        }, 
+                        {
+                         "name":"door",
+                         "type":"string",
+                         "value":"door2"
                         }],
                  "rotation":0,
                  "type":"guard",
                  "visible":true,
                  "width":0,
-                 "x":376.341001663703,
-                 "y":184.441512248293
+                 "x":376,
+                 "y":180
                 }, 
                 {
                  "height":0,

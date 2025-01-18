@@ -96,6 +96,12 @@ k.scene("start", async (): Promise<void> => {
               (map.pos.y + spawnPoint.y) * SCALE_FACTOR,
             );
 
+            const doorTagProp = spawnPoint.properties?.find(
+              (prop) => prop.name === "door" && prop.type === "string",
+            );
+
+            const doorTag = doorTagProp ? (doorTagProp.value as string) : "";
+
             const dialogueProp = spawnPoint.properties?.find(
               (prop) => prop.name === "dialogue" && prop.type === "string",
             );
@@ -104,7 +110,7 @@ k.scene("start", async (): Promise<void> => {
               ? (dialogueProp.value as string)
               : "Halt";
 
-            const guard = makeGuard(k, pos, dialogue);
+            const guard = makeGuard(k, pos, doorTag, dialogue);
             k.add(guard);
           }
 

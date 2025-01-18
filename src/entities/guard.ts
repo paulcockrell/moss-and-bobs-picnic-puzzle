@@ -2,7 +2,12 @@ import { GameObj, KAPLAYCtx, Vec2 } from "kaplay";
 import { SCALE_FACTOR } from "../contants";
 import { displayDialogue } from "../utils";
 
-export function makeGuard(k: KAPLAYCtx, pos: Vec2, dialogue: string) {
+export function makeGuard(
+  k: KAPLAYCtx,
+  pos: Vec2,
+  door: string,
+  dialogue: string,
+) {
   const guard = k.make([
     k.sprite("spritesheet", { anim: "guard" }),
     k.area({
@@ -16,12 +21,16 @@ export function makeGuard(k: KAPLAYCtx, pos: Vec2, dialogue: string) {
       speed: 250,
       direction: "down",
       isInDialogue: false,
-      dialogue: dialogue,
+      door,
+      dialogue,
     },
     "guard",
   ]);
 
   guard.onCollide("player", async (player: GameObj) => {
+    const door = k.get(guard.door)[0];
+    if (door.unlocked) return;
+
     player.isInDialogue = true;
     displayDialogue(guard.dialogue, () => {
       player.isInDialogue = false;
@@ -30,3 +39,5 @@ export function makeGuard(k: KAPLAYCtx, pos: Vec2, dialogue: string) {
 
   return guard;
 }
+
+function getGuardsDoor(k: KAPLAYCtx, guard: GameObj) {}
