@@ -7,6 +7,7 @@ import { makePlayer } from "./entities/player";
 import { makeGuard } from "./entities/guard";
 import { CollectableProps, makeCollectable } from "./entities/collectable";
 import { makePortal } from "./entities/portal";
+import { makeDoor } from "./entities/door";
 
 const k = kaplay({
   global: false,
@@ -34,6 +35,8 @@ k.loadSprite("spritesheet", "../maps/tilemap_packed.png", {
     halfaxe: 119,
     sword: 104,
     staff: 130,
+    doorOpen: 21,
+    doorClosed: 45,
   },
 });
 
@@ -116,6 +119,16 @@ k.scene("start", async (): Promise<void> => {
             );
             const collectable = makeCollectable(k, pos, spawnPoint.name, props);
             k.add(collectable);
+          }
+
+          if (spawnPoint.type === "door") {
+            const pos = k.vec2(
+              (map.pos.x + spawnPoint.x) * SCALE_FACTOR,
+              (map.pos.y + spawnPoint.y) * SCALE_FACTOR,
+            );
+
+            const door = makeDoor(k, pos, spawnPoint.name);
+            k.add(door);
           }
         });
       }

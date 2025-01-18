@@ -24,7 +24,7 @@
          "name":"Floor",
          "opacity":1,
          "type":"tilelayer",
-         "visible":false,
+         "visible":true,
          "width":30,
          "x":0,
          "y":0
@@ -38,10 +38,10 @@
             14, 0, 0, 0, 16, 1, 26, 27, 27, 27, 27, 27, 6, 0, 0, 0, 0, 17, 3, 3, 4, 1, 14, 0, 0, 0, 17, 3, 3, 3,
             14, 0, 0, 0, 16, 1, 1, 1, 1, 1, 1, 13, 14, 0, 0, 0, 0, 58, 41, 41, 16, 13, 14, 0, 0, 0, 58, 41, 41, 41,
             14, 0, 0, 0, 17, 3, 3, 3, 3, 3, 3, 3, 18, 0, 0, 0, 0, 0, 0, 0, 16, 1, 14, 0, 0, 0, 0, 0, 0, 0,
-            14, 0, 0, 0, 58, 41, 41, 41, 22, 41, 41, 41, 60, 0, 0, 5, 27, 27, 27, 27, 28, 1, 26, 27, 27, 27, 27, 27, 27, 27,
+            14, 0, 0, 0, 58, 41, 41, 41, 0, 41, 41, 41, 60, 0, 0, 5, 27, 27, 27, 27, 28, 1, 26, 27, 27, 27, 27, 27, 27, 27,
             14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 16, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
             14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 16, 1, 2, 3, 3, 4, 1, 2, 3, 3, 3, 3, 3, 3, 4,
-            14, 0, 0, 0, 5, 27, 6, 0, 0, 0, 5, 27, 6, 0, 0, 16, 1, 14, 15, 41, 16, 1, 14, 29, 22, 41, 29, 15, 9, 16,
+            14, 0, 0, 0, 5, 27, 6, 0, 0, 0, 5, 27, 6, 0, 0, 16, 1, 14, 15, 41, 16, 1, 14, 29, 0, 41, 29, 15, 9, 16,
             14, 0, 0, 0, 16, 13, 14, 0, 0, 0, 16, 1, 14, 0, 0, 17, 3, 18, 0, 0, 17, 3, 18, 0, 0, 0, 0, 0, 45, 16,
             14, 0, 0, 0, 16, 1, 14, 0, 0, 0, 16, 1, 14, 0, 0, 58, 29, 60, 0, 0, 58, 29, 60, 0, 0, 0, 0, 0, 0, 16,
             14, 0, 0, 0, 16, 1, 14, 0, 0, 0, 16, 1, 14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 16,
@@ -51,7 +51,7 @@
          "name":"Buildings",
          "opacity":1,
          "type":"tilelayer",
-         "visible":false,
+         "visible":true,
          "width":30,
          "x":0,
          "y":0
@@ -77,234 +77,8 @@
          "name":"Items",
          "opacity":1,
          "type":"tilelayer",
-         "visible":false,
+         "visible":true,
          "width":30,
-         "x":0,
-         "y":0
-        }, 
-        {
-         "draworder":"topdown",
-         "id":14,
-         "name":"Portals",
-         "objects":[
-                {
-                 "height":64,
-                 "id":30,
-                 "name":"Portal two",
-                 "properties":[
-                        {
-                         "name":"key_one_type",
-                         "type":"string",
-                         "value":"potion"
-                        }, 
-                        {
-                         "name":"key_one_variant",
-                         "type":"string",
-                         "value":"red"
-                        }, 
-                        {
-                         "name":"key_two_type",
-                         "type":"string",
-                         "value":"weapon"
-                        }, 
-                        {
-                         "name":"key_two_variant",
-                         "type":"string",
-                         "value":"hammer"
-                        }],
-                 "rotation":0,
-                 "type":"Portal",
-                 "visible":true,
-                 "width":0,
-                 "x":392,
-                 "y":112
-                }, 
-                {
-                 "height":64,
-                 "id":33,
-                 "name":"Portal one",
-                 "properties":[
-                        {
-                         "name":"key_one_type",
-                         "type":"string",
-                         "value":"potion"
-                        }, 
-                        {
-                         "name":"key_one_variant",
-                         "type":"string",
-                         "value":"green"
-                        }, 
-                        {
-                         "name":"key_two_type",
-                         "type":"string",
-                         "value":"weapon"
-                        }, 
-                        {
-                         "name":"key_two_variant",
-                         "type":"string",
-                         "value":"axe"
-                        }],
-                 "rotation":0,
-                 "type":"Portal",
-                 "visible":true,
-                 "width":0,
-                 "x":136,
-                 "y":64
-                }],
-         "opacity":1,
-         "type":"objectgroup",
-         "visible":true,
-         "x":0,
-         "y":0
-        }, 
-        {
-         "draworder":"topdown",
-         "id":19,
-         "name":"SpawnPoints",
-         "objects":[
-                {
-                 "height":0,
-                 "id":94,
-                 "name":"player",
-                 "point":true,
-                 "rotation":0,
-                 "type":"player",
-                 "visible":true,
-                 "width":0,
-                 "x":40,
-                 "y":40
-                }, 
-                {
-                 "height":0,
-                 "id":96,
-                 "name":"guard one",
-                 "point":true,
-                 "properties":[
-                        {
-                         "name":"dialogue",
-                         "type":"string",
-                         "value":"To pass through this door you must hold the green potion and axe"
-                        }],
-                 "rotation":0,
-                 "type":"guard",
-                 "visible":true,
-                 "width":0,
-                 "x":151.454305547588,
-                 "y":137.972577591647
-                }, 
-                {
-                 "height":0,
-                 "id":97,
-                 "name":"guard two",
-                 "point":true,
-                 "properties":[
-                        {
-                         "name":"dialogue",
-                         "type":"string",
-                         "value":"To pass through this door you must hold the red potion and hammer"
-                        }],
-                 "rotation":0,
-                 "type":"guard",
-                 "visible":true,
-                 "width":0,
-                 "x":376.341001663703,
-                 "y":184.441512248293
-                }, 
-                {
-                 "height":0,
-                 "id":98,
-                 "name":"axe",
-                 "point":true,
-                 "properties":[
-                        {
-                         "name":"type",
-                         "type":"string",
-                         "value":"weapon"
-                        }, 
-                        {
-                         "name":"variant",
-                         "type":"string",
-                         "value":"axe"
-                        }],
-                 "rotation":0,
-                 "type":"collectable",
-                 "visible":true,
-                 "width":0,
-                 "x":152.027996098904,
-                 "y":216.568183122024
-                }, 
-                {
-                 "height":0,
-                 "id":99,
-                 "name":"greenpotion",
-                 "point":true,
-                 "properties":[
-                        {
-                         "name":"type",
-                         "type":"string",
-                         "value":"potion"
-                        }, 
-                        {
-                         "name":"variant",
-                         "type":"string",
-                         "value":"green"
-                        }],
-                 "rotation":0,
-                 "type":"collectable",
-                 "visible":true,
-                 "width":0,
-                 "x":39.5359951340314,
-                 "y":201.590129035061
-                }, 
-                {
-                 "height":0,
-                 "id":100,
-                 "name":"redpotion",
-                 "point":true,
-                 "properties":[
-                        {
-                         "name":"type",
-                         "type":"string",
-                         "value":"potion"
-                        }, 
-                        {
-                         "name":"variant",
-                         "type":"string",
-                         "value":"red"
-                        }],
-                 "rotation":0,
-                 "type":"collectable",
-                 "visible":true,
-                 "width":0,
-                 "x":312,
-                 "y":104
-                }, 
-                {
-                 "height":0,
-                 "id":101,
-                 "name":"hammer",
-                 "point":true,
-                 "properties":[
-                        {
-                         "name":"type",
-                         "type":"string",
-                         "value":"weapon"
-                        }, 
-                        {
-                         "name":"variant",
-                         "type":"string",
-                         "value":"hammer"
-                        }],
-                 "rotation":0,
-                 "type":"collectable",
-                 "visible":true,
-                 "width":0,
-                 "x":304,
-                 "y":192
-                }],
-         "opacity":1,
-         "type":"objectgroup",
-         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -637,9 +411,259 @@
          "visible":false,
          "x":0,
          "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":14,
+         "name":"Portals",
+         "objects":[
+                {
+                 "height":64,
+                 "id":30,
+                 "name":"Portal two",
+                 "properties":[
+                        {
+                         "name":"key_one_type",
+                         "type":"string",
+                         "value":"potion"
+                        }, 
+                        {
+                         "name":"key_one_variant",
+                         "type":"string",
+                         "value":"red"
+                        }, 
+                        {
+                         "name":"key_two_type",
+                         "type":"string",
+                         "value":"weapon"
+                        }, 
+                        {
+                         "name":"key_two_variant",
+                         "type":"string",
+                         "value":"hammer"
+                        }],
+                 "rotation":0,
+                 "type":"Portal",
+                 "visible":true,
+                 "width":0,
+                 "x":392,
+                 "y":112
+                }, 
+                {
+                 "height":64,
+                 "id":33,
+                 "name":"Portal one",
+                 "properties":[
+                        {
+                         "name":"key_one_type",
+                         "type":"string",
+                         "value":"potion"
+                        }, 
+                        {
+                         "name":"key_one_variant",
+                         "type":"string",
+                         "value":"green"
+                        }, 
+                        {
+                         "name":"key_two_type",
+                         "type":"string",
+                         "value":"weapon"
+                        }, 
+                        {
+                         "name":"key_two_variant",
+                         "type":"string",
+                         "value":"axe"
+                        }],
+                 "rotation":0,
+                 "type":"Portal",
+                 "visible":true,
+                 "width":0,
+                 "x":136,
+                 "y":64
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":19,
+         "name":"SpawnPoints",
+         "objects":[
+                {
+                 "height":0,
+                 "id":94,
+                 "name":"player",
+                 "point":true,
+                 "rotation":0,
+                 "type":"player",
+                 "visible":true,
+                 "width":0,
+                 "x":40,
+                 "y":40
+                }, 
+                {
+                 "height":0,
+                 "id":96,
+                 "name":"guard one",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"dialogue",
+                         "type":"string",
+                         "value":"To pass through this door you must hold the green potion and axe"
+                        }],
+                 "rotation":0,
+                 "type":"guard",
+                 "visible":true,
+                 "width":0,
+                 "x":151.454305547588,
+                 "y":137.972577591647
+                }, 
+                {
+                 "height":0,
+                 "id":97,
+                 "name":"guard two",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"dialogue",
+                         "type":"string",
+                         "value":"To pass through this door you must hold the red potion and hammer"
+                        }],
+                 "rotation":0,
+                 "type":"guard",
+                 "visible":true,
+                 "width":0,
+                 "x":376.341001663703,
+                 "y":184.441512248293
+                }, 
+                {
+                 "height":0,
+                 "id":98,
+                 "name":"axe",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"type",
+                         "type":"string",
+                         "value":"weapon"
+                        }, 
+                        {
+                         "name":"variant",
+                         "type":"string",
+                         "value":"axe"
+                        }],
+                 "rotation":0,
+                 "type":"collectable",
+                 "visible":true,
+                 "width":0,
+                 "x":152.027996098904,
+                 "y":216.568183122024
+                }, 
+                {
+                 "height":0,
+                 "id":99,
+                 "name":"greenpotion",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"type",
+                         "type":"string",
+                         "value":"potion"
+                        }, 
+                        {
+                         "name":"variant",
+                         "type":"string",
+                         "value":"green"
+                        }],
+                 "rotation":0,
+                 "type":"collectable",
+                 "visible":true,
+                 "width":0,
+                 "x":39.5359951340314,
+                 "y":201.590129035061
+                }, 
+                {
+                 "height":0,
+                 "id":100,
+                 "name":"redpotion",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"type",
+                         "type":"string",
+                         "value":"potion"
+                        }, 
+                        {
+                         "name":"variant",
+                         "type":"string",
+                         "value":"red"
+                        }],
+                 "rotation":0,
+                 "type":"collectable",
+                 "visible":true,
+                 "width":0,
+                 "x":312,
+                 "y":104
+                }, 
+                {
+                 "height":0,
+                 "id":101,
+                 "name":"hammer",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"type",
+                         "type":"string",
+                         "value":"weapon"
+                        }, 
+                        {
+                         "name":"variant",
+                         "type":"string",
+                         "value":"hammer"
+                        }],
+                 "rotation":0,
+                 "type":"collectable",
+                 "visible":true,
+                 "width":0,
+                 "x":304,
+                 "y":192
+                }, 
+                {
+                 "height":0,
+                 "id":102,
+                 "name":"door2",
+                 "point":true,
+                 "rotation":0,
+                 "type":"door",
+                 "visible":true,
+                 "width":0,
+                 "x":392,
+                 "y":170
+                }, 
+                {
+                 "height":0,
+                 "id":103,
+                 "name":"door1",
+                 "point":true,
+                 "rotation":0,
+                 "type":"door",
+                 "visible":true,
+                 "width":0,
+                 "x":136,
+                 "y":120
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
         }],
  "nextlayerid":20,
- "nextobjectid":102,
+ "nextobjectid":108,
  "orientation":"orthogonal",
  "renderorder":"left-down",
  "tiledversion":"1.11.1",
