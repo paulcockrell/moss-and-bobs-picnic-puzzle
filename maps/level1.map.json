@@ -523,7 +523,7 @@
                         {
                          "name":"dialogue",
                          "type":"string",
-                         "value":"To pass through this door you must hold the green potion and axe"
+                         "value":"Halt stranger! To pass through this door you must hold the green potion and axe"
                         }, 
                         {
                          "name":"door",
@@ -546,7 +546,7 @@
                         {
                          "name":"dialogue",
                          "type":"string",
-                         "value":"To pass through this door you must hold the red potion and hammer"
+                         "value":"Halt stranger! To pass through this door you must hold the red potion and hammer"
                         }, 
                         {
                          "name":"door",
