@@ -93,9 +93,24 @@
                  "name":"Portal two",
                  "properties":[
                         {
-                         "name":"keys",
+                         "name":"key_one_type",
                          "type":"string",
-                         "value":"redpotion,hammer"
+                         "value":"potion"
+                        }, 
+                        {
+                         "name":"key_one_variant",
+                         "type":"string",
+                         "value":"red"
+                        }, 
+                        {
+                         "name":"key_two_type",
+                         "type":"string",
+                         "value":"weapon"
+                        }, 
+                        {
+                         "name":"key_two_variant",
+                         "type":"string",
+                         "value":"hammer"
                         }],
                  "rotation":0,
                  "type":"Portal",

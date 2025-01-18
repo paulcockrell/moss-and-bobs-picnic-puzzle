@@ -146,14 +146,20 @@ k.scene("start", async (): Promise<void> => {
     // to pass through the portal
     const inventory = k.get("inventory")[0];
     const collectables = inventory.get("collectable");
-    // XXX TODO Add keys as seperate custom properies, there are only ever two keys
-    const requiredKeys = portal.properties;
-    const keys: string[] = collectables.map((c) => c.properties.type);
-    console.log("XXX", requiredKeys, keys);
+    const requiredKeys = portal.properties.reduce(
+      (a: string[], b: { name: string; type: string; value: string }) => [
+        ...a,
+        b.value,
+      ],
+      [],
+    );
+    const keys = collectables.reduce((a, collectable) => {
+      const props = collectable.properties;
+      return [...a, props.type, props.variant];
+    }, []);
     const unlocked = compArray<string>(requiredKeys, keys);
 
     if (!unlocked) {
-      console.log("You may not pass!");
       return;
     }
 
