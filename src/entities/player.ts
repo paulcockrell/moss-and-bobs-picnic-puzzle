@@ -22,8 +22,13 @@ export function makePlayer(k: KAPLAYCtx, pos: Vec2) {
   ]);
 
   setPlayerControls(k, player);
+  addInventory(k, player);
 
   return player;
+}
+
+function addInventory(k: KAPLAYCtx, player: GameObj) {
+  k.add([k.pos(20, 10), k.fixed(), "inventory"]);
 }
 
 function setPlayerControls(k: KAPLAYCtx, player: GameObj) {

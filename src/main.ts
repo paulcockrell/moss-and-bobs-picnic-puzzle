@@ -5,7 +5,8 @@ import { compArray, displayDialogue, drawTiles, setCamScale } from "./utils";
 import { SCALE_FACTOR } from "./contants";
 import { makePlayer } from "./entities/player";
 import { makeGuard } from "./entities/guard";
-import { makeCollectable } from "./entities/collectable";
+import { CollectableProps, makeCollectable } from "./entities/collectable";
+import { makePortal } from "./entities/portal";
 
 const k = kaplay({
   global: false,
@@ -24,10 +25,15 @@ k.loadSprite("spritesheet", "../maps/tilemap_packed.png", {
   anims: {
     player: 112,
     guard: 96,
+    greypotion: 113,
     greenpotion: 114,
     redpotion: 115,
-    axe: 118,
+    bluepotion: 116,
     hammer: 117,
+    axe: 118,
+    halfaxe: 119,
+    sword: 104,
+    staff: 130,
   },
 });
 
@@ -38,20 +44,16 @@ export interface Entities {
   guards: GameObj[];
   collectables: GameObj[];
   portals: GameObj[];
-  inventory: GameObj[];
 }
 
 k.scene("start", async (): Promise<void> => {
   const map = k.add([k.pos(0, 0)]);
-
-  const inventory = k.add([k.pos(20, 10), k.fixed(), "inventory"]);
 
   const entities: Entities = {
     player: null,
     guards: [],
     collectables: [],
     portals: [],
-    inventory: [],
   };
 
   mapData.layers.forEach((layer) => {
@@ -106,17 +108,19 @@ k.scene("start", async (): Promise<void> => {
               : "Halt";
 
             const guard = makeGuard(k, pos, dialogue);
-            entities.guards.push(guard);
             k.add(guard);
           }
 
           if (spawnPoint.type === "collectable") {
+            const props = spawnPoint.properties.reduce(
+              (a, b) => ({ ...a, [b.name]: b.value }),
+              {},
+            ) as CollectableProps;
             const pos = k.vec2(
               (map.pos.x + spawnPoint.x) * SCALE_FACTOR,
               (map.pos.y + spawnPoint.y) * SCALE_FACTOR,
             );
-            const collectable = makeCollectable(k, pos, spawnPoint.name);
-            entities.collectables.push(collectable);
+            const collectable = makeCollectable(k, pos, spawnPoint.name, props);
             k.add(collectable);
           }
         });
@@ -124,27 +128,8 @@ k.scene("start", async (): Promise<void> => {
 
       if (layer.name === "Portals") {
         layer.objects.forEach((portal) => {
-          const keys = portal.properties?.find(
-            (prop) => prop.name === "keys",
-          ).value;
-
-          const entity = map.add([
-            k.area({
-              shape: new k.Rect(
-                k.vec2(0),
-                portal.width * SCALE_FACTOR,
-                portal.height * SCALE_FACTOR,
-              ),
-            }),
-            k.body({ isStatic: true }),
-            k.pos(portal.x * SCALE_FACTOR, portal.y * SCALE_FACTOR),
-            {
-              keys: keys || "",
-            },
-            "portal",
-          ]);
-
-          entities.portals.push(entity);
+          const newPortal = makePortal(k, portal);
+          map.add(newPortal);
         });
       }
     }
@@ -161,8 +146,10 @@ k.scene("start", async (): Promise<void> => {
     // to pass through the portal
     const inventory = k.get("inventory")[0];
     const collectables = inventory.get("collectable");
-    const requiredKeys: string[] = portal.keys.split(",");
-    const keys: string[] = collectables.map((c) => c.type);
+    // XXX TODO Add keys as seperate custom properies, there are only ever two keys
+    const requiredKeys = portal.properties;
+    const keys: string[] = collectables.map((c) => c.properties.type);
+    console.log("XXX", requiredKeys, keys);
     const unlocked = compArray<string>(requiredKeys, keys);
 
     if (!unlocked) {
@@ -187,20 +174,6 @@ k.scene("start", async (): Promise<void> => {
       entities.player.pos.y = portal.pos.y + portal.area.shape.height + 16;
       return;
     }
-  });
-
-  entities.player.onCollide("collectable", async (collectable: GameObj) => {
-    if (inventory.get(collectable.type).length > 0) return;
-
-    k.destroy(collectable);
-
-    const collectables = inventory.get("collectable");
-    const pos = k.vec2(
-      collectables.length * (SCALE_FACTOR * 16) + 20 /* padding */,
-      inventory.pos.y + 20,
-    );
-    const newCollectable = makeCollectable(k, pos, collectable.type);
-    inventory.add(newCollectable);
   });
 
   entities.player.onCollide("guard", async (guard: GameObj) => {

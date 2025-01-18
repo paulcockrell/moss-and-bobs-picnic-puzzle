@@ -1,8 +1,18 @@
 import { KAPLAYCtx, Vec2 } from "kaplay";
 import { SCALE_FACTOR } from "../contants";
 
-export function makeCollectable(k: KAPLAYCtx, pos: Vec2, name: string) {
-  return k.make([
+export interface CollectableProps {
+  type: string;
+  variant: string;
+}
+
+export function makeCollectable(
+  k: KAPLAYCtx,
+  pos: Vec2,
+  name: string,
+  properties: CollectableProps,
+) {
+  const collectable = k.make([
     k.sprite("spritesheet", { anim: name }),
     k.area({
       shape: new k.Rect(k.vec2(0, 3), 16, 16),
@@ -11,8 +21,40 @@ export function makeCollectable(k: KAPLAYCtx, pos: Vec2, name: string) {
     k.pos(pos),
     k.scale(SCALE_FACTOR),
     {
-      type: name,
+      name: name,
+      properties,
     },
     "collectable",
+    properties.type,
   ]);
+
+  collectable.onCollide("player", (player) => {
+    const inventory = k.get("inventory")[0];
+    const matchingInventoryType = inventory.get([
+      "collectable",
+      collectable.properties.type,
+    ]);
+
+    // We can only hold one type of item at a time
+    if (matchingInventoryType.length) {
+      matchingInventoryType.forEach((item) => k.destroy(item));
+    }
+
+    const allInventory = inventory.get("collectable");
+    const pos = k.vec2(
+      allInventory.length * (SCALE_FACTOR * 16) + 20 /* padding */,
+      inventory.pos.y + 20,
+    );
+
+    const newCollectable = makeCollectable(
+      k,
+      pos,
+      collectable.name,
+      collectable.properties,
+    );
+
+    inventory.add(newCollectable);
+  });
+
+  return collectable;
 }

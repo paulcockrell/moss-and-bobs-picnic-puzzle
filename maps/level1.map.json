@@ -24,7 +24,7 @@
          "name":"Floor",
          "opacity":1,
          "type":"tilelayer",
-         "visible":true,
+         "visible":false,
          "width":30,
          "x":0,
          "y":0
@@ -51,7 +51,7 @@
          "name":"Buildings",
          "opacity":1,
          "type":"tilelayer",
-         "visible":true,
+         "visible":false,
          "width":30,
          "x":0,
          "y":0
@@ -77,7 +77,7 @@
          "name":"Items",
          "opacity":1,
          "type":"tilelayer",
-         "visible":true,
+         "visible":false,
          "width":30,
          "x":0,
          "y":0
@@ -110,9 +110,24 @@
                  "name":"Portal one",
                  "properties":[
                         {
-                         "name":"keys",
+                         "name":"key_one_type",
                          "type":"string",
-                         "value":"greenpotion,axe"
+                         "value":"potion"
+                        }, 
+                        {
+                         "name":"key_one_variant",
+                         "type":"string",
+                         "value":"green"
+                        }, 
+                        {
+                         "name":"key_two_type",
+                         "type":"string",
+                         "value":"weapon"
+                        }, 
+                        {
+                         "name":"key_two_variant",
+                         "type":"string",
+                         "value":"axe"
                         }],
                  "rotation":0,
                  "type":"Portal",
@@ -179,6 +194,17 @@
                  "id":98,
                  "name":"axe",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"type",
+                         "type":"string",
+                         "value":"weapon"
+                        }, 
+                        {
+                         "name":"variant",
+                         "type":"string",
+                         "value":"axe"
+                        }],
                  "rotation":0,
                  "type":"collectable",
                  "visible":true,
@@ -191,6 +217,17 @@
                  "id":99,
                  "name":"greenpotion",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"type",
+                         "type":"string",
+                         "value":"potion"
+                        }, 
+                        {
+                         "name":"variant",
+                         "type":"string",
+                         "value":"green"
+                        }],
                  "rotation":0,
                  "type":"collectable",
                  "visible":true,
@@ -203,6 +240,17 @@
                  "id":100,
                  "name":"redpotion",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"type",
+                         "type":"string",
+                         "value":"potion"
+                        }, 
+                        {
+                         "name":"variant",
+                         "type":"string",
+                         "value":"red"
+                        }],
                  "rotation":0,
                  "type":"collectable",
                  "visible":true,
@@ -215,6 +263,17 @@
                  "id":101,
                  "name":"hammer",
                  "point":true,
+                 "properties":[
+                        {
+                         "name":"type",
+                         "type":"string",
+                         "value":"weapon"
+                        }, 
+                        {
+                         "name":"variant",
+                         "type":"string",
+                         "value":"hammer"
+                        }],
                  "rotation":0,
                  "type":"collectable",
                  "visible":true,
@@ -224,7 +283,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -554,7 +613,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }],
