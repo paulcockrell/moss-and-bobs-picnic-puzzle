@@ -1,7 +1,7 @@
-import kaplay, { Collision, GameObj, Vec2 } from "kaplay";
+import kaplay, { GameObj } from "kaplay";
 import * as tiled from "@kayahr/tiled";
 import mapData from "../maps/level1.map.json";
-import { compArray, displayDialogue, drawTiles, setCamScale } from "./utils";
+import { drawTiles, setCamScale } from "./utils";
 import { SCALE_FACTOR } from "./contants";
 import { makePlayer } from "./entities/player";
 import { makeGuard } from "./entities/guard";
@@ -41,9 +41,6 @@ k.setBackground(k.Color.fromHex("#000000"));
 
 export interface Entities {
   player: GameObj;
-  guards: GameObj[];
-  collectables: GameObj[];
-  portals: GameObj[];
 }
 
 k.scene("start", async (): Promise<void> => {
@@ -51,9 +48,6 @@ k.scene("start", async (): Promise<void> => {
 
   const entities: Entities = {
     player: null,
-    guards: [],
-    collectables: [],
-    portals: [],
   };
 
   mapData.layers.forEach((layer) => {
@@ -135,60 +129,6 @@ k.scene("start", async (): Promise<void> => {
     }
   });
 
-  entities.player.onCollideUpdate("portal", async (portal: GameObj) => {
-    // If the user is not walking 'into' the portal then skip teleport
-    // Portal doors are only on the vertical plane
-    if (["left", "right"].includes(entities.player.direction)) {
-      return;
-    }
-
-    // Check if the player holds the correct items in his inventory
-    // to pass through the portal
-    const inventory = k.get("inventory")[0];
-    const collectables = inventory.get("collectable");
-    const requiredKeys = portal.properties.reduce(
-      (a: string[], b: { name: string; type: string; value: string }) => [
-        ...a,
-        b.value,
-      ],
-      [],
-    );
-    const keys = collectables.reduce((a, collectable) => {
-      const props = collectable.properties;
-      return [...a, props.type, props.variant];
-    }, []);
-    const unlocked = compArray<string>(requiredKeys, keys);
-
-    if (!unlocked) {
-      return;
-    }
-
-    // hit bottom of portal, move player to top of portal
-    if (
-      entities.player.pos.y >= portal.pos.y + portal.area.shape.height / 2 &&
-      entities.player.direction === "up"
-    ) {
-      entities.player.pos.y = portal.pos.y - 16;
-      return;
-    }
-
-    // hit top of portal, move player to bottom of portal
-    if (
-      entities.player.pos.y <= portal.pos.y + portal.area.shape.height / 2 &&
-      entities.player.direction === "down"
-    ) {
-      entities.player.pos.y = portal.pos.y + portal.area.shape.height + 16;
-      return;
-    }
-  });
-
-  entities.player.onCollide("guard", async (guard: GameObj) => {
-    entities.player.isInDialogue = true;
-    displayDialogue(guard.dialogue, () => {
-      entities.player.isInDialogue = false;
-    });
-  });
-
   setCamScale(k);
 
   k.onResize(() => {
@@ -196,10 +136,7 @@ k.scene("start", async (): Promise<void> => {
   });
 
   k.onUpdate(() => {
-    k.setCamPos(
-      entities.player.worldPos().x,
-      entities.player.worldPos().y - 100,
-    );
+    k.setCamPos(entities.player.worldPos().x, entities.player.worldPos().y);
   });
 });
 
