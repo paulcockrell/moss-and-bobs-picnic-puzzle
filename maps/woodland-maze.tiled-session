@@ -1,0 +1,118 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "forest_level_1.map.json",
+    "automapping.whileDrawing": true,
+    "expandedProjectPaths": [
+        "."
+    ],
+    "file.lastUsedOpenFilter": "All Files (*)",
+    "fileStates": {
+        ":/automap-tiles.tsx": {
+            "scaleInDock": 1
+        },
+        "Bush_Tiles.tsx": {
+            "scaleInDock": 3.86,
+            "scaleInEditor": 3.1
+        },
+        "Darker_Grass_Tile_Layers.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 3.1
+        },
+        "Darker_Soil_Ground_Tiles.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 3.1
+        },
+        "Fences.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 3.1
+        },
+        "Grass_Hill_Tiles.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 3.1
+        },
+        "Grass_Tile_Layers.tsx": {
+            "scaleInDock": 1.2832,
+            "scaleInEditor": 3.1
+        },
+        "Grass_tiles_v2.tsx": {
+            "scaleInDock": 3.86,
+            "scaleInEditor": 1
+        },
+        "Mushrooms_Flowers_tiles.tsx": {
+            "scaleInDock": 3.1387,
+            "scaleInEditor": 3.1
+        },
+        "Soil_Ground_Tiles.tsx": {
+            "scaleInDock": 3.86,
+            "scaleInEditor": 3.1
+        },
+        "Stone_Ground_Tiles.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 3.1
+        },
+        "Trees, stumps and bushes.tsx": {
+            "scaleInDock": 2.5617,
+            "scaleInEditor": 5.63
+        },
+        "Trees_Stumps_Bushes.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 3.1
+        },
+        "forest_level_1.map.json": {
+            "scale": 2.29,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 136.8995633187773,
+                "y": 269.2139737991267
+            }
+        },
+        "test.tmx": {
+            "scale": 1.76,
+            "selectedLayer": 7,
+            "viewCenter": {
+                "x": 126.13636363636364,
+                "y": 166.19318181818184
+            }
+        }
+    },
+    "last.imagePath": "/Users/macoperator/Downloads/Sprout Lands - Sprites - premium pack/Objects",
+    "map.lastUsedFormat": "json",
+    "map.tileHeight": 16,
+    "map.tileWidth": 16,
+    "openFiles": [
+        "forest_level_1.map.json",
+        "Soil_Ground_Tiles.tsx",
+        "Grass_Tile_Layers.tsx",
+        "Bush_Tiles.tsx",
+        "Darker_Grass_Tile_Layers.tsx",
+        "Darker_Soil_Ground_Tiles.tsx",
+        "Grass_Hill_Tiles.tsx",
+        "Stone_Ground_Tiles.tsx",
+        "Fences.tsx",
+        "Mushrooms_Flowers_tiles.tsx",
+        "Trees_Stumps_Bushes.tsx"
+    ],
+    "project": "woodland-maze.tiled-project",
+    "recentFiles": [
+        "Trees_Stumps_Bushes.tsx",
+        "Mushrooms_Flowers_tiles.tsx",
+        "Fences.tsx",
+        "Stone_Ground_Tiles.tsx",
+        "Grass_Hill_Tiles.tsx",
+        "Darker_Soil_Ground_Tiles.tsx",
+        "Darker_Grass_Tile_Layers.tsx",
+        "Bush_Tiles.tsx",
+        "Grass_Tile_Layers.tsx",
+        "Soil_Ground_Tiles.tsx",
+        "forest_level_1.map.json",
+        "test.tmx"
+    ],
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 16,
+        "width": 16
+    }
+}

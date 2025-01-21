@@ -1,6 +1,6 @@
 import kaplay, { GameObj } from "kaplay";
 import * as tiled from "@kayahr/tiled";
-import mapData from "../maps/level1.map.json";
+import mapData from "../maps/forest_level_1.map.json";
 import { drawTiles, setCamScale } from "./utils";
 import { SCALE_FACTOR } from "./contants";
 import { makePlayer } from "./entities/player";
@@ -40,6 +40,56 @@ k.loadSprite("spritesheet", "../maps/tilemap_packed.png", {
   },
 });
 
+k.loadSprite("Soil", "../maps/Soil_Ground_Tiles.png", {
+  sliceX: 11,
+  sliceY: 7,
+});
+
+k.loadSprite("Grass", "../maps/Grass_Tile_Layers.png", {
+  sliceX: 11,
+  sliceY: 7,
+});
+
+k.loadSprite("Dark grass", "../maps/Darker_Grass_Tile_Layers.png", {
+  sliceX: 11,
+  sliceY: 7,
+});
+
+k.loadSprite("Flowers", "../maps/Mushrooms_Flowers_Tiles.png", {
+  sliceX: 12,
+  sliceY: 5,
+});
+
+k.loadSprite("Bushes", "../maps/Bush_Tiles.png", {
+  sliceX: 11,
+  sliceY: 11,
+});
+
+k.loadSprite("Trees", "../maps/Trees, stumps and bushes.png", {
+  sliceX: 12,
+  sliceY: 7,
+});
+
+k.loadSprite("Fences", "../maps/Fences.png", {
+  sliceX: 8,
+  sliceY: 4,
+});
+
+k.loadSprite("player", "../maps/Cat_Basic_Spritesheet.png", {
+  sliceX: 4,
+  sliceY: 4,
+  anims: {
+    stillDown: { from: 0, to: 1, loop: true },
+    runDown: { from: 2, to: 3, loop: true },
+    stillUp: { from: 4, to: 5, loop: true },
+    runUp: { from: 6, to: 7, loop: true },
+    stillLeft: { from: 8, to: 9, loop: true },
+    runLeft: { from: 10, to: 11, loop: true },
+    stillRight: { from: 12, to: 13, loop: true },
+    runRight: { from: 14, to: 15, loop: true },
+  },
+});
+
 k.setBackground(k.Color.fromHex("#000000"));
 
 export interface Entities {
@@ -53,10 +103,20 @@ k.scene("start", async (): Promise<void> => {
     player: null,
   };
 
+  const sortedTilesetsDesc = mapData.tilesets.sort(
+    (ts1, ts2) => ts2.firstgid - ts1.firstgid,
+  );
+
   mapData.layers.forEach((layer) => {
-    // Tiles
     if (tiled.isTileLayer(layer)) {
-      drawTiles(k, map, layer, mapData.tileheight, mapData.tilewidth);
+      drawTiles(
+        k,
+        map,
+        layer,
+        mapData.tileheight,
+        mapData.tilewidth,
+        sortedTilesetsDesc,
+      );
     }
 
     // Objects

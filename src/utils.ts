@@ -79,9 +79,21 @@ export function drawTiles(
   layer: EncodedTileLayer | UnencodedTileLayer,
   tileheight: number,
   tilewidth: number,
+  tilesets: tiled.AnyTileset[],
 ) {
   let nbOfDrawnTiles = 0;
   const tilePos = k.vec2(0);
+
+  // We may have to use custom properties on the layer to reference the tileset use
+  // or use naming convenstions of layers / tileset references
+  //
+  // https://doc.mapeditor.org/en/stable/reference/json-map-format/#json-tileset
+  //
+  // Each tileset has a firstgid (first global ID) property which tells you the
+  // global ID of its first tile (the one with local tile ID 0). This allows
+  // you to map the global IDs back to the right tileset, and then calculate
+  // the local tile ID by subtracting the firstgid from the global tile ID. The
+  // first tileset always has a firstgid value of 1.
 
   if (tiled.isUnencodedTileLayer(layer)) {
     layer.data.forEach((tile) => {
@@ -97,8 +109,10 @@ export function drawTiles(
 
       nbOfDrawnTiles++;
       if (tile > 0) {
+        const tileset = tilesets.find((ts) => tile >= ts.firstgid);
+        //console.log("tile", tile, tileset);
         map.add([
-          k.sprite("spritesheet", { frame: tile - 1 }),
+          k.sprite(layer.name, { frame: tile - (tileset?.firstgid || 0) }),
           k.pos(tilePos),
           k.offscreen(),
           k.scale(SCALE_FACTOR),
