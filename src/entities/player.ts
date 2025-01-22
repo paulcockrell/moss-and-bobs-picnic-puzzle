@@ -81,15 +81,19 @@ function setPlayerControls(k: KAPLAYCtx, player: GameObj) {
       case "left":
         player.play("stillLeft");
         player.direction = "stillLeft";
+        break;
       case "right":
         player.play("stillRight");
         player.direction = "stillRight";
+        break;
       case "up":
         player.play("stillUp");
         player.direction = "stillUp";
+        break;
       case "down":
         player.play("stillDown");
         player.direction = "stillDown";
+        break;
     }
   });
 }
