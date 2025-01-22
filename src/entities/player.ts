@@ -6,7 +6,7 @@ export function makePlayer(k: KAPLAYCtx, pos: Vec2) {
   const player = k.make([
     k.sprite("player", { anim: "stillDown" }),
     k.area({
-      shape: new k.Rect(k.vec2(0, 5), 16, 6),
+      shape: new k.Rect(k.vec2(0), 10, 10),
     }),
     k.body(),
     k.anchor("center"),
@@ -14,7 +14,7 @@ export function makePlayer(k: KAPLAYCtx, pos: Vec2) {
     k.scale(SCALE_FACTOR),
     k.z(10),
     {
-      speed: 250,
+      speed: 100,
       direction: "down",
       isInDialogue: false,
     },

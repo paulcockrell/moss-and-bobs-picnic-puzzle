@@ -63,10 +63,10 @@
         },
         "forest_level_1.map.json": {
             "scale": 2.29,
-            "selectedLayer": 1,
+            "selectedLayer": 6,
             "viewCenter": {
-                "x": 136.8995633187773,
-                "y": 269.2139737991267
+                "x": 290.174672489083,
+                "y": 143.44978165938863
             }
         },
         "test.tmx": {

@@ -8,6 +8,7 @@ import { makeGuard } from "./entities/guard";
 import { CollectableProps, makeCollectable } from "./entities/collectable";
 import { makePortal } from "./entities/portal";
 import { makeDoor } from "./entities/door";
+import { opacity } from "kaplay/dist/declaration/components";
 
 const k = kaplay({
   global: false,
@@ -124,14 +125,13 @@ k.scene("start", async (): Promise<void> => {
       if (layer.name === "Boundaries") {
         layer.objects.forEach((boundary) => {
           map.add([
-            k.area({
-              shape: new k.Rect(
-                k.vec2(0),
-                boundary.width * SCALE_FACTOR,
-                boundary.height * SCALE_FACTOR,
-              ),
-            }),
+            k.polygon(
+              boundary.polygon.map((p) => k.vec2(p.x, p.y)),
+              { triangulate: true, fill: false },
+            ),
+            k.scale(SCALE_FACTOR),
             k.body({ isStatic: true }),
+            k.area(),
             k.pos(boundary.x * SCALE_FACTOR, boundary.y * SCALE_FACTOR),
             "boundary",
           ]);
@@ -147,7 +147,7 @@ k.scene("start", async (): Promise<void> => {
             );
             const player = makePlayer(k, pos);
             entities.player = player;
-            k.add(player);
+            map.add(player);
           }
 
           if (spawnPoint.type === "guard") {
@@ -171,7 +171,7 @@ k.scene("start", async (): Promise<void> => {
               : "Halt";
 
             const guard = makeGuard(k, pos, doorTag, dialogue);
-            k.add(guard);
+            map.add(guard);
           }
 
           if (spawnPoint.type === "collectable") {
@@ -184,7 +184,7 @@ k.scene("start", async (): Promise<void> => {
               (map.pos.y + spawnPoint.y) * SCALE_FACTOR,
             );
             const collectable = makeCollectable(k, pos, spawnPoint.name, props);
-            k.add(collectable);
+            map.add(collectable);
           }
 
           if (spawnPoint.type === "door") {
@@ -194,7 +194,7 @@ k.scene("start", async (): Promise<void> => {
             );
 
             const door = makeDoor(k, pos, spawnPoint.name);
-            k.add(door);
+            map.add(door);
           }
         });
       }
@@ -202,7 +202,7 @@ k.scene("start", async (): Promise<void> => {
       if (layer.name === "Portals") {
         layer.objects.forEach((portal) => {
           const newPortal = makePortal(k, portal);
-          k.add(newPortal);
+          map.add(newPortal);
         });
       }
     }
