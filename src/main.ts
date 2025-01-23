@@ -8,7 +8,7 @@ import { makeGuard } from "./entities/guard";
 import { CollectableProps, makeCollectable } from "./entities/collectable";
 import { makePortal } from "./entities/portal";
 import { makeDoor } from "./entities/door";
-import { opacity } from "kaplay/dist/declaration/components";
+import { makeGate } from "./entities/gate";
 
 const k = kaplay({
   global: false,
@@ -74,6 +74,35 @@ k.loadSprite("Trees", "../maps/Trees, stumps and bushes.png", {
 k.loadSprite("Fences", "../maps/Fences.png", {
   sliceX: 8,
   sliceY: 4,
+});
+
+k.loadSpriteAtlas("../maps/Fence_Gates.png", {
+  gateHorizontal: {
+    x: 0,
+    y: 0,
+    width: 320,
+    height: 16,
+    sliceX: 5,
+    anims: {
+      opening: { from: 0, to: 4, loop: false },
+      closing: { from: 4, to: 0, loop: false },
+      open: 4,
+      closed: 0,
+    },
+  },
+  gateVertical: {
+    x: 0,
+    y: 16,
+    width: 160,
+    height: 64,
+    sliceX: 5,
+    anims: {
+      opening: { from: 0, to: 4, loop: false },
+      closing: { from: 4, to: 0, loop: false },
+      open: 4,
+      closed: 0,
+    },
+  },
 });
 
 k.loadSprite("player", "../maps/Cat_Basic_Spritesheet.png", {
@@ -195,6 +224,24 @@ k.scene("start", async (): Promise<void> => {
 
             const door = makeDoor(k, pos, spawnPoint.name);
             map.add(door);
+          }
+
+          if (spawnPoint.type === "gate") {
+            const pos = k.vec2(
+              (map.pos.x + spawnPoint.x) * SCALE_FACTOR,
+              (map.pos.y + spawnPoint.y) * SCALE_FACTOR,
+            );
+
+            const orientationProp = spawnPoint.properties?.find(
+              (prop) => prop.name === "orientation" && prop.type === "string",
+            );
+
+            const orientation = orientationProp
+              ? (orientationProp.value as string)
+              : "horizontal";
+
+            const gate = makeGate(k, pos, spawnPoint.name, orientation);
+            map.add(gate);
           }
         });
       }
