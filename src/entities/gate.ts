@@ -1,6 +1,8 @@
 import { GameObj, KAPLAYCtx, Vec2 } from "kaplay";
 import { SCALE_FACTOR } from "../contants";
 
+const status: "closed" | "open" | "closing" | "opening" = "closed";
+
 export function makeGate(
   k: KAPLAYCtx,
   pos: Vec2,
@@ -18,26 +20,40 @@ export function makeGate(
     k.pos(pos),
     k.scale(SCALE_FACTOR),
     k.area(),
+    k.timer(),
     k.body({ isStatic: true }),
     {
-      unlocked: false,
+      status,
+      waitController: null,
     },
     "gate",
     name,
   ]);
 
-  gate.onCollide("player", async (player: GameObj) => {
-    if (gate.unlocked) return;
+  gate.onCollideUpdate("player", async (_player: GameObj) => {
+    // If there is an existing timeout set to animate the gate closed
+    // then cancel it as the gate is occupied by the player
+    if (gate.waitController !== null) {
+      gate.waitController.cancel();
+      gate.waitController = null;
+    }
 
-    gate.play("opening");
+    // The gate has been approached by the player and it is closed
+    // so open it
+    if (gate.status === "closed") {
+      gate.status = "opening";
+      gate.play("opening");
+    }
   });
 
   gate.onUpdate(() => {
-    gateOpeningHandler(gate);
+    gateStatusHandler(gate);
   });
 
   gate.onBeforePhysicsResolve((collision) => {
-    if (collision.target.is(["player"]) && gate.unlocked) {
+    // The player is at the gate and the gate is open so turn off
+    // collision detection to allow the player to pass through
+    if (collision.target.is(["player"]) && gate.status === "open") {
       collision.preventResolution();
     }
   });
@@ -45,10 +61,31 @@ export function makeGate(
   return gate;
 }
 
-function gateOpeningHandler(gate) {
-  if (gate.unlocked === true) return;
-
-  if (gate.animFrame === 4) {
-    gate.unlocked = true;
+function gateStatusHandler(gate: GameObj) {
+  // The gate is open and not scheduled to close, create a
+  // close gate timer
+  if (gate.status === "open" && gate.waitController === null) {
+    setGateCloseTimer(gate, 2);
   }
+
+  // The gate is opening and the opening animation has completed
+  // so update the gate status to open
+  if (gate.status === "opening" && gate.animFrame === 4) {
+    gate.status = "open";
+  }
+
+  // The gate is closing and the closing animation has completed
+  // so update the gate status to closed
+  if (gate.status === "closing" && gate.animFrame === 4) {
+    gate.status = "closed";
+  }
+}
+
+function setGateCloseTimer(gate: GameObj, seconds: number) {
+  gate.waitController = gate.wait(seconds, () => {
+    if (gate.status === "open") {
+      gate.status = "closing";
+      gate.play("closing");
+    }
+  });
 }

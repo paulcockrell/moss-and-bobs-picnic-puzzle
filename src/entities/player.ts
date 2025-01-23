@@ -13,9 +13,10 @@ export function makePlayer(k: KAPLAYCtx, pos: Vec2) {
     k.pos(pos),
     k.scale(SCALE_FACTOR),
     k.z(10),
+    k.timer(),
     {
       speed: 100,
-      direction: "down",
+      direction: "stillDown",
       isInDialogue: false,
     },
     "player",
@@ -23,11 +24,6 @@ export function makePlayer(k: KAPLAYCtx, pos: Vec2) {
 
   setPlayerControls(k, player);
   addInventory(k);
-
-  //player.onCollide("boundary", (obj, collision) => {
-  //  // Slide the player along surface when it bumps into boundary
-  //  player.isColliding = true;
-  //});
 
   return player;
 }

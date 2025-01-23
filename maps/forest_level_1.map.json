@@ -1627,7 +1627,7 @@
                         {
                          "name":"flip",
                          "type":"string",
-                         "value":"false"
+                         "value":"true"
                         }, 
                         {
                          "name":"orientation",
