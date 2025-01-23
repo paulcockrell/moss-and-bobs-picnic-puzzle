@@ -3,8 +3,7 @@ import { SCALE_FACTOR } from "../contants";
 import { compArray } from "../utils";
 
 export interface CollectableProps {
-  type: string;
-  variant: string;
+  code: string;
 }
 
 export function makeCollectable(
@@ -14,7 +13,7 @@ export function makeCollectable(
   properties: CollectableProps,
 ) {
   const collectable = k.make([
-    k.sprite("spritesheet", { anim: name }),
+    k.sprite("Items", { anim: properties.code }),
     k.area({
       shape: new k.Rect(k.vec2(0, 3), 16, 16),
     }),
@@ -22,11 +21,10 @@ export function makeCollectable(
     k.pos(pos),
     k.scale(SCALE_FACTOR),
     {
-      name: name,
       properties,
     },
     "collectable",
-    properties.type,
+    properties.code,
   ]);
 
   collectable.onCollide("player", (player) => {
@@ -41,7 +39,7 @@ function addCollectableToInventory(k, collectable) {
   const inventory = k.get("inventory")[0];
   const matchingInventoryItem = inventory.get([
     "collectable",
-    collectable.properties.type,
+    collectable.code,
   ])[0];
 
   // We can only hold one type of item at a time

@@ -105,6 +105,33 @@ k.loadSpriteAtlas("../maps/Fence_Gates.png", {
   },
 });
 
+k.loadSprite("Signs", "../maps/Signs.png", {
+  sliceX: 6,
+  sliceY: 4,
+});
+
+k.loadSprite("Items", "../maps/Items.png", {
+  sliceX: 8,
+  sliceY: 15,
+  anims: {
+    a: 1,
+    b: 9,
+    c: 17,
+    d: 25,
+    e: 33,
+    f: 41,
+    g: 49,
+    h: 57,
+    i: 65,
+    j: 73,
+    k: 81,
+    l: 89,
+    m: 97,
+    n: 105,
+    o: 113,
+  },
+});
+
 k.loadSprite("player", "../maps/Cat_Basic_Spritesheet.png", {
   sliceX: 4,
   sliceY: 4,

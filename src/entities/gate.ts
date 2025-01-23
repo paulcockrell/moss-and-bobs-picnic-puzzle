@@ -65,7 +65,7 @@ function gateStatusHandler(gate: GameObj) {
   // The gate is open and not scheduled to close, create a
   // close gate timer
   if (gate.status === "open" && gate.waitController === null) {
-    setGateCloseTimer(gate, 2);
+    setGateCloseTimer(gate, 1);
   }
 
   // The gate is opening and the opening animation has completed
