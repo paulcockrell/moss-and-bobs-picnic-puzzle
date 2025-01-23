@@ -62,11 +62,11 @@
             "scaleInEditor": 3.1
         },
         "forest_level_1.map.json": {
-            "scale": 2.29,
-            "selectedLayer": 6,
+            "scale": 2.5014,
+            "selectedLayer": 4,
             "viewCenter": {
-                "x": 290.174672489083,
-                "y": 143.44978165938863
+                "x": 176.3012712880787,
+                "y": 129.72735268249778
             }
         },
         "test.tmx": {

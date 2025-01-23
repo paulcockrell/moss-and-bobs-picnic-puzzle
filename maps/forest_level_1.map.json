@@ -196,7 +196,6 @@
         {
          "draworder":"topdown",
          "id":23,
-         "locked":true,
          "name":"Boundaries",
          "objects":[
                 {
@@ -1483,6 +1482,118 @@
                  "width":0,
                  "x":448,
                  "y":272
+                }, 
+                {
+                 "height":0,
+                 "id":140,
+                 "name":"",
+                 "polygon":[
+                        {
+                         "x":0,
+                         "y":0
+                        }, 
+                        {
+                         "x":-20,
+                         "y":0
+                        }, 
+                        {
+                         "x":-20,
+                         "y":-4
+                        }, 
+                        {
+                         "x":0,
+                         "y":-4
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":272,
+                 "y":120
+                }, 
+                {
+                 "height":0,
+                 "id":141,
+                 "name":"",
+                 "polygon":[
+                        {
+                         "x":0,
+                         "y":0
+                        }, 
+                        {
+                         "x":24,
+                         "y":0
+                        }, 
+                        {
+                         "x":24,
+                         "y":-4
+                        }, 
+                        {
+                         "x":0,
+                         "y":-4
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":208,
+                 "y":120
+                }, 
+                {
+                 "height":0,
+                 "id":143,
+                 "name":"",
+                 "polygon":[
+                        {
+                         "x":0,
+                         "y":0
+                        }, 
+                        {
+                         "x":0,
+                         "y":-20
+                        }, 
+                        {
+                         "x":-4,
+                         "y":-20
+                        }, 
+                        {
+                         "x":-4,
+                         "y":0
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":332,
+                 "y":288
+                }, 
+                {
+                 "height":0,
+                 "id":144,
+                 "name":"",
+                 "polygon":[
+                        {
+                         "x":0,
+                         "y":0
+                        }, 
+                        {
+                         "x":0,
+                         "y":20
+                        }, 
+                        {
+                         "x":-4,
+                         "y":20
+                        }, 
+                        {
+                         "x":-4,
+                         "y":0
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":332,
+                 "y":224
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1560,7 +1671,7 @@
          "y":0
         }],
  "nextlayerid":25,
- "nextobjectid":139,
+ "nextobjectid":145,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.1",
