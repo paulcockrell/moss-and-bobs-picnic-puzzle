@@ -15,43 +15,51 @@
         },
         "Bush_Tiles.tsx": {
             "scaleInDock": 3.86,
-            "scaleInEditor": 3.1
+            "scaleInEditor": 1
         },
         "Darker_Grass_Tile_Layers.tsx": {
             "scaleInDock": 1,
-            "scaleInEditor": 3.1
+            "scaleInEditor": 1
         },
         "Darker_Soil_Ground_Tiles.tsx": {
             "scaleInDock": 1,
-            "scaleInEditor": 3.1
+            "scaleInEditor": 1
         },
         "Fences.tsx": {
             "scaleInDock": 1,
-            "scaleInEditor": 3.1
+            "scaleInEditor": 1
         },
         "Grass_Hill_Tiles.tsx": {
             "scaleInDock": 1,
-            "scaleInEditor": 3.1
+            "scaleInEditor": 1
         },
         "Grass_Tile_Layers.tsx": {
             "scaleInDock": 1.2832,
-            "scaleInEditor": 3.1
+            "scaleInEditor": 1
         },
         "Grass_tiles_v2.tsx": {
             "scaleInDock": 3.86,
             "scaleInEditor": 1
         },
+        "Items.tsx": {
+            "scaleInDock": 2.6511,
+            "scaleInEditor": 1
+        },
         "Mushrooms_Flowers_tiles.tsx": {
             "scaleInDock": 3.1387,
-            "scaleInEditor": 3.1
+            "scaleInEditor": 1
+        },
+        "Signs.tsx": {
+            "scaleInDock": 4.0706,
+            "scaleInEditor": 1
         },
         "Soil_Ground_Tiles.tsx": {
             "scaleInDock": 3.86,
-            "scaleInEditor": 3.1
+            "scaleInEditor": 1
         },
         "Stone_Ground_Tiles.tsx": {
             "scaleInDock": 1,
-            "scaleInEditor": 3.1
+            "scaleInEditor": 1
         },
         "Trees, stumps and bushes.tsx": {
             "scaleInDock": 2.5617,
@@ -59,14 +67,14 @@
         },
         "Trees_Stumps_Bushes.tsx": {
             "scaleInDock": 1,
-            "scaleInEditor": 3.1
+            "scaleInEditor": 1
         },
         "forest_level_1.map.json": {
             "scale": 2.5014,
-            "selectedLayer": 4,
+            "selectedLayer": 7,
             "viewCenter": {
-                "x": 176.3012712880787,
-                "y": 129.72735268249778
+                "x": 164.3079875269849,
+                "y": 150.91548732709686
             }
         },
         "test.tmx": {
@@ -93,10 +101,14 @@
         "Stone_Ground_Tiles.tsx",
         "Fences.tsx",
         "Mushrooms_Flowers_tiles.tsx",
-        "Trees_Stumps_Bushes.tsx"
+        "Trees_Stumps_Bushes.tsx",
+        "Signs.tsx",
+        "Items.tsx"
     ],
     "project": "woodland-maze.tiled-project",
     "recentFiles": [
+        "Items.tsx",
+        "Signs.tsx",
         "Trees_Stumps_Bushes.tsx",
         "Mushrooms_Flowers_tiles.tsx",
         "Fences.tsx",
@@ -106,9 +118,7 @@
         "Darker_Grass_Tile_Layers.tsx",
         "Bush_Tiles.tsx",
         "Grass_Tile_Layers.tsx",
-        "Soil_Ground_Tiles.tsx",
-        "forest_level_1.map.json",
-        "test.tmx"
+        "Soil_Ground_Tiles.tsx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {
