@@ -110,6 +110,11 @@ k.loadSprite("Signs", "../maps/Signs.png", {
   sliceY: 4,
 });
 
+k.loadSprite("ItemShadows", "../maps/ItemShadow.png", {
+  sliceX: 1,
+  sliceY: 1,
+});
+
 k.loadSprite("Items", "../maps/Items.png", {
   sliceX: 8,
   sliceY: 15,

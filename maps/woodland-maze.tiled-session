@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "forest_level_1.map.json",
+    "activeFile": "Soil_Ground_Tiles.tsx",
     "automapping.whileDrawing": true,
     "expandedProjectPaths": [
         "."
@@ -70,11 +70,11 @@
             "scaleInEditor": 1
         },
         "forest_level_1.map.json": {
-            "scale": 2.5014,
-            "selectedLayer": 7,
+            "scale": 5.43,
+            "selectedLayer": 8,
             "viewCenter": {
-                "x": 164.3079875269849,
-                "y": 150.91548732709686
+                "x": 299.8158379373849,
+                "y": 242.7255985267035
             }
         },
         "test.tmx": {
@@ -91,7 +91,6 @@
     "map.tileHeight": 16,
     "map.tileWidth": 16,
     "openFiles": [
-        "forest_level_1.map.json",
         "Soil_Ground_Tiles.tsx",
         "Grass_Tile_Layers.tsx",
         "Bush_Tiles.tsx",
