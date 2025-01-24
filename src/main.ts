@@ -4,7 +4,7 @@ import mapData from "../maps/forest_level_1.map.json";
 import { drawTiles, setCamScale } from "./utils";
 import { SCALE_FACTOR } from "./contants";
 import { makePlayer } from "./entities/player";
-import { makeGuard } from "./entities/guard";
+import { makeDialogueTrigger } from "./entities/dialogueTrigger";
 import { CollectableProps, makeCollectable } from "./entities/collectable";
 import { makePortal } from "./entities/portal";
 import { makeDoor } from "./entities/door";
@@ -206,6 +206,12 @@ k.scene("start", async (): Promise<void> => {
         });
       }
 
+      if (layer.name === "DialogueTriggers") {
+        layer.objects.forEach((dialogueTrigger) => {
+          map.add(makeDialogueTrigger(k, dialogueTrigger));
+        });
+      }
+
       if (layer.name === "SpawnPoints") {
         layer.objects.forEach((spawnPoint) => {
           if (spawnPoint.type === "player") {
@@ -216,30 +222,6 @@ k.scene("start", async (): Promise<void> => {
             const player = makePlayer(k, pos);
             entities.player = player;
             map.add(player);
-          }
-
-          if (spawnPoint.type === "guard") {
-            const pos = k.vec2(
-              (map.pos.x + spawnPoint.x) * SCALE_FACTOR,
-              (map.pos.y + spawnPoint.y) * SCALE_FACTOR,
-            );
-
-            const doorTagProp = spawnPoint.properties?.find(
-              (prop) => prop.name === "door" && prop.type === "string",
-            );
-
-            const doorTag = doorTagProp ? (doorTagProp.value as string) : "";
-
-            const dialogueProp = spawnPoint.properties?.find(
-              (prop) => prop.name === "dialogue" && prop.type === "string",
-            );
-
-            const dialogue = dialogueProp
-              ? (dialogueProp.value as string)
-              : "Halt";
-
-            const guard = makeGuard(k, pos, doorTag, dialogue);
-            map.add(guard);
           }
 
           if (spawnPoint.type === "collectable") {

@@ -229,6 +229,7 @@
         {
          "draworder":"topdown",
          "id":23,
+         "locked":true,
          "name":"Boundaries",
          "objects":[
                 {
@@ -1546,34 +1547,6 @@
                 }, 
                 {
                  "height":0,
-                 "id":141,
-                 "name":"",
-                 "polygon":[
-                        {
-                         "x":0,
-                         "y":0
-                        }, 
-                        {
-                         "x":24,
-                         "y":0
-                        }, 
-                        {
-                         "x":24,
-                         "y":-4
-                        }, 
-                        {
-                         "x":0,
-                         "y":-4
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":208,
-                 "y":120
-                }, 
-                {
-                 "height":0,
                  "id":143,
                  "name":"",
                  "polygon":[
@@ -1655,6 +1628,181 @@
                  "width":0,
                  "x":408,
                  "y":112
+                }, 
+                {
+                 "height":0,
+                 "id":148,
+                 "name":"",
+                 "polygon":[
+                        {
+                         "x":0,
+                         "y":0
+                        }, 
+                        {
+                         "x":20,
+                         "y":0
+                        }, 
+                        {
+                         "x":20,
+                         "y":4
+                        }, 
+                        {
+                         "x":0,
+                         "y":4
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":208,
+                 "y":116
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":26,
+         "name":"DialogueTriggers",
+         "objects":[
+                {
+                 "height":0,
+                 "id":149,
+                 "name":"dialoguetrigger",
+                 "polygon":[
+                        {
+                         "x":0,
+                         "y":0
+                        }, 
+                        {
+                         "x":16,
+                         "y":0
+                        }, 
+                        {
+                         "x":16,
+                         "y":16
+                        }, 
+                        {
+                         "x":0,
+                         "y":16
+                        }],
+                 "properties":[
+                        {
+                         "name":"dialogue",
+                         "type":"string",
+                         "value":"The sign sais I need a blue star vegatable in my inventory to proceed past this gate"
+                        }],
+                 "rotation":0,
+                 "type":"dialoguetrigger",
+                 "visible":true,
+                 "width":0,
+                 "x":208,
+                 "y":96
+                }, 
+                {
+                 "height":0,
+                 "id":150,
+                 "name":"dialoguetrigger",
+                 "polygon":[
+                        {
+                         "x":0,
+                         "y":0
+                        }, 
+                        {
+                         "x":16,
+                         "y":0
+                        }, 
+                        {
+                         "x":16,
+                         "y":16
+                        }, 
+                        {
+                         "x":0,
+                         "y":16
+                        }],
+                 "properties":[
+                        {
+                         "name":"dialogue",
+                         "type":"string",
+                         "value":"The sign sais I need a red mushroom in my inventory to proceed past this gate"
+                        }],
+                 "rotation":0,
+                 "type":"dialoguetrigger",
+                 "visible":true,
+                 "width":0,
+                 "x":256,
+                 "y":96
+                }, 
+                {
+                 "height":0,
+                 "id":151,
+                 "name":"dialoguetrigger",
+                 "polygon":[
+                        {
+                         "x":0,
+                         "y":0
+                        }, 
+                        {
+                         "x":16,
+                         "y":0
+                        }, 
+                        {
+                         "x":16,
+                         "y":16
+                        }, 
+                        {
+                         "x":0,
+                         "y":16
+                        }],
+                 "properties":[
+                        {
+                         "name":"dialogue",
+                         "type":"string",
+                         "value":"The sign sais I need a corn cob in my inventory to proceed past this gate"
+                        }],
+                 "rotation":0,
+                 "type":"dialoguetrigger",
+                 "visible":true,
+                 "width":0,
+                 "x":304,
+                 "y":224
+                }, 
+                {
+                 "height":0,
+                 "id":152,
+                 "name":"dialoguetrigger",
+                 "polygon":[
+                        {
+                         "x":0,
+                         "y":0
+                        }, 
+                        {
+                         "x":16,
+                         "y":0
+                        }, 
+                        {
+                         "x":16,
+                         "y":16
+                        }, 
+                        {
+                         "x":0,
+                         "y":16
+                        }],
+                 "properties":[
+                        {
+                         "name":"dialogue",
+                         "type":"string",
+                         "value":"The sign sais I need a carrot in my inventory to proceed past this gate"
+                        }],
+                 "rotation":0,
+                 "type":"dialoguetrigger",
+                 "visible":true,
+                 "width":0,
+                 "x":304,
+                 "y":272
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1768,8 +1916,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":26,
- "nextobjectid":148,
+ "nextlayerid":27,
+ "nextobjectid":153,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.1",
