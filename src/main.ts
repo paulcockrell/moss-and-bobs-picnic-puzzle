@@ -147,6 +147,12 @@ k.loadSprite("player", "../maps/Cat_Basic_Spritesheet.png", {
   },
 });
 
+const mapDims = {
+  width: mapData.width * mapData.tilewidth * SCALE_FACTOR,
+  height: mapData.height * mapData.tileheight * SCALE_FACTOR,
+};
+// w:960, h:640
+
 k.setBackground(k.Color.fromHex("#000000"));
 
 export interface Entities {
@@ -160,6 +166,12 @@ k.scene("start", async (): Promise<void> => {
     player: null,
   };
 
+  // This builds an array of `firstgid` values (from Tiled mapdata) that
+  // represent the first unique spritesheet icon value per spritesheet used by
+  // the Tiled map. We use this to cross-reference a tile value found in
+  // a layer as we draw it in Kaplay with the first spritesheet where
+  // `tileNumber >= firstgid`. This way we know which spritesheet to draw from,
+  // and which icon within it to use.
   const sortedTilesetsDesc = mapData.tilesets.sort(
     (ts1, ts2) => ts2.firstgid - ts1.firstgid,
   );
@@ -288,8 +300,26 @@ k.scene("start", async (): Promise<void> => {
     setCamScale(k);
   });
 
+  // Implement a semi-sticky camera. It will follow the player upto predefined
+  // limits based on the size of the map and then the camera 'sticks' in place
+  // and the character moves within the map
   k.onUpdate(() => {
-    k.setCamPos(entities.player.worldPos().x, entities.player.worldPos().y);
+    let newPosX = entities.player.worldPos().x;
+    let newPosY = entities.player.worldPos().y;
+
+    if (newPosX >= (mapDims.width / 10) * 6) {
+      newPosX = (mapDims.width / 10) * 6;
+    } else if (newPosX <= (mapDims.width / 10) * 4) {
+      newPosX = (mapDims.width / 10) * 4;
+    }
+
+    if (newPosY >= (mapDims.height / 10) * 6) {
+      newPosY = (mapDims.height / 10) * 6;
+    } else if (newPosY <= (mapDims.height / 10) * 4) {
+      newPosY = (mapDims.height / 10) * 4;
+    }
+
+    k.setCamPos(newPosX, newPosY);
   });
 });
 
