@@ -6,11 +6,15 @@ export interface CollectableProps {
   code: string;
 }
 
+export interface CollectableOptions {
+  animate: boolean;
+}
+
 export function makeCollectable(
   k: KAPLAYCtx,
   pos: Vec2,
-  name: string,
   properties: CollectableProps,
+  options: CollectableOptions = { animate: true },
 ) {
   const collectable = k.make([
     k.sprite("Items", { anim: properties.code }),
@@ -21,6 +25,7 @@ export function makeCollectable(
     k.pos(pos),
     k.scale(SCALE_FACTOR),
     k.animate(),
+    k.z(10),
     {
       properties,
     },
@@ -33,21 +38,24 @@ export function makeCollectable(
     checkCollectables(k);
   });
 
-  collectable.animate("pos", [pos, k.vec2(pos.x, pos.y - 10)], {
-    duration: 1,
-    timing: [0, 1 / 1, 0],
-    direction: "ping-pong",
-    easing: k.easings.easeInOutCirc,
-  });
+  if (options.animate) {
+    collectable.animate("pos", [pos, k.vec2(pos.x, pos.y - 10)], {
+      duration: 1,
+      timing: [0, 1 / 1, 0],
+      direction: "ping-pong",
+      easing: k.easings.easeInOutCirc,
+    });
+  }
 
   return collectable;
 }
 
 function addCollectableToInventory(k, collectable) {
   const inventory = k.get("inventory")[0];
+
   const matchingInventoryItem = inventory.get([
     "collectable",
-    collectable.code,
+    collectable.properties.code,
   ])[0];
 
   // We can only hold one type of item at a time
@@ -58,17 +66,11 @@ function addCollectableToInventory(k, collectable) {
   const allInventory = inventory.get("collectable");
   const pos =
     matchingInventoryItem?.pos ||
-    k.vec2(
-      allInventory.length * (SCALE_FACTOR * 16) + 20 /* padding */,
-      inventory.pos.y + 20,
-    );
+    k.vec2(allInventory.length === 0 ? 25 : 75, 10 + 14);
 
-  const newCollectable = makeCollectable(
-    k,
-    pos,
-    collectable.name,
-    collectable.properties,
-  );
+  const newCollectable = makeCollectable(k, pos, collectable.properties, {
+    animate: false,
+  });
 
   inventory.add(newCollectable);
 }
@@ -86,7 +88,6 @@ function checkCollectables(k: KAPLAYCtx) {
     return [...a, props.type, props.variant];
   }, []);
 
-  const dave = k.get("portal");
   k.get("portal").forEach((portal: GameObj) => {
     // load door connected to portal
     const door = k.get(

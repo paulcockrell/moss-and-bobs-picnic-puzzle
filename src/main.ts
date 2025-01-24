@@ -110,6 +110,14 @@ k.loadSprite("Signs", "../maps/Signs.png", {
   sliceY: 4,
 });
 
+k.loadSprite("InventoryBlocks", "../maps/InventoryBlocks.png", {
+  sliceX: 3,
+  sliceY: 3,
+  anims: {
+    lightLarge: 7,
+  },
+});
+
 k.loadSprite("ItemShadows", "../maps/ItemShadow.png", {
   sliceX: 1,
   sliceY: 1,
@@ -234,11 +242,14 @@ k.scene("start", async (): Promise<void> => {
               (a, b) => ({ ...a, [b.name]: b.value }),
               {},
             ) as CollectableProps;
+
             const pos = k.vec2(
               (map.pos.x + spawnPoint.x) * SCALE_FACTOR,
               (map.pos.y + spawnPoint.y) * SCALE_FACTOR,
             );
-            const collectable = makeCollectable(k, pos, spawnPoint.name, props);
+
+            const collectable = makeCollectable(k, pos, props);
+
             map.add(collectable);
           }
 
