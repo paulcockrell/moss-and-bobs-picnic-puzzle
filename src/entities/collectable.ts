@@ -20,6 +20,7 @@ export function makeCollectable(
     k.anchor("center"),
     k.pos(pos),
     k.scale(SCALE_FACTOR),
+    k.animate(),
     {
       properties,
     },
@@ -30,6 +31,13 @@ export function makeCollectable(
   collectable.onCollide("player", (player) => {
     addCollectableToInventory(k, collectable);
     checkCollectables(k);
+  });
+
+  collectable.animate("pos", [pos, k.vec2(pos.x, pos.y - 10)], {
+    duration: 1,
+    timing: [0, 1 / 1, 0],
+    direction: "ping-pong",
+    easing: k.easings.easeInOutCirc,
   });
 
   return collectable;
