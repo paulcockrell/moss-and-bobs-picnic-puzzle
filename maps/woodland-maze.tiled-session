@@ -41,6 +41,9 @@
             "scaleInDock": 3.86,
             "scaleInEditor": 1
         },
+        "ItemShadow.tsx": {
+            "scaleInEditor": 1
+        },
         "Items.tsx": {
             "scaleInDock": 2.6511,
             "scaleInEditor": 1
@@ -51,6 +54,10 @@
         },
         "Signs.tsx": {
             "scaleInDock": 4.0706,
+            "scaleInEditor": 1
+        },
+        "SignsShapes.tsx": {
+            "scaleInDock": 1,
             "scaleInEditor": 1
         },
         "Soil_Ground_Tiles.tsx": {
@@ -106,6 +113,8 @@
     ],
     "project": "woodland-maze.tiled-project",
     "recentFiles": [
+        "ItemShadow.tsx",
+        "SignsShapes.tsx",
         "Items.tsx",
         "Signs.tsx",
         "Trees_Stumps_Bushes.tsx",
@@ -115,9 +124,7 @@
         "Grass_Hill_Tiles.tsx",
         "Darker_Soil_Ground_Tiles.tsx",
         "Darker_Grass_Tile_Layers.tsx",
-        "Bush_Tiles.tsx",
-        "Grass_Tile_Layers.tsx",
-        "Soil_Ground_Tiles.tsx"
+        "Bush_Tiles.tsx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {

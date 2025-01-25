@@ -8,22 +8,26 @@ export interface CollectableProps {
 
 export interface CollectableOptions {
   animate: boolean;
+  inBasket: boolean;
 }
 
 export function makeCollectable(
   k: KAPLAYCtx,
   pos: Vec2,
   properties: CollectableProps,
-  options: CollectableOptions = { animate: true },
+  options: CollectableOptions = { animate: true, inBasket: false },
 ) {
+  const spriteSheet = options.inBasket ? "ItemsBasket" : "Items";
+  const scaleFactor = SCALE_FACTOR + (options.inBasket ? 1 : 0);
+
   const collectable = k.make([
-    k.sprite("Items", { anim: properties.code }),
+    k.sprite(spriteSheet, { anim: properties.code }),
     k.area({
       shape: new k.Rect(k.vec2(0, 3), 16, 16),
     }),
     k.anchor("center"),
     k.pos(pos),
-    k.scale(SCALE_FACTOR),
+    k.scale(scaleFactor),
     k.animate(),
     k.z(10),
     {
@@ -70,6 +74,7 @@ function addCollectableToInventory(k, collectable) {
 
   const newCollectable = makeCollectable(k, pos, collectable.properties, {
     animate: false,
+    inBasket: true,
   });
 
   inventory.add(newCollectable);

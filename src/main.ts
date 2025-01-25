@@ -110,6 +110,11 @@ k.loadSprite("Signs", "../maps/Signs.png", {
   sliceY: 4,
 });
 
+k.loadSprite("SignsShapes", "../maps/SignsShapes.png", {
+  sliceX: 4,
+  sliceY: 4,
+});
+
 k.loadSprite("InventoryBlocks", "../maps/InventoryBlocks.png", {
   sliceX: 3,
   sliceY: 3,
@@ -121,6 +126,28 @@ k.loadSprite("InventoryBlocks", "../maps/InventoryBlocks.png", {
 k.loadSprite("ItemShadows", "../maps/ItemShadow.png", {
   sliceX: 1,
   sliceY: 1,
+});
+
+k.loadSprite("ItemsBasket", "../maps/Items.png", {
+  sliceX: 8,
+  sliceY: 15,
+  anims: {
+    a: 0,
+    b: 8,
+    c: 16,
+    d: 24,
+    e: 32,
+    f: 40,
+    g: 48,
+    h: 56,
+    i: 64,
+    j: 72,
+    k: 80,
+    l: 88,
+    m: 96,
+    n: 104,
+    o: 112,
+  },
 });
 
 k.loadSprite("Items", "../maps/Items.png", {
