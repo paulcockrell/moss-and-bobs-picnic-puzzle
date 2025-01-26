@@ -1,6 +1,7 @@
 import { GameObj, KAPLAYCtx, Vec2 } from "kaplay";
 import { SCALE_FACTOR } from "../contants";
 import { getItemFromInventoryUI, Item } from "./inventory";
+import { displayDialogue } from "../utils";
 
 export type GateOrientation = "horizontal" | "vertical";
 
@@ -39,15 +40,25 @@ export function makeGate(
     name,
   ]);
 
+  gate.onCollide("player", (player: GameObj) => {
+    const inventoryItem = getItemFromInventoryUI(player);
+    const dialogue = `Oh no! You need a ${gate.properties.code} to pass, and you have a ${inventoryItem}.`;
+
+    // We have a match so no need to show notice
+    if (gate.properties.code === inventoryItem) {
+      return;
+    }
+
+    player.isInDialogue = true;
+
+    displayDialogue(dialogue, () => {
+      player.isInDialogue = false;
+    });
+  });
+
   gate.onCollideUpdate("player", async (player: GameObj) => {
     const inventoryItem = getItemFromInventoryUI(player);
-
     if (gate.properties.code !== inventoryItem) {
-      console.log(
-        "You do not have the required item to pass!",
-        gate.properties.code,
-        inventoryItem,
-      );
       return;
     }
 
