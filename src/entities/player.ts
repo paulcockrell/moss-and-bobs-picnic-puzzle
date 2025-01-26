@@ -1,6 +1,7 @@
 import { GameObj, KAPLAYCtx, Vec2 } from "kaplay";
 import { SCALE_FACTOR } from "../contants";
 import { areAnyOfTheseKeysDown } from "../utils";
+import { addInventoryUI } from "./inventory";
 
 export function makePlayer(k: KAPLAYCtx, pos: Vec2) {
   const player = k.make([
@@ -15,6 +16,7 @@ export function makePlayer(k: KAPLAYCtx, pos: Vec2) {
     k.z(10),
     k.timer(),
     {
+      inventoryUI: null,
       speed: 100,
       direction: "stillDown",
       isInDialogue: false,
@@ -22,14 +24,10 @@ export function makePlayer(k: KAPLAYCtx, pos: Vec2) {
     "player",
   ]);
 
+  addInventoryUI(k, player, "eggGreen");
   setPlayerControls(k, player);
-  addInventory(k);
 
   return player;
-}
-
-function addInventory(k: KAPLAYCtx) {
-  k.add([k.pos(20, 10), k.fixed(), "inventory"]);
 }
 
 function setPlayerControls(k: KAPLAYCtx, player: GameObj) {

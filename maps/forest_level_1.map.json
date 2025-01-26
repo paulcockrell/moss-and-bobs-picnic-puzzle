@@ -1863,7 +1863,7 @@
                         {
                          "name":"code",
                          "type":"string",
-                         "value":"redColor"
+                         "value":"colorRed"
                         }],
                  "rotation":0,
                  "type":"collectable",
@@ -1889,6 +1889,42 @@
                  "width":0,
                  "x":200,
                  "y":200
+                }, 
+                {
+                 "height":0,
+                 "id":157,
+                 "name":"collectable",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"code",
+                         "type":"string",
+                         "value":"colorBlue"
+                        }],
+                 "rotation":0,
+                 "type":"collectable",
+                 "visible":true,
+                 "width":0,
+                 "x":56,
+                 "y":248
+                }, 
+                {
+                 "height":0,
+                 "id":158,
+                 "name":"collectable",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"code",
+                         "type":"string",
+                         "value":"milkGreen"
+                        }],
+                 "rotation":0,
+                 "type":"collectable",
+                 "visible":true,
+                 "width":0,
+                 "x":40,
+                 "y":168
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1897,7 +1933,7 @@
          "y":0
         }],
  "nextlayerid":29,
- "nextobjectid":157,
+ "nextobjectid":159,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.1",

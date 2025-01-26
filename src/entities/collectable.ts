@@ -1,6 +1,7 @@
 import { GameObj, KAPLAYCtx, Vec2 } from "kaplay";
 import { SCALE_FACTOR } from "../contants";
 import { compArray } from "../utils";
+import { addInventoryUI } from "./inventory";
 
 export interface CollectableProps {
   code: string;
@@ -17,11 +18,9 @@ export function makeCollectable(
   properties: CollectableProps,
   options: CollectableOptions = { animate: true, inBasket: false },
 ) {
-  const spriteSheet = options.inBasket ? "ItemsBasket" : "ItemsNew";
   const scaleFactor = SCALE_FACTOR + (options.inBasket ? 1 : 0);
-
   const collectable = k.make([
-    k.sprite(spriteSheet, { anim: properties.code }),
+    k.sprite("ItemsNew", { anim: properties.code }),
     k.area({
       shape: new k.Rect(k.vec2(0, 3), 16, 16),
     }),
@@ -37,8 +36,8 @@ export function makeCollectable(
   ]);
 
   collectable.onCollide("player", (player) => {
-    addCollectableToInventory(k, collectable);
-    checkCollectables(k);
+    addCollectableToInventory(k, collectable, player);
+    //checkCollectables(k);
   });
 
   if (options.animate) {
@@ -53,30 +52,12 @@ export function makeCollectable(
   return collectable;
 }
 
-function addCollectableToInventory(k, collectable) {
-  const inventory = k.get("inventory")[0];
-
-  const matchingInventoryItem = inventory.get([
-    "collectable",
-    collectable.properties.code,
-  ])[0];
-
-  // We can only hold one type of item at a time
-  if (matchingInventoryItem) {
-    k.destroy(matchingInventoryItem);
-  }
-
-  const allInventory = inventory.get("collectable");
-  const pos =
-    matchingInventoryItem?.pos ||
-    k.vec2(allInventory.length === 0 ? 25 : 75, 10 + 14);
-
-  const newCollectable = makeCollectable(k, pos, collectable.properties, {
-    animate: false,
-    inBasket: true,
-  });
-
-  inventory.add(newCollectable);
+function addCollectableToInventory(
+  k: KAPLAYCtx,
+  collectable: GameObj,
+  player: GameObj,
+) {
+  addInventoryUI(k, player, collectable.properties.code);
 }
 
 /*

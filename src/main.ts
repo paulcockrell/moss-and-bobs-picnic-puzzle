@@ -166,9 +166,9 @@ k.loadSprite("ItemsNew", "../maps/ItemsNew.png", {
     mushroomRed: 9,
     mushroomGreen: 10,
     mushroomBlue: 11,
-    redColor: 13,
-    greenColor: 14,
-    blueColor: 15,
+    colorRed: 13,
+    colorGreen: 14,
+    colorBlue: 15,
   },
 });
 
