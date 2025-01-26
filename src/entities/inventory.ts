@@ -17,6 +17,24 @@ export type Item =
   | "colorGreen"
   | "colorBlue";
 
+export const ItemToHumanMap = {
+  milkAny: "some milk of any color",
+  milkRed: "some red cow juice",
+  milkGreen: "some green cow juice",
+  milkBlue: "some blue cow juice",
+  eggAny: "an egg of any color",
+  eggRed: "a red egg",
+  eggGreen: "a green egg",
+  eggBlue: "a blue egg",
+  mushroomAny: "a mushroom of any color",
+  mushroomRed: "a red mushroom",
+  mushroomGreen: "a green mushroom",
+  mushroomBlue: "a blue mushroom",
+  colorRed: "the color red",
+  colorGreen: "the color green",
+  colorBlue: "the color blue",
+};
+
 export interface ItemProps {
   code: Item;
 }

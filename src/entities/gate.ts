@@ -1,6 +1,6 @@
 import { GameObj, KAPLAYCtx, Vec2 } from "kaplay";
 import { SCALE_FACTOR } from "../contants";
-import { getItemFromInventoryUI, Item } from "./inventory";
+import { getItemFromInventoryUI, Item, ItemToHumanMap } from "./inventory";
 import { displayDialogue } from "../utils";
 
 export type GateOrientation = "horizontal" | "vertical";
@@ -42,7 +42,9 @@ export function makeGate(
 
   gate.onCollide("player", (player: GameObj) => {
     const inventoryItem = getItemFromInventoryUI(player);
-    const dialogue = `Oh no! You need a ${gate.properties.code} to pass, and you have a ${inventoryItem}.`;
+    const gateItem = ItemToHumanMap[gate.properties.code];
+    const playerItem = ItemToHumanMap[inventoryItem];
+    const dialogue = `Oh no! You need ${gateItem} to pass, and you have ${playerItem}.`;
 
     // We have a match so no need to show notice
     if (gate.properties.code === inventoryItem) {

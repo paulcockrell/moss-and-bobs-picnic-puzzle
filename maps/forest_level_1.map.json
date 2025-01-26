@@ -1714,7 +1714,6 @@
         {
          "draworder":"topdown",
          "id":26,
-         "locked":true,
          "name":"DialogueTriggers",
          "objects":[
                 {
@@ -1742,7 +1741,7 @@
                         {
                          "name":"dialogue",
                          "type":"string",
-                         "value":"You need a green egg to pass, it looks like you already have one in your inventory!"
+                         "value":"You need a green egg to pass"
                         }],
                  "rotation":0,
                  "type":"dialoguetrigger",
