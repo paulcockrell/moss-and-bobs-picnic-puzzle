@@ -21,6 +21,11 @@ export interface ItemProps {
   code: Item;
 }
 
+export function getItemFromInventoryUI(player: GameObj): Item | null {
+  const item = player.inventoryUI?.properties.code;
+  return item;
+}
+
 export function removeInventoryUI(k: KAPLAYCtx, player: GameObj) {
   const inventoryUI = player.inventoryUI;
 
@@ -30,7 +35,7 @@ export function removeInventoryUI(k: KAPLAYCtx, player: GameObj) {
 }
 
 export function addInventoryUI(k: KAPLAYCtx, player: GameObj, itemName: Item) {
-  let currentItem = player.inventoryUI?.properties.code;
+  const currentItem = getItemFromInventoryUI(player);
   const calcuatedItem = calculateNewItem(currentItem, itemName);
 
   removeInventoryUI(k, player);

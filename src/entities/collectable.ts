@@ -1,7 +1,7 @@
 import { GameObj, KAPLAYCtx, Vec2 } from "kaplay";
 import { SCALE_FACTOR } from "../contants";
 import { compArray } from "../utils";
-import { addInventoryUI } from "./inventory";
+import { addInventoryUI, getItemFromInventoryUI } from "./inventory";
 
 export interface CollectableProps {
   code: string;
@@ -37,7 +37,7 @@ export function makeCollectable(
 
   collectable.onCollide("player", (player) => {
     addCollectableToInventory(k, collectable, player);
-    //checkCollectables(k);
+    //checkCollectables(k, player);
   });
 
   if (options.animate) {
@@ -64,14 +64,8 @@ function addCollectableToInventory(
  * checkCollectables will look at the players inventory and if they have
  * a complete set then we will mark the corresponding door as open
  */
-function checkCollectables(k: KAPLAYCtx) {
-  const inventory = k.get("inventory")[0];
-  const collectables = inventory.get("collectable");
-
-  const keys: string[] = collectables.reduce((a: string[], collectable) => {
-    const props = collectable.properties;
-    return [...a, props.type, props.variant];
-  }, []);
+function checkCollectables(k: KAPLAYCtx, player: GameObj) {
+  const inventoryItem = getItemFromInventoryUI(player);
 
   k.get("portal").forEach((portal: GameObj) => {
     // load door connected to portal

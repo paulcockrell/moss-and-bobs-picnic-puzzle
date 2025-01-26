@@ -1,5 +1,13 @@
 import { GameObj, KAPLAYCtx, Vec2 } from "kaplay";
 import { SCALE_FACTOR } from "../contants";
+import { getItemFromInventoryUI, Item } from "./inventory";
+
+export type GateOrientation = "horizontal" | "vertical";
+
+interface GateProps {
+  orientation: GateOrientation;
+  code: Item;
+}
 
 const status: "closed" | "open" | "closing" | "opening" = "closed";
 
@@ -7,10 +15,10 @@ export function makeGate(
   k: KAPLAYCtx,
   pos: Vec2,
   name: string,
-  orientation: string,
+  properties: GateProps = { orientation: "horizontal", code: "eggGreen" },
 ) {
   const sprite =
-    orientation === "horizontal"
+    properties.orientation === "horizontal"
       ? k.sprite("gateHorizontal", { anim: "closed" })
       : k.sprite("gateVertical", { anim: "closed" });
 
@@ -25,12 +33,24 @@ export function makeGate(
     {
       status,
       waitController: null,
+      properties,
     },
     "gate",
     name,
   ]);
 
-  gate.onCollideUpdate("player", async (_player: GameObj) => {
+  gate.onCollideUpdate("player", async (player: GameObj) => {
+    const inventoryItem = getItemFromInventoryUI(player);
+
+    if (gate.properties.code !== inventoryItem) {
+      console.log(
+        "You do not have the required item to pass!",
+        gate.properties.code,
+        inventoryItem,
+      );
+      return;
+    }
+
     // If there is an existing timeout set to animate the gate closed
     // then cancel it as the gate is occupied by the player
     if (gate.waitController !== null) {

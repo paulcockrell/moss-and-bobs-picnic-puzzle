@@ -8,7 +8,8 @@ import { makeDialogueTrigger } from "./entities/dialogueTrigger";
 import { CollectableProps, makeCollectable } from "./entities/collectable";
 import { makePortal } from "./entities/portal";
 import { makeDoor } from "./entities/door";
-import { makeGate } from "./entities/gate";
+import { GateOrientation, makeGate } from "./entities/gate";
+import { Item } from "./entities/inventory";
 
 const k = kaplay({
   global: false,
@@ -301,10 +302,20 @@ k.scene("start", async (): Promise<void> => {
             );
 
             const orientation = orientationProp
-              ? (orientationProp.value as string)
+              ? (orientationProp.value as GateOrientation)
               : "horizontal";
 
-            const gate = makeGate(k, pos, spawnPoint.name, orientation);
+            const codeProp = spawnPoint.properties?.find(
+              (prop) => prop.name === "code" && prop.type === "string",
+            );
+
+            const code = codeProp ? (codeProp.value as Item) : "eggGreen";
+
+            const gate = makeGate(k, pos, spawnPoint.name, {
+              orientation,
+              code,
+            });
+
             map.add(gate);
           }
         });

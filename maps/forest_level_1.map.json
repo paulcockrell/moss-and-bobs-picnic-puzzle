@@ -1815,9 +1815,9 @@
                  "point":true,
                  "properties":[
                         {
-                         "name":"key",
+                         "name":"code",
                          "type":"string",
-                         "value":"greenEgg"
+                         "value":"eggGreen"
                         }, 
                         {
                          "name":"orientation",
@@ -1838,9 +1838,9 @@
                  "point":true,
                  "properties":[
                         {
-                         "name":"key",
+                         "name":"code",
                          "type":"string",
-                         "value":"redMushroom"
+                         "value":"mushroomRed"
                         }, 
                         {
                          "name":"orientation",
