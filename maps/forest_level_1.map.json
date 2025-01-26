@@ -153,6 +153,7 @@
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
          "height":20,
          "id":27,
+         "locked":true,
          "name":"ItemShadows",
          "opacity":1,
          "type":"tilelayer",
@@ -1713,7 +1714,6 @@
         {
          "draworder":"topdown",
          "id":26,
-         "locked":true,
          "name":"DialogueTriggers",
          "objects":[
                 {
@@ -1741,7 +1741,7 @@
                         {
                          "name":"dialogue",
                          "type":"string",
-                         "value":"You need a green egg to pass"
+                         "value":"You need a green egg to pass."
                         }],
                  "rotation":0,
                  "type":"dialoguetrigger",
@@ -1775,7 +1775,7 @@
                         {
                          "name":"dialogue",
                          "type":"string",
-                         "value":"You need a red mushroom to pass"
+                         "value":"You need a red mushroom to pass."
                         }],
                  "rotation":0,
                  "type":"dialoguetrigger",

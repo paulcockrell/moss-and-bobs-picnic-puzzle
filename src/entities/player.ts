@@ -13,7 +13,7 @@ export function makePlayer(k: KAPLAYCtx, pos: Vec2) {
     k.anchor("center"),
     k.pos(pos),
     k.scale(SCALE_FACTOR),
-    k.z(10),
+    k.z(15),
     k.timer(),
     {
       inventoryUI: null,
