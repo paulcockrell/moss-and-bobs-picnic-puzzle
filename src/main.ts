@@ -105,8 +105,8 @@ k.loadSpriteAtlas("../maps/Fence_Gates.png", {
   },
 });
 
-k.loadSprite("Signs", "../maps/Signs.png", {
-  sliceX: 6,
+k.loadSprite("SignsNew", "../maps/SignsNew.png", {
+  sliceX: 4,
   sliceY: 4,
 });
 
@@ -150,25 +150,25 @@ k.loadSprite("ItemsBasket", "../maps/Items.png", {
   },
 });
 
-k.loadSprite("Items", "../maps/Items.png", {
-  sliceX: 8,
-  sliceY: 15,
+k.loadSprite("ItemsNew", "../maps/ItemsNew.png", {
+  sliceX: 4,
+  sliceY: 4,
   anims: {
-    a: 1,
-    b: 9,
-    c: 17,
-    d: 25,
-    e: 33,
-    f: 41,
-    g: 49,
-    h: 57,
-    i: 65,
-    j: 73,
-    k: 81,
-    l: 89,
-    m: 97,
-    n: 105,
-    o: 113,
+    milkAny: 0,
+    milkRed: 1,
+    milkGreen: 2,
+    milkBlue: 3,
+    eggAny: 4,
+    eggRed: 5,
+    eggGreen: 6,
+    eggBlue: 7,
+    mushroomAny: 8,
+    mushroomRed: 9,
+    mushroomGreen: 10,
+    mushroomBlue: 11,
+    redColor: 13,
+    greenColor: 14,
+    blueColor: 15,
   },
 });
 

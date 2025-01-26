@@ -17,7 +17,7 @@ export function makeCollectable(
   properties: CollectableProps,
   options: CollectableOptions = { animate: true, inBasket: false },
 ) {
-  const spriteSheet = options.inBasket ? "ItemsBasket" : "Items";
+  const spriteSheet = options.inBasket ? "ItemsBasket" : "ItemsNew";
   const scaleFactor = SCALE_FACTOR + (options.inBasket ? 1 : 0);
 
   const collectable = k.make([
@@ -34,7 +34,6 @@ export function makeCollectable(
       properties,
     },
     "collectable",
-    properties.code,
   ]);
 
   collectable.onCollide("player", (player) => {

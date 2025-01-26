@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "Soil_Ground_Tiles.tsx",
+    "activeFile": "SignsShapes.tsx",
     "automapping.whileDrawing": true,
     "expandedProjectPaths": [
         "."
@@ -15,6 +15,10 @@
         },
         "Bush_Tiles.tsx": {
             "scaleInDock": 3.86,
+            "scaleInEditor": 1
+        },
+        "CollectableItemsNew.tsx": {
+            "scaleInDock": 1,
             "scaleInEditor": 1
         },
         "Darker_Grass_Tile_Layers.tsx": {
@@ -42,10 +46,15 @@
             "scaleInEditor": 1
         },
         "ItemShadow.tsx": {
+            "scaleInDock": 1,
             "scaleInEditor": 1
         },
         "Items.tsx": {
             "scaleInDock": 2.6511,
+            "scaleInEditor": 1
+        },
+        "ItemsNew.tsx": {
+            "scaleInDock": 1,
             "scaleInEditor": 1
         },
         "Mushrooms_Flowers_tiles.tsx": {
@@ -56,8 +65,12 @@
             "scaleInDock": 4.0706,
             "scaleInEditor": 1
         },
+        "SignsNew.tsx": {
+            "scaleInDock": 4.4661,
+            "scaleInEditor": 1
+        },
         "SignsShapes.tsx": {
-            "scaleInDock": 1,
+            "scaleInDock": 2.5906,
             "scaleInEditor": 1
         },
         "Soil_Ground_Tiles.tsx": {
@@ -77,12 +90,15 @@
             "scaleInEditor": 1
         },
         "forest_level_1.map.json": {
-            "scale": 5.43,
-            "selectedLayer": 8,
+            "scale": 2.13,
+            "selectedLayer": 11,
             "viewCenter": {
-                "x": 299.8158379373849,
-                "y": 242.7255985267035
+                "x": 204.4600938967136,
+                "y": 149.2957746478873
             }
+        },
+        "forest_level_1.map.json#ItemsNew": {
+            "scaleInDock": 1
         },
         "test.tmx": {
             "scale": 1.76,
@@ -93,39 +109,31 @@
             }
         }
     },
+    "last.externalTilesetPath": "/Users/macoperator/Development/PersonalDevelopment/kaplay/locksmith/maps",
     "last.imagePath": "/Users/macoperator/Development/PersonalDevelopment/kaplay/locksmith/maps",
     "map.lastUsedFormat": "json",
     "map.tileHeight": 16,
     "map.tileWidth": 16,
     "openFiles": [
-        "Soil_Ground_Tiles.tsx",
-        "Grass_Tile_Layers.tsx",
-        "Bush_Tiles.tsx",
-        "Darker_Grass_Tile_Layers.tsx",
-        "Darker_Soil_Ground_Tiles.tsx",
-        "Grass_Hill_Tiles.tsx",
-        "Stone_Ground_Tiles.tsx",
-        "Fences.tsx",
-        "Mushrooms_Flowers_tiles.tsx",
-        "Trees_Stumps_Bushes.tsx",
-        "Signs.tsx",
-        "Items.tsx"
+        "SignsShapes.tsx",
+        "CollectableItemsNew.tsx"
     ],
     "project": "woodland-maze.tiled-project",
     "recentFiles": [
-        "ItemShadow.tsx",
+        "forest_level_1.map.json",
         "SignsShapes.tsx",
-        "Items.tsx",
+        "CollectableItemsNew.tsx",
+        "ItemsNew.tsx",
+        "SignsNew.tsx",
         "Signs.tsx",
+        "ItemShadow.tsx",
+        "Items.tsx",
         "Trees_Stumps_Bushes.tsx",
         "Mushrooms_Flowers_tiles.tsx",
         "Fences.tsx",
-        "Stone_Ground_Tiles.tsx",
-        "Grass_Hill_Tiles.tsx",
-        "Darker_Soil_Ground_Tiles.tsx",
-        "Darker_Grass_Tile_Layers.tsx",
-        "Bush_Tiles.tsx"
+        "Stone_Ground_Tiles.tsx"
     ],
+    "tileset.lastUsedFilter": "Tiled tileset files (*.tsx *.xml)",
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {
         "height": 16,
