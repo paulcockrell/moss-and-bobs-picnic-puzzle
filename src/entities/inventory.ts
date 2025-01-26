@@ -1,4 +1,6 @@
 import { GameObj, KAPLAYCtx } from "kaplay";
+import { emitParticles } from "./particles";
+import { SCALE_FACTOR } from "../contants";
 
 export type Item =
   | "milkAny"
@@ -54,20 +56,32 @@ export function removeInventoryUI(k: KAPLAYCtx, player: GameObj) {
 
 export function addInventoryUI(k: KAPLAYCtx, player: GameObj, itemName: Item) {
   const currentItem = getItemFromInventoryUI(player);
-  const calcuatedItem = calculateNewItem(currentItem, itemName);
+  const calculatedItem = calculateNewItem(currentItem, itemName);
+
+  if (currentItem === calculatedItem) {
+    return;
+  }
 
   removeInventoryUI(k, player);
 
   player.inventoryUI = player.add([
-    k.sprite("ItemsNew", { anim: calcuatedItem }),
+    k.sprite("ItemsNew", { anim: calculatedItem }),
     k.anchor("center"),
     k.pos(0, -20),
     {
       properties: {
-        code: calcuatedItem,
+        code: calculatedItem,
       },
     },
   ]);
+
+  emitParticles(
+    k,
+    k.vec2(
+      player.pos.x - (16 / 2) * SCALE_FACTOR, // center of players head
+      player.pos.y, // above players head, roughly where the inventory icon is
+    ),
+  );
 }
 
 function calculateNewItem(

@@ -6,8 +6,6 @@ import { SCALE_FACTOR } from "./contants";
 import { makePlayer } from "./entities/player";
 import { makeDialogueTrigger } from "./entities/dialogueTrigger";
 import { CollectableProps, makeCollectable } from "./entities/collectable";
-import { makePortal } from "./entities/portal";
-import { makeDoor } from "./entities/door";
 import { GateOrientation, makeGate } from "./entities/gate";
 import { Item } from "./entities/inventory";
 
@@ -281,16 +279,6 @@ k.scene("start", async (): Promise<void> => {
             map.add(collectable);
           }
 
-          if (spawnPoint.type === "door") {
-            const pos = k.vec2(
-              (map.pos.x + spawnPoint.x) * SCALE_FACTOR,
-              (map.pos.y + spawnPoint.y) * SCALE_FACTOR,
-            );
-
-            const door = makeDoor(k, pos, spawnPoint.name);
-            map.add(door);
-          }
-
           if (spawnPoint.type === "gate") {
             const pos = k.vec2(
               (map.pos.x + spawnPoint.x) * SCALE_FACTOR,
@@ -318,13 +306,6 @@ k.scene("start", async (): Promise<void> => {
 
             map.add(gate);
           }
-        });
-      }
-
-      if (layer.name === "Portals") {
-        layer.objects.forEach((portal) => {
-          const newPortal = makePortal(k, portal);
-          map.add(newPortal);
         });
       }
     }

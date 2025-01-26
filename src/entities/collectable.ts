@@ -1,9 +1,9 @@
 import { GameObj, KAPLAYCtx, Vec2 } from "kaplay";
 import { SCALE_FACTOR } from "../contants";
-import { addInventoryUI } from "./inventory";
+import { addInventoryUI, Item } from "./inventory";
 
 export interface CollectableProps {
-  code: string;
+  code: Item;
 }
 
 export function makeCollectable(
