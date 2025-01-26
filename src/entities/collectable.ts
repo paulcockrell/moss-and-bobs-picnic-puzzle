@@ -6,18 +6,11 @@ export interface CollectableProps {
   code: string;
 }
 
-export interface CollectableOptions {
-  animate: boolean;
-  inBasket: boolean;
-}
-
 export function makeCollectable(
   k: KAPLAYCtx,
   pos: Vec2,
   properties: CollectableProps,
-  options: CollectableOptions = { animate: true, inBasket: false },
 ) {
-  const scaleFactor = SCALE_FACTOR + (options.inBasket ? 1 : 0);
   const collectable = k.make([
     k.sprite("ItemsNew", { anim: properties.code }),
     k.area({
@@ -25,7 +18,7 @@ export function makeCollectable(
     }),
     k.anchor("center"),
     k.pos(pos),
-    k.scale(scaleFactor),
+    k.scale(SCALE_FACTOR),
     k.animate(),
     k.z(10),
     {
@@ -38,14 +31,12 @@ export function makeCollectable(
     addCollectableToInventory(k, collectable, player);
   });
 
-  if (options.animate) {
-    collectable.animate("pos", [pos, k.vec2(pos.x, pos.y - 10)], {
-      duration: 1,
-      timing: [0, 1 / 1, 0],
-      direction: "ping-pong",
-      easing: k.easings.easeInOutCirc,
-    });
-  }
+  collectable.animate("pos", [pos, k.vec2(pos.x, pos.y - 10)], {
+    duration: 1,
+    timing: [0, 1 / 1, 0],
+    direction: "ping-pong",
+    easing: k.easings.easeInOutCirc,
+  });
 
   return collectable;
 }
