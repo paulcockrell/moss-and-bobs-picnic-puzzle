@@ -51,6 +51,8 @@ export function makeGate(
       return;
     }
 
+    k.play("closedGate", { loop: false, volume: 1.0 });
+
     player.isInDialogue = true;
 
     displayDialogue(dialogue, () => {
@@ -76,6 +78,7 @@ export function makeGate(
     if (gate.status === "closed") {
       gate.status = "opening";
       gate.play("opening");
+      k.play("openGate", { loop: false, volume: 1.0 });
     }
   });
 

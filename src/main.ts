@@ -22,6 +22,8 @@ k.loadRoot("./"); // A good idea for Itch.io publishing later
 
 k.loadSound("music", "../maps/retro-game-arcade-236133.mp3");
 k.loadSound("collect", "../maps/collect.mp3");
+k.loadSound("closedGate", "../maps/closed-gate.mp3");
+k.loadSound("openGate", "../maps/open-gate.mp3");
 
 k.loadSprite("spritesheet", "../maps/tilemap_packed.png", {
   sliceX: 12,
