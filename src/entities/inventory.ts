@@ -82,6 +82,8 @@ export function addInventoryUI(k: KAPLAYCtx, player: GameObj, itemName: Item) {
       player.pos.y, // above players head, roughly where the inventory icon is
     ),
   );
+
+  k.play("collect", { loop: false, volume: 1.0 });
 }
 
 function calculateNewItem(

@@ -21,6 +21,7 @@ const k = kaplay({
 k.loadRoot("./"); // A good idea for Itch.io publishing later
 
 k.loadSound("music", "../maps/retro-game-arcade-236133.mp3");
+k.loadSound("collect", "../maps/collect.mp3");
 
 k.loadSprite("spritesheet", "../maps/tilemap_packed.png", {
   sliceX: 12,
@@ -201,7 +202,7 @@ export interface Entities {
 }
 
 k.scene("game", async (): Promise<void> => {
-  k.play("music", { loop: true, volume: 0.8 });
+  k.play("music", { loop: true, volume: 0.6 });
   const map = k.add([k.pos(0, 0)]);
 
   const entities: Entities = {
