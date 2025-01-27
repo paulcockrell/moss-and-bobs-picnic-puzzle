@@ -79,7 +79,7 @@ export function addInventoryUI(k: KAPLAYCtx, player: GameObj, itemName: Item) {
     k,
     k.vec2(
       player.pos.x - (16 / 2) * SCALE_FACTOR, // center of players head
-      player.pos.y, // above players head, roughly where the inventory icon is
+      player.pos.y - 16 * 2 * SCALE_FACTOR, // above players head, roughly where the inventory icon is
     ),
   );
 
