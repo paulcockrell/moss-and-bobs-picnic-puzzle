@@ -20,6 +20,8 @@ const k = kaplay({
 
 k.loadRoot("./"); // A good idea for Itch.io publishing later
 
+k.loadSound("music", "../maps/retro-game-arcade-236133.mp3");
+
 k.loadSprite("spritesheet", "../maps/tilemap_packed.png", {
   sliceX: 12,
   sliceY: 11,
@@ -198,7 +200,8 @@ export interface Entities {
   player: GameObj;
 }
 
-k.scene("start", async (): Promise<void> => {
+k.scene("game", async (): Promise<void> => {
+  k.play("music", { loop: true, volume: 0.8 });
   const map = k.add([k.pos(0, 0)]);
 
   const entities: Entities = {
@@ -340,4 +343,15 @@ k.scene("start", async (): Promise<void> => {
   });
 });
 
-k.go("start");
+k.scene("mainMenu", () => {
+  k.add([
+    k.text("Press Space to play Magic Farm Maze", { font: "mania", size: 48 }),
+    k.pos(k.center().x, k.center().y - 200),
+    k.anchor("center"),
+  ]);
+  k.onKeyPress("space", () => {
+    k.go("game");
+  });
+});
+
+k.go("mainMenu");
