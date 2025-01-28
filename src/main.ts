@@ -204,7 +204,7 @@ export interface Entities {
 }
 
 k.scene("game", async (): Promise<void> => {
-  k.play("music", { loop: true, volume: 0.6 });
+  k.play("music", { loop: true, volume: 0.4 });
   const map = k.add([k.pos(0, 0)]);
 
   const entities: Entities = {
