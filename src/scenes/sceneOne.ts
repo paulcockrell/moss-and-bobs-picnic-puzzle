@@ -25,7 +25,9 @@ export default function sceneOne() {
   k.play("music", { loop: true, volume: 0.4 });
   const map = k.add([k.pos(0)]);
 
-  makeModal(k, "Level one. This should be easy!", "talk");
+  makeModal(k, "Level one. This should be easy!", "talk", mapDims, () =>
+    gameState.setMode("playing"),
+  );
 
   const entities: Entities = {
     player: null,
@@ -74,7 +76,9 @@ export default function sceneOne() {
             gameState.setPaused(true);
             player.play("stillDown");
 
-            makeModal(k, "Hurray we completed level 1!", "happy");
+            makeModal(k, "Hurray we completed level 1!", "happy", mapDims, () =>
+              gameState.setMode("finished"),
+            );
           });
         });
       }
@@ -161,6 +165,9 @@ export default function sceneOne() {
     }
   });
 
+  gameState.setMode("intro");
+
+  k.setCamPos(mapDims.width / 2, mapDims.height / 2);
   setCamScale(k);
 
   k.onResize(() => {
@@ -170,7 +177,63 @@ export default function sceneOne() {
   // Implement a semi-sticky camera. It will follow the player upto predefined
   // limits based on the size of the map and then the camera 'sticks' in place
   // and the character moves within the map
+  let lastGameMode = "";
+
   k.onUpdate(() => {
+    // When the intro modal is shown
+    if (gameState.getMode() === "intro") {
+      lastGameMode = gameState.getMode();
+
+      k.setCamPos(mapDims.width / 2, mapDims.height / 2);
+      k.setCamScale(k.vec2(1.5));
+
+      return;
+    }
+
+    // When the wining modal is shown
+    if (gameState.getMode() === "won") {
+      lastGameMode = gameState.getMode();
+
+      // focus on the modal
+      k.setCamScale(k.vec2(1.5));
+
+      k.tween(
+        k.getCamPos(),
+        k.vec2(mapDims.width / 2, mapDims.height / 2),
+        1,
+        (value) => k.setCamPos(value),
+      );
+
+      k.tween(k.getCamScale(), k.vec2(1.5), 1, (value) => k.setCamScale(value));
+
+      return;
+    }
+
+    if (lastGameMode === "intro" && gameState.getMode() === "playing") {
+      lastGameMode = gameState.getMode();
+
+      let newPosX = entities.player.worldPos().x;
+      let newPosY = entities.player.worldPos().y;
+
+      if (newPosX >= (mapDims.width / 10) * 6) {
+        newPosX = (mapDims.width / 10) * 6;
+      } else if (newPosX <= (mapDims.width / 10) * 4) {
+        newPosX = (mapDims.width / 10) * 4;
+      }
+
+      if (newPosY >= (mapDims.height / 10) * 6) {
+        newPosY = (mapDims.height / 10) * 6;
+      } else if (newPosY <= (mapDims.height / 10) * 4) {
+        newPosY = (mapDims.height / 10) * 4;
+      }
+
+      k.tween(k.getCamPos(), k.vec2(newPosX, newPosY), 1, (value) =>
+        k.setCamPos(value),
+      ).then(() => gameState.setPaused(false));
+
+      return;
+    }
+
     let newPosX = entities.player.worldPos().x;
     let newPosY = entities.player.worldPos().y;
 

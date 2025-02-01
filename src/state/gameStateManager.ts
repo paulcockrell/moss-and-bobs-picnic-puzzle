@@ -1,5 +1,5 @@
 type Scene = "mainMenu" | "sceneOne";
-type Mode = "playing" | "won" | "lost";
+type Mode = "intro" | "playing" | "won" | "lost";
 
 export default function gameStateManager() {
   let instance = null;
@@ -7,7 +7,7 @@ export default function gameStateManager() {
   function createInstance() {
     let scene: Scene = "mainMenu";
     let paused = true;
-    let mode: Mode = "playing";
+    let mode: Mode = "intro";
 
     return {
       setScene: (value: Scene) => (scene = value),

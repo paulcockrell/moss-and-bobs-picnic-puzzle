@@ -4,9 +4,20 @@ import { gameState } from "../state";
 
 type AnimKey = "talk" | "happy";
 
-export function makeModal(k: KAPLAYCtx, text: string, anim: AnimKey) {
+export interface ModalOpts {
+  width: number;
+  height: number;
+}
+
+export function makeModal(
+  k: KAPLAYCtx,
+  text: string,
+  anim: AnimKey,
+  opts: ModalOpts,
+  cb?: () => any,
+) {
   const mask = k.add([
-    k.rect(k.width(), k.height()),
+    k.rect(opts.width, opts.height),
     k.color(k.Color.fromHex("#000000")),
     k.layer("mask"),
     k.opacity(0.3),
@@ -16,22 +27,23 @@ export function makeModal(k: KAPLAYCtx, text: string, anim: AnimKey) {
   const levelDialog = k.add([
     "levelDialog",
     k.layer("ui"),
-    k.pos(0, 0),
     k.opacity(),
+    k.pos(opts.width / 2, opts.height / 2),
+    k.anchor("center"),
   ]);
 
   // Show level information
   levelDialog.add([
     k.sprite("dialogBoxLarge"),
     k.scale(SCALE_FACTOR),
-    k.pos(k.center().x - 270, k.center().y - 150),
+    k.pos(),
     k.anchor("center"),
   ]);
 
   levelDialog.add([
     k.sprite("dialogCat", { anim }),
     k.scale(SCALE_FACTOR),
-    k.pos(k.center().x - 510, k.center().y - 150),
+    k.pos(-240, 0),
     k.anchor("center"),
   ]);
 
@@ -41,14 +53,14 @@ export function makeModal(k: KAPLAYCtx, text: string, anim: AnimKey) {
       font: "monogram",
       size: 16,
     }),
-    k.pos(k.center().x - 245, k.center().y - 145),
+    k.pos(30, 5),
     k.anchor("center"),
   ]);
 
   const playBtn = levelDialog.add([
     k.sprite("playButtonsLarge", { anim: "buttonDepressed" }),
     k.scale(SCALE_FACTOR),
-    k.pos(k.center().x - 61, k.center().y - 50),
+    k.pos(210, 100),
     k.area({ cursor: "pointer" }),
     k.anchor("center"),
     {
@@ -70,8 +82,8 @@ export function makeModal(k: KAPLAYCtx, text: string, anim: AnimKey) {
       (value) => (levelDialog.pos = value),
       k.easings.easeInSine,
     ).then(() => {
-      gameState.setPaused(false);
       levelDialog.destroy();
+      if (cb) cb();
     });
 
     k.tween(0.0, 0.3, 2, (value) => {
