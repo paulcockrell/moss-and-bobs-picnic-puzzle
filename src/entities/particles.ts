@@ -8,7 +8,7 @@ export function emitParticles(k: KAPLAYCtx, pos: Vec2) {
       k.pos(pos),
       k.particles(
         {
-          max: 20, // the max amount of particles generated from this emitter at one time
+          max: 10, // the max amount of particles generated from this emitter at one time
           lifeTime: [1, 2], // how long the particles last before being destroyed
           speed: [100, 50], // how fast the particles are moving
           acceleration: [k.vec2(0), k.vec2(0, -5)], // changes the speed of the particle over its lifetime
@@ -18,7 +18,6 @@ export function emitParticles(k: KAPLAYCtx, pos: Vec2) {
           quads: starSpriteData.frames, // to tell whe emitter what frames of the sprite to use
         },
         {
-          shape: new k.Rect(k.vec2(0), 32, 32), // the area where particles should be emitted from (can be empty)
           lifetime: 2, // how long the emitter should last
           rate: 5, // the rate at which particles are emitted
           direction: 0, // the direction where particles should be traveling

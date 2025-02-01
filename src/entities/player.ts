@@ -2,6 +2,7 @@ import { GameObj, KAPLAYCtx, Vec2 } from "kaplay";
 import { SCALE_FACTOR } from "../contants";
 import { areAnyOfTheseKeysDown } from "../utils";
 import { addInventoryUI } from "./inventory";
+import { gameState } from "../state";
 
 export function makePlayer(k: KAPLAYCtx, pos: Vec2) {
   const player = k.make([
@@ -32,6 +33,7 @@ export function makePlayer(k: KAPLAYCtx, pos: Vec2) {
 
 function setPlayerControls(k: KAPLAYCtx, player: GameObj) {
   k.onKeyDown("left", () => {
+    if (gameState.getPaused() === true) return;
     if (player.isInDialogue) return;
     if (areAnyOfTheseKeysDown(k, ["up", "down"])) return;
     if (player.direction !== "left") {
@@ -43,6 +45,7 @@ function setPlayerControls(k: KAPLAYCtx, player: GameObj) {
   });
 
   k.onKeyDown("right", () => {
+    if (gameState.getPaused() === true) return;
     if (player.isInDialogue) return;
     if (areAnyOfTheseKeysDown(k, ["up", "down"])) return;
     if (player.direction !== "right") {
@@ -54,6 +57,7 @@ function setPlayerControls(k: KAPLAYCtx, player: GameObj) {
   });
 
   k.onKeyDown("up", () => {
+    if (gameState.getPaused() === true) return;
     if (player.isInDialogue) return;
     if (areAnyOfTheseKeysDown(k, ["left", "right"])) return;
     if (player.direction !== "up") {
@@ -65,6 +69,7 @@ function setPlayerControls(k: KAPLAYCtx, player: GameObj) {
   });
 
   k.onKeyDown("down", () => {
+    if (gameState.getPaused() === true) return;
     if (player.isInDialogue) return;
     if (areAnyOfTheseKeysDown(k, ["left", "right"])) return;
     if (player.direction !== "down") {
@@ -76,6 +81,7 @@ function setPlayerControls(k: KAPLAYCtx, player: GameObj) {
   });
 
   k.onKeyRelease(() => {
+    if (gameState.getPaused() === true) return;
     switch (player.direction) {
       case "left":
         player.play("stillLeft");

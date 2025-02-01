@@ -136,10 +136,6 @@ export function drawBoundaries(k, map, layer) {
   }
 }
 
-export async function fetchMapData(mapPath) {
-  return await (await fetch(mapPath)).json();
-}
-
 export function generateColliderBoxComponents(k, width, height, pos, tag) {
   return [
     k.rect(width, height),
@@ -150,6 +146,10 @@ export function generateColliderBoxComponents(k, width, height, pos, tag) {
     k.offscreen(),
     tag,
   ];
+}
+
+export async function fetchMapData(mapPath) {
+  return await (await fetch(mapPath)).json();
 }
 
 export function areAnyOfTheseKeysDown(k, keys) {

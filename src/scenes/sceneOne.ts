@@ -1,6 +1,7 @@
 import k from "../kaplayCtx";
 import * as tiled from "@kayahr/tiled";
 import mapData from "../../maps/forest_level_1.map.json";
+import { GameObj } from "kaplay";
 import { drawTiles, setCamScale } from "../utils";
 import { SCALE_FACTOR } from "../contants";
 import { makePlayer } from "../entities/player";
@@ -8,7 +9,8 @@ import { makeDialogueTrigger } from "../entities/dialogueTrigger";
 import { CollectableProps, makeCollectable } from "../entities/collectable";
 import { GateOrientation, makeGate } from "../entities/gate";
 import { Item } from "../entities/inventory";
-import { GameObj } from "kaplay";
+import { makeModal } from "../entities/modal";
+import { gameState } from "../state";
 
 export interface Entities {
   player: GameObj;
@@ -18,11 +20,12 @@ const mapDims = {
   width: mapData.width * mapData.tilewidth * SCALE_FACTOR,
   height: mapData.height * mapData.tileheight * SCALE_FACTOR,
 };
-// w:960, h:640
 
 export default function sceneOne() {
   k.play("music", { loop: true, volume: 0.4 });
-  const map = k.add([k.pos(0, 0)]);
+  const map = k.add([k.pos(0)]);
+
+  makeModal(k, "Level one. This should be easy!", "talk");
 
   const entities: Entities = {
     player: null,
@@ -52,6 +55,30 @@ export default function sceneOne() {
 
     // Objects
     if (tiled.isObjectGroup(layer)) {
+      if (layer.name === "FinishBoundary") {
+        layer.objects.forEach((boundary) => {
+          const finish = map.add([
+            k.polygon(
+              boundary.polygon.map((p) => k.vec2(p.x, p.y)),
+              { triangulate: true, fill: false },
+            ),
+            k.scale(SCALE_FACTOR),
+            k.body({ isStatic: true }),
+            k.area(),
+            k.pos(boundary.x * SCALE_FACTOR, boundary.y * SCALE_FACTOR),
+            "finish",
+          ]);
+
+          finish.onCollide("player", (player) => {
+            gameState.setMode("won");
+            gameState.setPaused(true);
+            player.play("stillDown");
+
+            makeModal(k, "Hurray we completed level 1!", "happy");
+          });
+        });
+      }
+
       if (layer.name === "Boundaries") {
         layer.objects.forEach((boundary) => {
           map.add([

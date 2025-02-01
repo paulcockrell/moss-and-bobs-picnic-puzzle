@@ -1,11 +1,14 @@
 import k from "./kaplayCtx";
 import mainMenu from "./scenes/mainMenu";
 import sceneOne from "./scenes/sceneOne";
+import { gameState } from "./state";
 
 k.loadRoot("./"); // A good idea for Itch.io publishing later
 
+k.setLayers(["game", "mask", "ui"], "game");
+
 // Set background color
-k.setBackground(0, 0, 0);
+k.setBackground(k.Color.fromHex("#9bd4c3"));
 
 // Load SFX
 k.loadSound("music", "sfx/retro-game-arcade-236133.mp3");
@@ -14,25 +17,6 @@ k.loadSound("closedGate", "sfx/closed-gate.mp3");
 k.loadSound("openGate", "sfx/open-gate.mp3");
 
 // Load sprites
-k.loadSprite("spritesheet", "../maps/tilemap_packed.png", {
-  sliceX: 12,
-  sliceY: 11,
-  anims: {
-    player: 112,
-    guard: 96,
-    greypotion: 113,
-    greenpotion: 114,
-    redpotion: 115,
-    bluepotion: 116,
-    hammer: 117,
-    axe: 118,
-    halfaxe: 119,
-    sword: 104,
-    staff: 130,
-    doorOpen: 21,
-    doorClosed: 45,
-  },
-});
 
 k.loadSprite("Soil", "../maps/Soil_Ground_Tiles.png", {
   sliceX: 11,
@@ -180,9 +164,30 @@ k.loadSprite("player", "../maps/Cat_Basic_Spritesheet.png", {
   },
 });
 
+k.loadSprite("dialogBoxLarge", "../maps/DialogBoxLarge.png");
+
+k.loadSprite("dialogCat", "../maps/DialogCat.png", {
+  sliceX: 5,
+  sliceY: 15,
+  anims: {
+    talk: { from: 5, to: 6, loop: true, speed: 5 },
+    happy: { from: 35, to: 36, loop: true, speed: 5 },
+  },
+});
+
+k.loadSprite("playButtonsLarge", "../maps/PlayButtonsLarge.png", {
+  sliceX: 2,
+  sliceY: 2,
+  anims: {
+    buttonDepressed: 2,
+    buttonPressed: 3,
+  },
+});
+
 // Load scenes
 k.scene("mainMenu", mainMenu);
 k.scene("sceneOne", sceneOne);
 
 // Start game!
-k.go("mainMenu");
+const currentScene = gameState.getScene();
+k.go(currentScene);

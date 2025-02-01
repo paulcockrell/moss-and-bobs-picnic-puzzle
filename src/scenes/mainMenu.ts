@@ -1,4 +1,5 @@
 import k from "../kaplayCtx";
+import { gameState } from "../state";
 
 export default function mainMenu() {
   k.add([
@@ -11,6 +12,7 @@ export default function mainMenu() {
   ]);
 
   k.onKeyPress("space", () => {
-    k.go("sceneOne");
+    const nextScene = gameState.setScene("sceneOne");
+    k.go(nextScene);
   });
 }
