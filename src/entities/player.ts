@@ -20,7 +20,6 @@ export function makePlayer(k: KAPLAYCtx, pos: Vec2) {
       inventoryUI: null,
       speed: 100,
       direction: "stillDown",
-      isInDialogue: false,
     },
     "player",
   ]);
@@ -34,8 +33,8 @@ export function makePlayer(k: KAPLAYCtx, pos: Vec2) {
 function setPlayerControls(k: KAPLAYCtx, player: GameObj) {
   k.onKeyDown("left", () => {
     if (gameState.getPaused() === true) return;
-    if (player.isInDialogue) return;
     if (areAnyOfTheseKeysDown(k, ["up", "down"])) return;
+
     if (player.direction !== "left") {
       player.play("runLeft");
       player.direction = "left";
@@ -46,8 +45,8 @@ function setPlayerControls(k: KAPLAYCtx, player: GameObj) {
 
   k.onKeyDown("right", () => {
     if (gameState.getPaused() === true) return;
-    if (player.isInDialogue) return;
     if (areAnyOfTheseKeysDown(k, ["up", "down"])) return;
+
     if (player.direction !== "right") {
       player.play("runRight");
       player.direction = "right";
@@ -58,8 +57,8 @@ function setPlayerControls(k: KAPLAYCtx, player: GameObj) {
 
   k.onKeyDown("up", () => {
     if (gameState.getPaused() === true) return;
-    if (player.isInDialogue) return;
     if (areAnyOfTheseKeysDown(k, ["left", "right"])) return;
+
     if (player.direction !== "up") {
       player.play("runUp");
       player.direction = "up";
@@ -70,8 +69,8 @@ function setPlayerControls(k: KAPLAYCtx, player: GameObj) {
 
   k.onKeyDown("down", () => {
     if (gameState.getPaused() === true) return;
-    if (player.isInDialogue) return;
     if (areAnyOfTheseKeysDown(k, ["left", "right"])) return;
+
     if (player.direction !== "down") {
       player.play("runDown");
       player.direction = "down";
@@ -82,6 +81,7 @@ function setPlayerControls(k: KAPLAYCtx, player: GameObj) {
 
   k.onKeyRelease(() => {
     if (gameState.getPaused() === true) return;
+
     switch (player.direction) {
       case "left":
         player.play("stillLeft");

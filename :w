@@ -78,8 +78,8 @@ export function addInventoryUI(k: KAPLAYCtx, player: GameObj, itemName: Item) {
   emitParticles(
     k,
     k.vec2(
-      player.pos.x - 0 * SCALE_FACTOR, // center of players head
-      player.pos.y - 20 * SCALE_FACTOR, // above players head, roughly where the inventory icon is
+      player.pos.x - (8 / 2) * SCALE_FACTOR, // center of players head
+      player.pos.y - 8 * 2 * SCALE_FACTOR, // above players head, roughly where the inventory icon is
     ),
   );
 

@@ -23,74 +23,14 @@
         position: relative;
       }
 
-      #textbox {
-        position: absolute;
-        left: 10%;
-        right: 10%;
-        bottom: 2vh;
-        min-height: 10vh;
-        background: #e8cfa6;
-        border-width: 10px;
-        border-top-color: #c49a6c;
-        border-left-color: #b68962;
-        border-right-color: #b68962;
-        border-bottom-color: #aa7959;
-        border-style: solid solid inset solid;
-        color: #aa7959;
-        padding: 1rem;
-        display: flex;
-        flex-direction: column;
-        flex-wrap: wrap;
-        justify-content: flex-start;
-        align-items: flex-start;
-        word-spacing: 0.2rem;
-        /* overflow: auto; */
-      }
-
       .ui-text {
         margin: 0;
         user-select: none;
-      }
-
-      .ui-close-btn {
-        font-family: monogram, monospace;
-        border: 3px solid #aa7959;
-        background-color: #c49a6c;
-        color: #f3f2c0;
-        border-radius: 3px;
-        padding: 0.5rem;
-        font-size: inherit;
-      }
-
-      .btn-container {
-        align-self: flex-end;
-        margin-top: 1rem;
-      }
-
-      .note {
-        position: absolute;
-        left: 5%;
-        top: 1vh;
-        display: flex;
-        flex-direction: column;
-        color: rgb(238, 238, 238);
       }
     </style>
   </head>
   <body style="overflow: hidden">
     <div id="app">
-      <div>
-        <div id="textbox-container" style="display: none">
-          <div id="textbox">
-            <p id="dialogue" class="ui-text"></p>
-            <div class="btn-container">
-              <button id="close" class="ui-close-btn">
-                Press Enter to close
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
       <canvas id="game"></canvas>
     </div>
     <script src="src/main.ts" type="module"></script>

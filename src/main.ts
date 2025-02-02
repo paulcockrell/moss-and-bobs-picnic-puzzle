@@ -179,8 +179,8 @@ k.loadSprite("playButtonsLarge", "../maps/PlayButtonsLarge.png", {
   sliceX: 2,
   sliceY: 2,
   anims: {
-    buttonDepressed: 2,
-    buttonPressed: 3,
+    buttonDepressed: 0,
+    buttonPressed: 1,
   },
 });
 

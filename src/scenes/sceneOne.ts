@@ -21,13 +21,13 @@ const mapDims = {
   height: mapData.height * mapData.tileheight * SCALE_FACTOR,
 };
 
+gameState.setMapDimensions(mapDims);
+
 export default function sceneOne() {
   k.play("music", { loop: true, volume: 0.4 });
   const map = k.add([k.pos(0)]);
 
-  makeModal(k, "Level one. This should be easy!", "talk", mapDims, () =>
-    gameState.setMode("playing"),
-  );
+  makeModal(k, "Level one. This should be easy!", "talk");
 
   const entities: Entities = {
     player: null,
@@ -73,10 +73,9 @@ export default function sceneOne() {
 
           finish.onCollide("player", (player) => {
             gameState.setMode("won");
-            gameState.setPaused(true);
             player.play("stillDown");
 
-            makeModal(k, "Hurray we completed level 1!", "happy", mapDims, () =>
+            makeModal(k, "Hurray we completed level 1!", "happy", () =>
               gameState.setMode("finished"),
             );
           });
@@ -180,6 +179,14 @@ export default function sceneOne() {
   let lastGameMode = "";
 
   k.onUpdate(() => {
+    console.log(
+      "XXX mode",
+      gameState.getMode(),
+      ", paused",
+      gameState.getPaused(),
+      ", dialog",
+      entities.player.isInDialogue,
+    );
     // When the intro modal is shown
     if (gameState.getMode() === "intro") {
       lastGameMode = gameState.getMode();
@@ -229,7 +236,10 @@ export default function sceneOne() {
 
       k.tween(k.getCamPos(), k.vec2(newPosX, newPosY), 1, (value) =>
         k.setCamPos(value),
-      ).then(() => gameState.setPaused(false));
+      ).then(() => {
+        gameState.setMode("playing");
+        console.log("XXX 3");
+      });
 
       return;
     }
