@@ -23,7 +23,6 @@ export function makeDialogueTrigger(k: KAPLAYCtx, mapObject: tiled.MapObject) {
     k.pos(mapObject.x * SCALE_FACTOR, mapObject.y * SCALE_FACTOR),
     k.scale(SCALE_FACTOR),
     {
-      isInDialogue: false,
       dialogue,
     },
     "dialogueTrigger",

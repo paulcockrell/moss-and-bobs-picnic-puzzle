@@ -1,5 +1,5 @@
 type Scene = "mainMenu" | "sceneOne";
-type Mode = "intro" | "playing" | "modal" | "won" | "lost";
+type Mode = "intro" | "playing" | "won" | "lost";
 
 export interface MapDims {
   width: number;
@@ -13,15 +13,17 @@ export default function gameStateManager() {
     let scene: Scene = "mainMenu";
     let mode: Mode = "intro";
     let mapDimensions: MapDims = { width: 0, height: 0 };
+    let showingModal = false;
 
     return {
       setScene: (value: Scene) => (scene = value),
       getScene: (): Scene => scene,
-      getPaused: (): boolean => mode !== "playing",
       setMode: (value: Mode) => (mode = value),
       getMode: (): Mode => mode,
       setMapDimensions: (value: MapDims) => (mapDimensions = value),
       getMapDimensions: (): MapDims => mapDimensions,
+      setShowModal: (value: boolean) => (showingModal = value),
+      getShowModal: (): boolean => showingModal,
     };
   }
 

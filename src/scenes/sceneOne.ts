@@ -71,7 +71,6 @@ export default function sceneOne() {
 
           finish.onCollide("player", (player) => {
             gameState.setMode("won");
-            player.play("stillDown");
 
             // stop game music
             bgMusic.stop();
@@ -170,8 +169,10 @@ export default function sceneOne() {
   k.setCamPos(mapDims.width / 2, mapDims.height / 2);
   setCamScale(k);
 
-  makeModal(k, "Level one. This should be easy!", "talk");
   gameState.setMode("intro");
+  makeModal(k, "Level one. This should be easy!", "talk", () =>
+    gameState.setMode("playing"),
+  );
 
   k.onResize(() => {
     setCamScale(k);
@@ -193,25 +194,7 @@ export default function sceneOne() {
       return;
     }
 
-    // When the wining modal is shown
-    if (gameState.getMode() === "won") {
-      lastGameMode = gameState.getMode();
-
-      // focus on the modal
-      k.setCamScale(k.vec2(1.5));
-
-      k.tween(
-        k.getCamPos(),
-        k.vec2(mapDims.width / 2, mapDims.height / 2),
-        1,
-        (value) => k.setCamPos(value),
-      );
-
-      k.tween(k.getCamScale(), k.vec2(1.5), 1, (value) => k.setCamScale(value));
-
-      return;
-    }
-
+    // Move camera from center of map to focus on the player
     if (lastGameMode === "intro" && gameState.getMode() === "playing") {
       lastGameMode = gameState.getMode();
 
@@ -239,6 +222,7 @@ export default function sceneOne() {
       return;
     }
 
+    // follow the player upto the limits
     let newPosX = entities.player.worldPos().x;
     let newPosY = entities.player.worldPos().y;
 

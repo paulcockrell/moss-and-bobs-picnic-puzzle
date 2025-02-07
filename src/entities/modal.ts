@@ -10,7 +10,7 @@ export function makeModal(
   anim: AnimKey,
   cb?: () => any,
 ) {
-  gameState.setMode("modal");
+  gameState.setShowModal(true);
 
   const modal = k.add([
     k.layer("ui"),
@@ -65,7 +65,7 @@ export function makeModal(
   }
 
   k.onKeyPress(["up", "left", "down", "right", "space", "enter"], () => {
-    if (gameState.getPaused() === false) return;
+    if (gameState.getShowModal() === false) return;
     if (modal?.isRemoving === true) return;
 
     removeModal(k, modal, cb);
@@ -83,7 +83,7 @@ function removeModal(k: KAPLAYCtx, modal: GameObj, cb?: () => void) {
     k.easings.easeInSine,
   ).then(() => {
     modal.destroy();
-    gameState.setMode("playing");
+    gameState.setShowModal(false);
     if (cb) cb();
   });
 }

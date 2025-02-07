@@ -20,9 +20,45 @@ export function makePlayer(k: KAPLAYCtx, pos: Vec2) {
       inventoryUI: null,
       speed: 100,
       direction: "stillDown",
+      isInDialogue: false,
     },
     "player",
   ]);
+
+  player.onUpdate(() => {
+    if (gameState.getMode() === "won" && player.direction !== "stillDown") {
+      player.play("stillDown");
+      player.direction = "stillDown";
+
+      return;
+    }
+
+    // When the player is 'in dialogue' (there is a modal on screen)
+    // ensure they stand still and are not continuing their movement
+    // animation.
+    if (gameState.getShowModal()) {
+      switch (player.direction) {
+        case "left":
+          player.play("stillLeft");
+          player.direction = "stillLeft";
+          break;
+        case "right":
+          player.play("stillRight");
+          player.direction = "stillRight";
+          break;
+        case "up":
+          player.play("stillUp");
+          player.direction = "stillUp";
+          break;
+        case "down":
+          player.play("stillDown");
+          player.direction = "stillDown";
+          break;
+      }
+
+      return;
+    }
+  });
 
   addInventoryUI(k, player, "eggGreen");
   setPlayerControls(k, player);
@@ -32,7 +68,7 @@ export function makePlayer(k: KAPLAYCtx, pos: Vec2) {
 
 function setPlayerControls(k: KAPLAYCtx, player: GameObj) {
   k.onKeyDown("left", () => {
-    if (gameState.getPaused() === true) return;
+    if (gameState.getShowModal() === true) return;
     if (areAnyOfTheseKeysDown(k, ["up", "down"])) return;
 
     if (player.direction !== "left") {
@@ -44,7 +80,7 @@ function setPlayerControls(k: KAPLAYCtx, player: GameObj) {
   });
 
   k.onKeyDown("right", () => {
-    if (gameState.getPaused() === true) return;
+    if (gameState.getShowModal() === true) return;
     if (areAnyOfTheseKeysDown(k, ["up", "down"])) return;
 
     if (player.direction !== "right") {
@@ -56,7 +92,7 @@ function setPlayerControls(k: KAPLAYCtx, player: GameObj) {
   });
 
   k.onKeyDown("up", () => {
-    if (gameState.getPaused() === true) return;
+    if (gameState.getShowModal() === true) return;
     if (areAnyOfTheseKeysDown(k, ["left", "right"])) return;
 
     if (player.direction !== "up") {
@@ -68,7 +104,7 @@ function setPlayerControls(k: KAPLAYCtx, player: GameObj) {
   });
 
   k.onKeyDown("down", () => {
-    if (gameState.getPaused() === true) return;
+    if (gameState.getShowModal() === true) return;
     if (areAnyOfTheseKeysDown(k, ["left", "right"])) return;
 
     if (player.direction !== "down") {
@@ -80,7 +116,7 @@ function setPlayerControls(k: KAPLAYCtx, player: GameObj) {
   });
 
   k.onKeyRelease(() => {
-    if (gameState.getPaused() === true) return;
+    if (gameState.getShowModal() === true) return;
 
     switch (player.direction) {
       case "left":
