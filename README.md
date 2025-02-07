@@ -3,25 +3,35 @@
 - `src` - source code for your kaplay project
 - `dist` - distribution folder, contains your index.html, built js bundle and static assets
 
-
 ## Development
 
 ```sh
-$ npm run dev
+npm run dev
 ```
 
-will start a dev server at http://localhost:8000
+will start a dev server at <http://localhost:8000>
 
 ## Distribution
 
 ```sh
-$ npm run build
+npm run build
 ```
 
 will build your js files into `dist/`
 
 ```sh
-$ npm run zip
+npm run zip
 ```
 
 will build your game and package into a .zip file, you can upload to your server or itch.io / newground etc.
+
+## assets
+
+SFX from [pixabay](https://pixabay.com)
+
+Music: [moodmode](https://pixabay.com/users/moodmode-33139253/)
+
+GFX from [itch](https://itch.io)
+
+Spritesheets: [cupnooble](https://cupnooble.itch.io/)
+
