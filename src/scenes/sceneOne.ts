@@ -24,7 +24,7 @@ const mapDims = {
 gameState.setMapDimensions(mapDims);
 
 export default function sceneOne() {
-  k.play("music", { loop: true, volume: 0.4 });
+  const bgMusic = k.play("music", { loop: true, volume: 0.4 });
   const map = k.add([k.pos(0)]);
 
   const entities: Entities = {
@@ -72,6 +72,11 @@ export default function sceneOne() {
           finish.onCollide("player", (player) => {
             gameState.setMode("won");
             player.play("stillDown");
+
+            // stop game music
+            bgMusic.stop();
+            // play win music
+            k.play("win", { loop: false, volume: 1.0 });
 
             makeModal(k, "Hurray we completed level 1!", "happy", () =>
               gameState.setMode("finished"),

@@ -16,6 +16,7 @@ k.loadSound("collect", "sfx/collect.mp3");
 k.loadSound("closedGate", "sfx/closed-gate.mp3");
 k.loadSound("openGate", "sfx/open-gate.mp3");
 k.loadSound("dialogueTrigger", "sfx/dialogue-trigger.mp3");
+k.loadSound("win", "sfx/win.mp3");
 
 // Load sprites
 

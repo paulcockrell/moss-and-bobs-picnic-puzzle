@@ -29,9 +29,8 @@ will build your game and package into a .zip file, you can upload to your server
 
 SFX from [pixabay](https://pixabay.com)
 
-Music: [moodmode](https://pixabay.com/users/moodmode-33139253/)
+Music: [pixabay - moodmode](https://pixabay.com/music/search/user_id%3a33139253%208-bit/?genre=video+games)
 
 GFX from [itch](https://itch.io)
 
 Spritesheets: [cupnooble](https://cupnooble.itch.io/)
-
