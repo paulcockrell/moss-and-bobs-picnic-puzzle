@@ -1,7 +1,7 @@
 import { KAPLAYCtx, Vec2 } from "kaplay";
 
 export function emitParticles(k: KAPLAYCtx, pos: Vec2) {
-  k.loadSprite("StarFull", "../maps/StarFull.png").then((sprite) => {
+  k.loadSprite("StarFull", "../maps/StarFull.png").then((_sprite) => {
     const starSpriteData = k.getSprite("StarFull").data;
 
     let particleEmitter = k.add([
@@ -16,6 +16,7 @@ export function emitParticles(k: KAPLAYCtx, pos: Vec2) {
           opacities: [1.0, 0.0], // the opacity of the particle over its lifetime
           texture: starSpriteData.tex, // texture of the sprite
           quads: starSpriteData.frames, // to tell whe emitter what frames of the sprite to use
+          scales: [1.5],
         },
         {
           lifetime: 2, // how long the emitter should last
