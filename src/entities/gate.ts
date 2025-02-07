@@ -1,7 +1,6 @@
 import { GameObj, KAPLAYCtx, Vec2 } from "kaplay";
 import { SCALE_FACTOR } from "../contants";
 import { getItemFromInventoryUI, Item, ItemToHumanMap } from "./inventory";
-import { displayDialogue } from "../utils";
 import { makeModal } from "./modal";
 
 export type GateOrientation = "horizontal" | "vertical";
