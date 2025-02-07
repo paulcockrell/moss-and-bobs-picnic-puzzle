@@ -15,6 +15,7 @@ k.loadSound("music", "sfx/retro-game-arcade-236133.mp3");
 k.loadSound("collect", "sfx/collect.mp3");
 k.loadSound("closedGate", "sfx/closed-gate.mp3");
 k.loadSound("openGate", "sfx/open-gate.mp3");
+k.loadSound("dialogueTrigger", "sfx/dialogue-trigger.mp3");
 
 // Load sprites
 

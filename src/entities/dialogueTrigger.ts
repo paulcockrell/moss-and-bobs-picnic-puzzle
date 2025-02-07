@@ -1,7 +1,6 @@
 import { GameObj, KAPLAYCtx } from "kaplay";
 import * as tiled from "@kayahr/tiled";
 import { SCALE_FACTOR } from "../contants";
-import { displayDialogue } from "../utils";
 import { makeModal } from "../entities/modal";
 
 export function makeDialogueTrigger(k: KAPLAYCtx, mapObject: tiled.MapObject) {
@@ -32,6 +31,7 @@ export function makeDialogueTrigger(k: KAPLAYCtx, mapObject: tiled.MapObject) {
 
   dialogueTrigger.onCollide("player", async (player: GameObj) => {
     player.isInDialogue = true;
+    k.play("dialogueTrigger", { loop: false, volume: 1.0 });
     makeModal(k, dialogueTrigger.dialogue, "talk");
   });
 
