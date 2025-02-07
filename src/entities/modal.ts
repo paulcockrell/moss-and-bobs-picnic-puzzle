@@ -10,13 +10,12 @@ export function makeModal(
   anim: AnimKey,
   cb?: () => any,
 ) {
-  const mapDimenstions = gameState.getMapDimensions();
   gameState.setMode("modal");
 
   const modal = k.add([
     k.layer("ui"),
     k.opacity(),
-    k.pos(mapDimenstions.width / 2, mapDimenstions.height / 2),
+    k.pos(k.getCamPos()),
     k.anchor("center"),
     {
       isRemoving: false,

@@ -27,8 +27,6 @@ export default function sceneOne() {
   k.play("music", { loop: true, volume: 0.4 });
   const map = k.add([k.pos(0)]);
 
-  makeModal(k, "Level one. This should be easy!", "talk");
-
   const entities: Entities = {
     player: null,
   };
@@ -164,10 +162,11 @@ export default function sceneOne() {
     }
   });
 
-  gameState.setMode("intro");
-
   k.setCamPos(mapDims.width / 2, mapDims.height / 2);
   setCamScale(k);
+
+  makeModal(k, "Level one. This should be easy!", "talk");
+  gameState.setMode("intro");
 
   k.onResize(() => {
     setCamScale(k);
@@ -179,14 +178,6 @@ export default function sceneOne() {
   let lastGameMode = "";
 
   k.onUpdate(() => {
-    console.log(
-      "XXX mode",
-      gameState.getMode(),
-      ", paused",
-      gameState.getPaused(),
-      ", dialog",
-      entities.player.isInDialogue,
-    );
     // When the intro modal is shown
     if (gameState.getMode() === "intro") {
       lastGameMode = gameState.getMode();
@@ -238,7 +229,6 @@ export default function sceneOne() {
         k.setCamPos(value),
       ).then(() => {
         gameState.setMode("playing");
-        console.log("XXX 3");
       });
 
       return;

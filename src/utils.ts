@@ -110,7 +110,6 @@ export function drawTiles(
       nbOfDrawnTiles++;
       if (tile > 0) {
         const tileset = tilesets.find((ts) => tile >= ts.firstgid);
-        //console.log("tile", tile, tileset);
         map.add([
           k.sprite(layer.name, { frame: tile - (tileset?.firstgid || 0) }),
           k.pos(tilePos),
