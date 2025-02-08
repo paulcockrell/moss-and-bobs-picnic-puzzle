@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tileset version="1.10" tiledversion="1.11.1" name="Bush_Tiles" tilewidth="16" tileheight="16" tilecount="121" columns="11">
- <image source="../../../../../Downloads/Sprout Lands - Sprites - premium pack/Tilesets/ground tiles/New tiles/Bush_Tiles.png" width="176" height="176"/>
+ <image source="./Bush_Tiles.png" width="176" height="176"/>
  <wangsets>
   <wangset name="Bushes" type="corner" tile="12">
    <wangcolor name="Bush" color="#3c8610" tile="-1" probability="1"/>

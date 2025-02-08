@@ -1,7 +1,14 @@
 import { EncodedTileLayer, UnencodedTileLayer } from "@kayahr/tiled";
-import { GameObj, KAPLAYCtx } from "kaplay";
+import { GameObj, KAPLAYCtx, PosComp, Vec2 } from "kaplay";
 import * as tiled from "@kayahr/tiled";
 import { SCALE_FACTOR } from "./contants";
+import { makePlayer } from "./entities/player";
+import { CollectableProps, makeCollectable } from "./entities/collectable";
+import { GateOrientation, makeGate } from "./entities/gate";
+import { Item } from "./entities/inventory";
+import { makeDialogueTrigger } from "./entities/dialogueTrigger";
+import { gameState } from "./state";
+import { makeModal } from "./entities/modal";
 
 export function makeBackground(k: KAPLAYCtx) {
   k.add([k.rect(k.width(), k.height()), k.color(k.Color.fromHex("#36A6E0"))]);
@@ -36,6 +43,57 @@ export function setCamScale(k: KAPLAYCtx) {
   }
 }
 
+export function drawScene(
+  k: KAPLAYCtx,
+  map: GameObj<PosComp>,
+  mapData: tiled.Map,
+  entities: Record<string, any>,
+) {
+  // Maybe we want to deal with the music outside of the map renderer
+  //
+
+  // This builds an array of `firstgid` values (from Tiled mapdata) that
+  // represent the first unique spritesheet icon value per spritesheet used by
+  // the Tiled map. We use this to cross-reference a tile value found in
+  // a layer as we draw it in Kaplay with the first spritesheet where
+  // `tileNumber >= firstgid`. This way we know which spritesheet to draw from,
+  // and which icon within it to use.
+  const sortedTilesetsDesc = mapData.tilesets.sort(
+    (ts1, ts2) => ts2.firstgid - ts1.firstgid,
+  );
+
+  mapData.layers.forEach((layer) => {
+    if (tiled.isTileLayer(layer)) {
+      drawTiles(
+        k,
+        map,
+        layer,
+        mapData.tileheight,
+        mapData.tilewidth,
+        sortedTilesetsDesc,
+      );
+    }
+
+    // Objects
+    if (tiled.isObjectGroup(layer)) {
+      if (layer.name === "FinishBoundary") {
+        drawFinishBoundary(k, map, layer);
+      }
+
+      if (layer.name === "Boundaries") {
+        drawBoundaries(k, map, layer);
+      }
+
+      if (layer.name === "DialogueTriggers") {
+        drawDialogueTriggers(k, map, layer);
+      }
+
+      if (layer.name === "SpawnPoints") {
+        drawSpawnPoints(k, map, layer, entities);
+      }
+    }
+  });
+}
 export function drawTiles(
   k: KAPLAYCtx,
   map: GameObj,
@@ -84,21 +142,134 @@ export function drawTiles(
   }
 }
 
-export function drawBoundaries(k, map, layer) {
-  for (const object of layer.objects) {
-    map.add(
-      generateColliderBoxComponents(
-        k,
-        object.width,
-        object.height,
-        k.vec2(object.x, object.y),
-        object.name !== "" ? object.name : "wall",
-      ),
-    );
-  }
+export function drawDialogueTriggers(
+  k: KAPLAYCtx,
+  map: GameObj<PosComp>,
+  layer: tiled.AnyLayer,
+) {
+  layer.objects.forEach((dialogueTrigger) => {
+    map.add(makeDialogueTrigger(k, dialogueTrigger));
+  });
 }
 
-export function generateColliderBoxComponents(k, width, height, pos, tag) {
+export function drawFinishBoundary(
+  k: KAPLAYCtx,
+  map: GameObj<PosComp>,
+  layer: tiled.AnyLayer,
+) {
+  layer.objects.forEach((boundary) => {
+    const finish = map.add([
+      k.polygon(
+        boundary.polygon.map((p) => k.vec2(p.x, p.y)),
+        { triangulate: true, fill: false },
+      ),
+      k.scale(SCALE_FACTOR),
+      k.body({ isStatic: true }),
+      k.area(),
+      k.pos(boundary.x * SCALE_FACTOR, boundary.y * SCALE_FACTOR),
+      "finish",
+    ]);
+
+    finish.onCollide("player", (player) => {
+      gameState.setMode("won");
+
+      makeModal(k, "Hurray we completed level 1!", "happy", () =>
+        gameState.setMode("finished"),
+      );
+    });
+  });
+}
+
+export function drawSpawnPoints(
+  k: KAPLAYCtx,
+  map: GameObj<PosComp>,
+  layer: tiled.AnyLayer,
+  entities: Record<string, any>,
+) {
+  layer.objects.forEach((spawnPoint) => {
+    if (spawnPoint.type === "player") {
+      const pos = k.vec2(
+        (map.pos.x + spawnPoint.x) * SCALE_FACTOR,
+        (map.pos.y + spawnPoint.y) * SCALE_FACTOR,
+      );
+      const player = makePlayer(k, pos);
+      entities.player = player;
+      map.add(player);
+    }
+
+    if (spawnPoint.type === "collectable") {
+      const props = spawnPoint.properties.reduce(
+        (a, b) => ({ ...a, [b.name]: b.value }),
+        {},
+      ) as CollectableProps;
+
+      const pos = k.vec2(
+        (map.pos.x + spawnPoint.x) * SCALE_FACTOR,
+        (map.pos.y + spawnPoint.y) * SCALE_FACTOR,
+      );
+
+      const collectable = makeCollectable(k, pos, props);
+
+      map.add(collectable);
+    }
+
+    if (spawnPoint.type === "gate") {
+      const pos = k.vec2(
+        (map.pos.x + spawnPoint.x) * SCALE_FACTOR,
+        (map.pos.y + spawnPoint.y) * SCALE_FACTOR,
+      );
+
+      const orientationProp = spawnPoint.properties?.find(
+        (prop) => prop.name === "orientation" && prop.type === "string",
+      );
+
+      const orientation = orientationProp
+        ? (orientationProp.value as GateOrientation)
+        : "horizontal";
+
+      const codeProp = spawnPoint.properties?.find(
+        (prop) => prop.name === "code" && prop.type === "string",
+      );
+
+      const code = codeProp ? (codeProp.value as Item) : "eggGreen";
+
+      const gate = makeGate(k, pos, spawnPoint.name, {
+        orientation,
+        code,
+      });
+
+      map.add(gate);
+    }
+  });
+}
+
+export function drawBoundaries(
+  k: KAPLAYCtx,
+  map: GameObj,
+  layer: tiled.AnyLayer,
+) {
+  layer.objects.forEach((boundary) => {
+    map.add([
+      k.polygon(
+        boundary.polygon.map((p) => k.vec2(p.x, p.y)),
+        { triangulate: true, fill: false },
+      ),
+      k.scale(SCALE_FACTOR),
+      k.body({ isStatic: true }),
+      k.area(),
+      k.pos(boundary.x * SCALE_FACTOR, boundary.y * SCALE_FACTOR),
+      "boundary",
+    ]);
+  });
+}
+
+export function generateColliderBoxComponents(
+  k: KAPLAYCtx,
+  width: number,
+  height: number,
+  pos: Vec2,
+  tag: string,
+) {
   return [
     k.rect(width, height),
     k.pos(pos.x, pos.y + 16),
@@ -110,11 +281,11 @@ export function generateColliderBoxComponents(k, width, height, pos, tag) {
   ];
 }
 
-export async function fetchMapData(mapPath) {
+export async function fetchMapData(mapPath: string) {
   return await (await fetch(mapPath)).json();
 }
 
-export function areAnyOfTheseKeysDown(k, keys) {
+export function areAnyOfTheseKeysDown(k: KAPLAYCtx, keys: string[]) {
   for (const key of keys) {
     if (k.isKeyDown(key)) return true;
   }

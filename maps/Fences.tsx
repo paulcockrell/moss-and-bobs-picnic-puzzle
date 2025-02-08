@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tileset version="1.10" tiledversion="1.11.1" name="Fences" tilewidth="16" tileheight="16" tilecount="32" columns="8">
- <image source="../../../../../Downloads/Sprout Lands - Sprites - premium pack/Tilesets/Building parts/Fences.png" width="128" height="64"/>
+ <image source="./Fences.png" width="128" height="64"/>
  <wangsets>
   <wangset name="Fences" type="edge" tile="10">
    <wangcolor name="Fence" color="#edd980" tile="-1" probability="1"/>

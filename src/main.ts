@@ -46,7 +46,7 @@ k.loadSprite("Bushes", "../maps/Bush_Tiles.png", {
   sliceY: 11,
 });
 
-k.loadSprite("Trees", "../maps/Trees, stumps and bushes.png", {
+k.loadSprite("Trees", "../maps/Trees_Stumps_Bushes.png", {
   sliceX: 12,
   sliceY: 7,
 });
@@ -54,6 +54,16 @@ k.loadSprite("Trees", "../maps/Trees, stumps and bushes.png", {
 k.loadSprite("Fences", "../maps/Fences.png", {
   sliceX: 8,
   sliceY: 4,
+});
+
+k.loadSprite("Bridges", "../maps/Wooden_Bridge_v2.png", {
+  sliceX: 4,
+  sliceY: 3,
+});
+
+k.loadSprite("Water", "../maps/Water.png", {
+  sliceX: 4,
+  sliceY: 1,
 });
 
 k.loadSpriteAtlas("../maps/Fence_Gates.png", {

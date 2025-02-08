@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tileset version="1.10" tiledversion="1.11.1" name="Stone_Ground_Tiles" tilewidth="16" tileheight="16" tilecount="77" columns="11">
- <image source="../../../../../Downloads/Sprout Lands - Sprites - premium pack/Tilesets/ground tiles/New tiles/Stone_Ground_Tiles.png" width="176" height="112"/>
+ <image source="./Stone_Ground_Tiles.png" width="176" height="112"/>
  <wangsets>
   <wangset name="Stone ground" type="corner" tile="36">
    <wangcolor name="Stone" color="#95ede8" tile="-1" probability="1"/>

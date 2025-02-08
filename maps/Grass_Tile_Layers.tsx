@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tileset version="1.10" tiledversion="1.11.1" name="Grass_Tile_Layers" tilewidth="16" tileheight="16" tilecount="77" columns="11">
- <image source="../../../../../Downloads/Sprout Lands - Sprites - premium pack/Tilesets/ground tiles/New tiles/Grass_Tile_Layers.png" width="176" height="112"/>
+ <image source="./Grass_Tile_Layers.png" width="176" height="112"/>
  <wangsets>
   <wangset name="Grass" type="corner" tile="66">
    <wangcolor name="Grass" color="#3eed23" tile="-1" probability="1"/>
