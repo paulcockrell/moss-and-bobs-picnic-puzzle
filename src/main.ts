@@ -66,6 +66,16 @@ k.loadSprite("Water", "../maps/Water.png", {
   sliceY: 1,
 });
 
+k.loadSprite("Chickens", "../maps/Chicken_Baby.png", {
+  sliceX: 8,
+  sliceY: 19,
+  anims: {
+    stillRightA: { from: 0, to: 3, loop: true, speed: 0.7 },
+    stillRightB: { from: 8, to: 14, loop: true, speed: 1.8 },
+    stillRightC: { from: 64, to: 67, loop: true },
+  },
+});
+
 k.loadSpriteAtlas("../maps/Fence_Gates.png", {
   gateHorizontal: {
     x: 0,

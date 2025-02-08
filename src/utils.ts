@@ -9,6 +9,7 @@ import { Item } from "./entities/inventory";
 import { makeDialogueTrigger } from "./entities/dialogueTrigger";
 import { gameState } from "./state";
 import { makeModal } from "./entities/modal";
+import { makeChicken } from "./entities/chicken";
 
 export function makeBackground(k: KAPLAYCtx) {
   k.add([k.rect(k.width(), k.height()), k.color(k.Color.fromHex("#36A6E0"))]);
@@ -195,6 +196,15 @@ export function drawSpawnPoints(
       const player = makePlayer(k, pos);
       entities.player = player;
       map.add(player);
+    }
+
+    if (spawnPoint.type === "chicken") {
+      const pos = k.vec2(
+        (map.pos.x + spawnPoint.x) * SCALE_FACTOR,
+        (map.pos.y + spawnPoint.y) * SCALE_FACTOR,
+      );
+      const chicken = makeChicken(k, pos);
+      map.add(chicken);
     }
 
     if (spawnPoint.type === "collectable") {
