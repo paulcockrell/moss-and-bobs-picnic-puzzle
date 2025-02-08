@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "forest_level_1.map.json",
+    "activeFile": "forest_level_2.map.json",
     "automapping.whileDrawing": true,
     "expandedProjectPaths": [
         "."
@@ -100,6 +100,14 @@
         "forest_level_1.map.json#ItemsNew": {
             "scaleInDock": 1
         },
+        "forest_level_2.map.json": {
+            "scale": 2.13,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 11.03286384976526,
+                "y": 138.73239436619718
+            }
+        },
         "test.tmx": {
             "scale": 1.76,
             "selectedLayer": 7,
@@ -115,10 +123,11 @@
     "map.tileHeight": 16,
     "map.tileWidth": 16,
     "openFiles": [
-        "forest_level_1.map.json"
+        "forest_level_2.map.json"
     ],
     "project": "woodland-maze.tiled-project",
     "recentFiles": [
+        "forest_level_2.map.json",
         "forest_level_1.map.json",
         "SignsShapes.tsx",
         "CollectableItemsNew.tsx",
@@ -129,8 +138,7 @@
         "Items.tsx",
         "Trees_Stumps_Bushes.tsx",
         "Mushrooms_Flowers_tiles.tsx",
-        "Fences.tsx",
-        "Stone_Ground_Tiles.tsx"
+        "Fences.tsx"
     ],
     "tileset.lastUsedFilter": "Tiled tileset files (*.tsx *.xml)",
     "tileset.lastUsedFormat": "tsx",

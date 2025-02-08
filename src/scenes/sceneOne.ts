@@ -11,6 +11,7 @@ import { GateOrientation, makeGate } from "../entities/gate";
 import { Item } from "../entities/inventory";
 import { makeModal } from "../entities/modal";
 import { gameState } from "../state";
+import sceneEnding from "./sceneEnding";
 
 export interface Entities {
   player: GameObj;
@@ -218,6 +219,15 @@ export default function sceneOne() {
       ).then(() => {
         gameState.setMode("playing");
       });
+
+      return;
+    }
+
+    if (lastGameMode !== "finished" && gameState.getMode() === "finished") {
+      lastGameMode = gameState.getMode();
+
+      const nextScene = gameState.setScene("sceneEnding");
+      k.go(nextScene);
 
       return;
     }
