@@ -17,6 +17,9 @@ const mapDims = {
 gameState.setMapDimensions(mapDims);
 
 export default function mainMenu() {
+  k.setCamPos(mapDims.width / 2, mapDims.height / 2);
+  setCamScale(k);
+
   const map = k.add([k.pos(0)]);
 
   const entities: Entities = {
@@ -29,21 +32,30 @@ export default function mainMenu() {
     k.scale(SCALE_FACTOR),
     k.text("Mystery Maze", {
       font: "monogram",
-      size: 24,
+      size: 48,
     }),
+    k.color(k.Color.fromHex("#FFFFFF")),
     k.pos(k.getCamPos()),
-    k.anchor("topleft"),
+    k.anchor("center"),
   ]);
 
-  k.setCamPos(mapDims.width / 2, mapDims.height / 2);
-  setCamScale(k);
+  k.add([
+    k.scale(SCALE_FACTOR),
+    k.text("Press a space to start", {
+      font: "monogram",
+      size: 20,
+    }),
+    k.color(k.Color.fromHex("#FFFFFF")),
+    k.pos(k.getCamPos().x, k.getCamPos().y + 50),
+    k.anchor("center"),
+  ]);
 
   k.onResize(() => {
     setCamScale(k);
   });
 
-  k.onKeyPress(["space", "enter"], () => {
-    const nextScene = gameState.setScene("sceneOne");
+  k.onKeyPress(["space"], () => {
+    const nextScene = gameState.setScene("levelOne");
     k.go(nextScene);
   });
 }

@@ -5,7 +5,7 @@ const k = kaplay({
   touchToMouse: true,
   font: "fonts/monogram",
   canvas: document.getElementById("game"),
-  debug: true, // set to false once ready for production
+  debug: false, // set to false once ready for production
 });
 
 export default k;
