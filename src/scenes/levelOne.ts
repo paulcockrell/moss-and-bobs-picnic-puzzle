@@ -95,7 +95,7 @@ export default function levelOne() {
     if (lastGameMode !== "finished" && gameState.getMode() === "finished") {
       lastGameMode = gameState.getMode();
 
-      const nextScene = gameState.setScene("sceneEnding");
+      const nextScene = gameState.setScene("ending");
       k.go(nextScene);
 
       return;
