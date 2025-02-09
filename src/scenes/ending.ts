@@ -1,7 +1,7 @@
 import k from "../kaplayCtx";
 import { gameState } from "../state";
 
-export default function sceneEnding() {
+export default function ending() {
   k.add([
     k.text("You have completed Moss' Mad Mutating Maze. Well done!", {
       font: "monogram",

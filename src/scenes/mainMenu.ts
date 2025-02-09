@@ -25,6 +25,16 @@ export default function mainMenu() {
 
   drawScene(k, map, mapData, entities);
 
+  k.add([
+    k.scale(SCALE_FACTOR),
+    k.text("Mystery Maze", {
+      font: "monogram",
+      size: 24,
+    }),
+    k.pos(k.getCamPos()),
+    k.anchor("topleft"),
+  ]);
+
   k.setCamPos(mapDims.width / 2, mapDims.height / 2);
   setCamScale(k);
 

@@ -1,4 +1,4 @@
-type Scene = "mainMenu" | "sceneOne";
+type Scene = "mainMenu" | "levelOne";
 type Mode = "intro" | "playing" | "won" | "lost";
 
 export interface MapDims {

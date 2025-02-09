@@ -17,7 +17,7 @@ const mapDims = {
 
 gameState.setMapDimensions(mapDims);
 
-export default function sceneOne() {
+export default function levelOne() {
   const map = k.add([k.pos(0)]);
   const bgMusic = k.play("music", { loop: true, volume: 0.4 });
 

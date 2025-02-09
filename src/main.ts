@@ -1,7 +1,7 @@
 import k from "./kaplayCtx";
 import mainMenu from "./scenes/mainMenu";
-import sceneOne from "./scenes/sceneOne";
-import sceneEnding from "./scenes/sceneEnding";
+import levelOne from "./scenes/levelOne";
+import ending from "./scenes/ending";
 import { gameState } from "./state";
 
 k.loadRoot("./"); // A good idea for Itch.io publishing later
@@ -209,8 +209,8 @@ k.loadSprite("playButtonsLarge", "../maps/PlayButtonsLarge.png", {
 
 // Load scenes
 k.scene("mainMenu", mainMenu);
-k.scene("sceneOne", sceneOne);
-k.scene("sceneEnding", sceneEnding);
+k.scene("levelOne", levelOne);
+k.scene("ending", ending);
 
 // Start game!
 const currentScene = gameState.getScene();
