@@ -1,5 +1,5 @@
 import k from "../kaplayCtx";
-import mapData from "../../maps/forest_level_1.map.json";
+import mapData from "../../maps/forest_level_2.map.json";
 import { GameObj } from "kaplay";
 import { drawScene, setCamScale } from "../utils";
 import { SCALE_FACTOR } from "../contants";
@@ -17,7 +17,7 @@ const mapDims = {
 
 gameState.setMapDimensions(mapDims);
 
-export default function levelOne() {
+export default function levelTwo() {
   const map = k.add([k.pos(0)]);
   const bgMusic = k.play("music", { loop: true, volume: 0.4 });
 
@@ -31,7 +31,7 @@ export default function levelOne() {
   setCamScale(k);
 
   gameState.setMode("intro");
-  makeModal(k, "Level one. This should be easy!", "talk", () =>
+  makeModal(k, "Level two. This looks harder!", "talk", () =>
     gameState.setMode("playing"),
   );
 
@@ -95,7 +95,7 @@ export default function levelOne() {
     if (lastGameMode !== "finished" && gameState.getMode() === "finished") {
       lastGameMode = gameState.getMode();
 
-      const nextScene = gameState.setScene("levelTwo");
+      const nextScene = gameState.setScene("ending");
       k.go(nextScene);
 
       return;
