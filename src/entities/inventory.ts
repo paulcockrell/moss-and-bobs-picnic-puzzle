@@ -1,23 +1,14 @@
 import { GameObj, KAPLAYCtx } from "kaplay";
 import { emitParticles } from "./particles";
 import { SCALE_FACTOR } from "../contants";
+import {
+  CollectableProps,
+  collectablesMatch,
+  generateCollectableCode,
+} from "./collectable";
 
-export type Item =
-  | "milkAny"
-  | "milkRed"
-  | "milkGreen"
-  | "milkBlue"
-  | "eggAny"
-  | "eggRed"
-  | "eggGreen"
-  | "eggBlue"
-  | "mushroomAny"
-  | "mushroomRed"
-  | "mushroomGreen"
-  | "mushroomBlue"
-  | "colorRed"
-  | "colorGreen"
-  | "colorBlue";
+export type Item = "milk" | "egg" | "mushroom" | "color";
+export type Color = "red" | "green" | "blue" | "any";
 
 export const ItemToHumanMap = {
   milkAny: "some milk of any color",
@@ -37,13 +28,10 @@ export const ItemToHumanMap = {
   colorBlue: "the color blue",
 };
 
-export interface ItemProps {
-  code: Item;
-}
-
-export function getItemFromInventoryUI(player: GameObj): Item | null {
-  const item = player.inventoryUI?.properties.code;
-  return item;
+export function getItemFromInventoryUI(
+  player: GameObj,
+): CollectableProps | null {
+  return player.inventoryUI?.properties;
 }
 
 export function removeInventoryUI(k: KAPLAYCtx, player: GameObj) {
@@ -54,23 +42,27 @@ export function removeInventoryUI(k: KAPLAYCtx, player: GameObj) {
   }
 }
 
-export function addInventoryUI(k: KAPLAYCtx, player: GameObj, itemName: Item) {
+export function addInventoryUI(
+  k: KAPLAYCtx,
+  player: GameObj,
+  collectable: CollectableProps,
+) {
   const currentItem = getItemFromInventoryUI(player);
-  const calculatedItem = calculateNewItem(currentItem, itemName);
+  const newItem = calculateNewItem(currentItem, collectable);
 
-  if (currentItem === calculatedItem) {
+  if (collectablesMatch(currentItem, newItem)) {
     return;
   }
 
   removeInventoryUI(k, player);
 
   player.inventoryUI = player.add([
-    k.sprite("ItemsNew", { anim: calculatedItem }),
+    k.sprite("ItemsNew", { anim: generateCollectableCode(newItem) }),
     k.anchor("center"),
     k.pos(0, -20),
     {
       properties: {
-        code: calculatedItem,
+        ...newItem,
       },
     },
   ]);
@@ -87,9 +79,9 @@ export function addInventoryUI(k: KAPLAYCtx, player: GameObj, itemName: Item) {
 }
 
 function calculateNewItem(
-  currentItem: Item | null | undefined,
-  newItem: Item,
-): Item {
+  currentItem: CollectableProps | null | undefined,
+  newItem: CollectableProps,
+): CollectableProps {
   // We have no existing item, so return new item
   if (!currentItem) {
     return newItem;
@@ -97,22 +89,18 @@ function calculateNewItem(
 
   // If we have just picked up a color, then change the color of the existing
   // item
-  if (newItem.match(/colorRed|colorBlue|colorGreen/)) {
-    const newColor = newItem.replace("color", "");
-    const updatedItem = currentItem.replace(/Any|Red|Green|Blue/, newColor);
-
-    return updatedItem as Item;
+  if (newItem.item === "color") {
+    newItem.item = currentItem.item;
+    return newItem;
   }
 
   // If we have picked up a blank item (an item with no color) then change
   // existing items type while preserving the existing items color
-  if (newItem.match(/milkAny|eggAny|mushroomAny/)) {
-    const newType = newItem.replace("Any", "");
-    const updatedItem = currentItem.replace(/milk|egg|mushroom/, newType);
-
-    return updatedItem as Item;
+  if (newItem.color === "any") {
+    newItem.color = currentItem.color;
+    return newItem;
   }
 
   // We have picked up a colored item so return
-  return newItem as Item;
+  return newItem;
 }

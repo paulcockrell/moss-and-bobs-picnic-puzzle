@@ -135,14 +135,14 @@
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 760, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 760, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 760, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 760, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -1714,6 +1714,7 @@
         {
          "draworder":"topdown",
          "id":26,
+         "locked":true,
          "name":"DialogueTriggers",
          "objects":[
                 {
@@ -1793,7 +1794,6 @@
         {
          "draworder":"topdown",
          "id":24,
-         "locked":true,
          "name":"SpawnPoints",
          "objects":[
                 {
@@ -1815,9 +1815,14 @@
                  "point":true,
                  "properties":[
                         {
-                         "name":"code",
+                         "name":"color",
                          "type":"string",
-                         "value":"eggGreen"
+                         "value":"green"
+                        }, 
+                        {
+                         "name":"item",
+                         "type":"string",
+                         "value":"egg"
                         }, 
                         {
                          "name":"orientation",
@@ -1838,9 +1843,14 @@
                  "point":true,
                  "properties":[
                         {
-                         "name":"code",
+                         "name":"color",
                          "type":"string",
-                         "value":"mushroomRed"
+                         "value":"red"
+                        }, 
+                        {
+                         "name":"item",
+                         "type":"string",
+                         "value":"mushroom"
                         }, 
                         {
                          "name":"orientation",
@@ -1861,15 +1871,20 @@
                  "point":true,
                  "properties":[
                         {
-                         "name":"code",
+                         "name":"color",
                          "type":"string",
-                         "value":"colorRed"
+                         "value":"red"
+                        }, 
+                        {
+                         "name":"item",
+                         "type":"string",
+                         "value":"color"
                         }],
                  "rotation":0,
                  "type":"collectable",
                  "visible":true,
                  "width":0,
-                 "x":104,
+                 "x":136,
                  "y":72
                 }, 
                 {
@@ -1879,9 +1894,14 @@
                  "point":true,
                  "properties":[
                         {
-                         "name":"code",
+                         "name":"color",
                          "type":"string",
-                         "value":"mushroomAny"
+                         "value":"any"
+                        }, 
+                        {
+                         "name":"item",
+                         "type":"string",
+                         "value":"mushroom"
                         }],
                  "rotation":0,
                  "type":"collectable",
@@ -1897,9 +1917,14 @@
                  "point":true,
                  "properties":[
                         {
-                         "name":"code",
+                         "name":"color",
                          "type":"string",
-                         "value":"colorBlue"
+                         "value":"blue"
+                        }, 
+                        {
+                         "name":"item",
+                         "type":"string",
+                         "value":"color"
                         }],
                  "rotation":0,
                  "type":"collectable",
@@ -1915,16 +1940,21 @@
                  "point":true,
                  "properties":[
                         {
-                         "name":"code",
+                         "name":"color",
                          "type":"string",
-                         "value":"milkGreen"
+                         "value":"green"
+                        }, 
+                        {
+                         "name":"item",
+                         "type":"string",
+                         "value":"milk"
                         }],
                  "rotation":0,
                  "type":"collectable",
                  "visible":true,
                  "width":0,
                  "x":40,
-                 "y":168
+                 "y":184
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1935,6 +1965,7 @@
         {
          "draworder":"topdown",
          "id":29,
+         "locked":true,
          "name":"FinishBoundary",
          "objects":[
                 {

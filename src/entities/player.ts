@@ -60,7 +60,8 @@ export function makePlayer(k: KAPLAYCtx, pos: Vec2) {
     }
   });
 
-  addInventoryUI(k, player, "eggGreen");
+  // Add player inventory with a starting item present
+  addInventoryUI(k, player, { item: "egg", color: "green" });
   setPlayerControls(k, player);
 
   return player;

@@ -2,13 +2,17 @@ import { GameObj, KAPLAYCtx, Vec2 } from "kaplay";
 import { SCALE_FACTOR } from "../contants";
 import { getItemFromInventoryUI, Item, ItemToHumanMap } from "./inventory";
 import { makeModal } from "./modal";
+import {
+  CollectableProps,
+  collectablesMatch,
+  generateCollectableCode,
+} from "./collectable";
 
 export type GateOrientation = "horizontal" | "vertical";
 
-interface GateProps {
+export type GateProps = {
   orientation: GateOrientation;
-  code: Item;
-}
+} & CollectableProps;
 
 const status: "closed" | "open" | "closing" | "opening" = "closed";
 
@@ -16,7 +20,11 @@ export function makeGate(
   k: KAPLAYCtx,
   pos: Vec2,
   name: string,
-  properties: GateProps = { orientation: "horizontal", code: "eggGreen" },
+  properties: GateProps = {
+    orientation: "horizontal",
+    item: "egg",
+    color: "green",
+  },
 ) {
   const sprite =
     properties.orientation === "horizontal"
@@ -42,15 +50,21 @@ export function makeGate(
 
   gate.onCollide("player", (player: GameObj) => {
     const inventoryItem = getItemFromInventoryUI(player);
-    const gateItem = ItemToHumanMap[gate.properties.code];
-    const playerItem = ItemToHumanMap[inventoryItem];
+    const gateItem =
+      ItemToHumanMap[
+        generateCollectableCode({
+          item: gate.properties.item,
+          color: gate.properties.color,
+        })
+      ];
+    const playerItem = ItemToHumanMap[generateCollectableCode(inventoryItem)];
     const dialogue = [
       `Oh no! You need ${gateItem} to pass,`,
       `and you have ${playerItem}.`,
     ];
 
     // We have a match so no need to show notice
-    if (gate.properties.code === inventoryItem) {
+    if (collectablesMatch(gate.properties, inventoryItem)) {
       return;
     }
 
@@ -61,7 +75,7 @@ export function makeGate(
 
   gate.onCollideUpdate("player", async (player: GameObj) => {
     const inventoryItem = getItemFromInventoryUI(player);
-    if (gate.properties.code !== inventoryItem) {
+    if (collectablesMatch(gate.properties, inventoryItem) === false) {
       return;
     }
 

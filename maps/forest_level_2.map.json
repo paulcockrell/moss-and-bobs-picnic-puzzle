@@ -1215,7 +1215,6 @@
         {
          "draworder":"topdown",
          "id":24,
-         "locked":true,
          "name":"SpawnPoints",
          "objects":[
                 {
@@ -1237,9 +1236,14 @@
                  "point":true,
                  "properties":[
                         {
-                         "name":"code",
+                         "name":"color",
                          "type":"string",
-                         "value":"eggGreen"
+                         "value":"any"
+                        }, 
+                        {
+                         "name":"item",
+                         "type":"string",
+                         "value":"mushroom"
                         }, 
                         {
                          "name":"orientation",
@@ -1260,9 +1264,14 @@
                  "point":true,
                  "properties":[
                         {
-                         "name":"code",
+                         "name":"color",
                          "type":"string",
-                         "value":"mushroomRed"
+                         "value":"any"
+                        }, 
+                        {
+                         "name":"item",
+                         "type":"string",
+                         "value":"milk"
                         }, 
                         {
                          "name":"orientation",
@@ -1279,67 +1288,69 @@
                 {
                  "height":0,
                  "id":145,
-                 "name":"collectable",
+                 "name":"collectableMilkAny",
                  "point":true,
                  "properties":[
                         {
-                         "name":"code",
+                         "name":"color",
                          "type":"string",
-                         "value":"colorRed"
+                         "value":"any"
+                        }, 
+                        {
+                         "name":"item",
+                         "type":"string",
+                         "value":"milk"
                         }],
                  "rotation":0,
                  "type":"collectable",
                  "visible":true,
                  "width":0,
-                 "x":104,
-                 "y":72
-                }, 
-                {
-                 "height":0,
-                 "id":146,
-                 "name":"collectable",
-                 "point":true,
-                 "properties":[
-                        {
-                         "name":"code",
-                         "type":"string",
-                         "value":"mushroomAny"
-                        }],
-                 "rotation":0,
-                 "type":"collectable",
-                 "visible":true,
-                 "width":0,
-                 "x":200,
-                 "y":200
+                 "x":96,
+                 "y":52
                 }, 
                 {
                  "height":0,
                  "id":157,
-                 "name":"collectable",
+                 "name":"collectableColorBlue",
                  "point":true,
                  "properties":[
                         {
                          "name":"code",
                          "type":"string",
                          "value":"colorBlue"
+                        }, 
+                        {
+                         "name":"color",
+                         "type":"string",
+                         "value":"blue"
+                        }, 
+                        {
+                         "name":"item",
+                         "type":"string",
+                         "value":"color"
                         }],
                  "rotation":0,
                  "type":"collectable",
                  "visible":true,
                  "width":0,
-                 "x":56,
-                 "y":248
+                 "x":112,
+                 "y":268
                 }, 
                 {
                  "height":0,
                  "id":158,
-                 "name":"collectable",
+                 "name":"collectableMushroomAny",
                  "point":true,
                  "properties":[
                         {
-                         "name":"code",
+                         "name":"color",
                          "type":"string",
-                         "value":"milkGreen"
+                         "value":"any"
+                        }, 
+                        {
+                         "name":"item",
+                         "type":"string",
+                         "value":"mushroom"
                         }],
                  "rotation":0,
                  "type":"collectable",
@@ -1347,6 +1358,225 @@
                  "width":0,
                  "x":384,
                  "y":268
+                }, 
+                {
+                 "height":0,
+                 "id":182,
+                 "name":"gate3",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"color",
+                         "type":"string",
+                         "value":"blue"
+                        }, 
+                        {
+                         "name":"item",
+                         "type":"string",
+                         "value":"color"
+                        }, 
+                        {
+                         "name":"orientation",
+                         "type":"string",
+                         "value":"horizontal"
+                        }],
+                 "rotation":0,
+                 "type":"gate",
+                 "visible":true,
+                 "width":0,
+                 "x":88,
+                 "y":216
+                }, 
+                {
+                 "height":0,
+                 "id":183,
+                 "name":"gate4",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"color",
+                         "type":"string",
+                         "value":"green"
+                        }, 
+                        {
+                         "name":"item",
+                         "type":"string",
+                         "value":"color"
+                        }, 
+                        {
+                         "name":"orientation",
+                         "type":"string",
+                         "value":"vertical"
+                        }],
+                 "rotation":0,
+                 "type":"gate",
+                 "visible":true,
+                 "width":0,
+                 "x":192,
+                 "y":264
+                }, 
+                {
+                 "height":0,
+                 "id":184,
+                 "name":"gate5",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"color",
+                         "type":"string",
+                         "value":"any"
+                        }, 
+                        {
+                         "name":"item",
+                         "type":"string",
+                         "value":"mushroom"
+                        }, 
+                        {
+                         "name":"orientation",
+                         "type":"string",
+                         "value":"vertical"
+                        }],
+                 "rotation":0,
+                 "type":"gate",
+                 "visible":true,
+                 "width":0,
+                 "x":256,
+                 "y":248
+                }, 
+                {
+                 "height":0,
+                 "id":185,
+                 "name":"gate6",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"color",
+                         "type":"string",
+                         "value":"any"
+                        }, 
+                        {
+                         "name":"item",
+                         "type":"string",
+                         "value":"egg"
+                        }, 
+                        {
+                         "name":"orientation",
+                         "type":"string",
+                         "value":"horizontal"
+                        }],
+                 "rotation":0,
+                 "type":"gate",
+                 "visible":true,
+                 "width":0,
+                 "x":424,
+                 "y":208
+                }, 
+                {
+                 "height":0,
+                 "id":186,
+                 "name":"gate7",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"color",
+                         "type":"string",
+                         "value":"blue"
+                        }, 
+                        {
+                         "name":"item",
+                         "type":"string",
+                         "value":"milk"
+                        }, 
+                        {
+                         "name":"orientation",
+                         "type":"string",
+                         "value":"horizontal"
+                        }],
+                 "rotation":0,
+                 "type":"gate",
+                 "visible":true,
+                 "width":0,
+                 "x":424,
+                 "y":136
+                }, 
+                {
+                 "height":0,
+                 "id":187,
+                 "name":"gate8",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"color",
+                         "type":"string",
+                         "value":"green"
+                        }, 
+                        {
+                         "name":"item",
+                         "type":"string",
+                         "value":"color"
+                        }, 
+                        {
+                         "name":"orientation",
+                         "type":"string",
+                         "value":"horizontal"
+                        }],
+                 "rotation":0,
+                 "type":"gate",
+                 "visible":true,
+                 "width":0,
+                 "x":312,
+                 "y":136
+                }, 
+                {
+                 "height":0,
+                 "id":188,
+                 "name":"gate9",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"color",
+                         "type":"string",
+                         "value":"red"
+                        }, 
+                        {
+                         "name":"item",
+                         "type":"string",
+                         "value":"color"
+                        }, 
+                        {
+                         "name":"orientation",
+                         "type":"string",
+                         "value":"vertical"
+                        }],
+                 "rotation":0,
+                 "type":"gate",
+                 "visible":true,
+                 "width":0,
+                 "x":272,
+                 "y":72
+                }, 
+                {
+                 "height":0,
+                 "id":189,
+                 "name":"collectableColorGreen",
+                 "point":true,
+                 "properties":[
+                        {
+                         "name":"color",
+                         "type":"string",
+                         "value":"green"
+                        }, 
+                        {
+                         "name":"item",
+                         "type":"string",
+                         "value":"color"
+                        }],
+                 "rotation":0,
+                 "type":"collectable",
+                 "visible":true,
+                 "width":0,
+                 "x":316,
+                 "y":76
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1357,6 +1587,7 @@
         {
          "draworder":"topdown",
          "id":29,
+         "locked":true,
          "name":"FinishBoundary",
          "objects":[
                 {
@@ -1394,7 +1625,7 @@
          "y":0
         }],
  "nextlayerid":30,
- "nextobjectid":182,
+ "nextobjectid":190,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.1",

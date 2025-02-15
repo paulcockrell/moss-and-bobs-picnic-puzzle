@@ -148,6 +148,7 @@ export function drawDialogueTriggers(
   map: GameObj<PosComp>,
   layer: tiled.AnyLayer,
 ) {
+  //@ts-expect-error ?
   layer.objects.forEach((dialogueTrigger) => {
     map.add(makeDialogueTrigger(k, dialogueTrigger));
   });
@@ -158,6 +159,7 @@ export function drawFinishBoundary(
   map: GameObj<PosComp>,
   layer: tiled.AnyLayer,
 ) {
+  //@ts-expect-error ?
   layer.objects.forEach((boundary) => {
     const finish = map.add([
       k.polygon(
@@ -174,7 +176,7 @@ export function drawFinishBoundary(
     finish.onCollide("player", (player) => {
       gameState.setMode("won");
 
-      makeModal(k, "Hurray we completed level 1!", "happy", () =>
+      makeModal(k, "Hurray we completed the level!", "happy", () =>
         gameState.setMode("finished"),
       );
     });
@@ -187,6 +189,7 @@ export function drawSpawnPoints(
   layer: tiled.AnyLayer,
   entities: Record<string, any>,
 ) {
+  //@ts-expect-error ?
   layer.objects.forEach((spawnPoint) => {
     if (spawnPoint.type === "player") {
       const pos = k.vec2(
@@ -208,17 +211,21 @@ export function drawSpawnPoints(
     }
 
     if (spawnPoint.type === "collectable") {
-      const props = spawnPoint.properties.reduce(
-        (a, b) => ({ ...a, [b.name]: b.value }),
-        {},
-      ) as CollectableProps;
+      const collectableProps: CollectableProps = spawnPoint.properties
+        ?.filter((prop: Record<string, any>) =>
+          ["item", "color"].includes(prop.name),
+        )
+        .reduce((props, spawnPointProp) => {
+          props[spawnPointProp.name] = spawnPointProp.value;
+          return props;
+        }, {});
 
       const pos = k.vec2(
         (map.pos.x + spawnPoint.x) * SCALE_FACTOR,
         (map.pos.y + spawnPoint.y) * SCALE_FACTOR,
       );
 
-      const collectable = makeCollectable(k, pos, props);
+      const collectable = makeCollectable(k, pos, collectableProps);
 
       map.add(collectable);
     }
@@ -230,22 +237,26 @@ export function drawSpawnPoints(
       );
 
       const orientationProp = spawnPoint.properties?.find(
-        (prop) => prop.name === "orientation" && prop.type === "string",
+        (prop: Record<string, any>) =>
+          prop.name === "orientation" && prop.type === "string",
       );
 
       const orientation = orientationProp
         ? (orientationProp.value as GateOrientation)
         : "horizontal";
 
-      const codeProp = spawnPoint.properties?.find(
-        (prop) => prop.name === "code" && prop.type === "string",
-      );
-
-      const code = codeProp ? (codeProp.value as Item) : "eggGreen";
+      const collectableProps: CollectableProps = spawnPoint.properties
+        ?.filter((prop: Record<string, any>) =>
+          ["item", "color"].includes(prop.name),
+        )
+        .reduce((props, spawnPointProp) => {
+          props[spawnPointProp.name] = spawnPointProp.value;
+          return props;
+        }, {});
 
       const gate = makeGate(k, pos, spawnPoint.name, {
         orientation,
-        code,
+        ...collectableProps,
       });
 
       map.add(gate);
@@ -258,6 +269,7 @@ export function drawBoundaries(
   map: GameObj,
   layer: tiled.AnyLayer,
 ) {
+  //@ts-expect-error ?
   layer.objects.forEach((boundary) => {
     map.add([
       k.polygon(

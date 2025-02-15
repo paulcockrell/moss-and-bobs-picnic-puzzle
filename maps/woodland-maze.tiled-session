@@ -13,6 +13,9 @@
         ":/automap-tiles.tsx": {
             "scaleInDock": 1
         },
+        "Bridges.tsx": {
+            "scaleInDock": 1
+        },
         "Bush_Tiles.tsx": {
             "scaleInDock": 3.86,
             "scaleInEditor": 1
@@ -86,26 +89,40 @@
             "scaleInEditor": 5.63
         },
         "Trees_Stumps_Bushes.tsx": {
-            "scaleInDock": 1,
+            "scaleInDock": 2.9001,
             "scaleInEditor": 1
         },
         "forest_level_1.map.json": {
+            "expandedObjectLayers": [
+                24
+            ],
             "scale": 2.13,
-            "selectedLayer": 12,
+            "selectedLayer": 11,
             "viewCenter": {
-                "x": 288.0281690140845,
-                "y": 134.03755868544602
+                "x": 224.64788732394365,
+                "y": 152.11267605633802
             }
         },
         "forest_level_1.map.json#ItemsNew": {
             "scaleInDock": 1
         },
         "forest_level_2.map.json": {
-            "scale": 2.13,
-            "selectedLayer": 2,
+            "expandedObjectLayers": [
+                24
+            ],
+            "scale": 3.3595,
+            "selectedLayer": 10,
             "viewCenter": {
-                "x": 11.03286384976526,
-                "y": 138.73239436619718
+                "x": 25.74787914868284,
+                "y": 165.9473135883316
+            }
+        },
+        "main_menu.map.json": {
+            "scale": 1.6921875,
+            "selectedLayer": 8,
+            "viewCenter": {
+                "x": 240.22160664819947,
+                "y": 160.1477377654663
             }
         },
         "test.tmx": {
@@ -123,12 +140,14 @@
     "map.tileHeight": 16,
     "map.tileWidth": 16,
     "openFiles": [
-        "forest_level_2.map.json"
+        "forest_level_2.map.json",
+        "forest_level_1.map.json"
     ],
     "project": "woodland-maze.tiled-project",
     "recentFiles": [
-        "forest_level_2.map.json",
         "forest_level_1.map.json",
+        "forest_level_2.map.json",
+        "main_menu.map.json",
         "SignsShapes.tsx",
         "CollectableItemsNew.tsx",
         "ItemsNew.tsx",
@@ -137,8 +156,7 @@
         "ItemShadow.tsx",
         "Items.tsx",
         "Trees_Stumps_Bushes.tsx",
-        "Mushrooms_Flowers_tiles.tsx",
-        "Fences.tsx"
+        "Mushrooms_Flowers_tiles.tsx"
     ],
     "tileset.lastUsedFilter": "Tiled tileset files (*.tsx *.xml)",
     "tileset.lastUsedFormat": "tsx",

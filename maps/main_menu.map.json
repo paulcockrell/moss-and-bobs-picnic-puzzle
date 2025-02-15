@@ -217,6 +217,7 @@
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
          "height":20,
          "id":28,
+         "locked":true,
          "name":"SignsNew",
          "opacity":1,
          "type":"tilelayer",
@@ -315,9 +316,14 @@
                  "point":true,
                  "properties":[
                         {
-                         "name":"code",
+                         "name":"color",
                          "type":"string",
-                         "value":"colorRed"
+                         "value":"red"
+                        }, 
+                        {
+                         "name":"item",
+                         "type":"string",
+                         "value":"color"
                         }],
                  "rotation":0,
                  "type":"collectable",
@@ -333,9 +339,14 @@
                  "point":true,
                  "properties":[
                         {
-                         "name":"code",
+                         "name":"color",
                          "type":"string",
-                         "value":"colorBlue"
+                         "value":"blue"
+                        }, 
+                        {
+                         "name":"item",
+                         "type":"string",
+                         "value":"color"
                         }],
                  "rotation":0,
                  "type":"collectable",
@@ -351,9 +362,14 @@
                  "point":true,
                  "properties":[
                         {
-                         "name":"code",
+                         "name":"color",
                          "type":"string",
-                         "value":"milkGreen"
+                         "value":"green"
+                        }, 
+                        {
+                         "name":"item",
+                         "type":"string",
+                         "value":"milk"
                         }],
                  "rotation":0,
                  "type":"collectable",
@@ -467,7 +483,7 @@
  "nextobjectid":165,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.11.2",
+ "tiledversion":"1.11.1",
  "tileheight":16,
  "tilesets":[
         {
