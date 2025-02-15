@@ -17,7 +17,7 @@ export function makeDialogueTrigger(k: KAPLAYCtx, mapObject: tiled.MapObject) {
       mapObject.polygon.map((mo) => k.vec2(mo.x, mo.y)),
       { triangulate: true, fill: false },
     ),
-    k.body(),
+    k.body({ isStatic: true }),
     k.area(),
     k.anchor("center"),
     k.pos(mapObject.x * SCALE_FACTOR, mapObject.y * SCALE_FACTOR),

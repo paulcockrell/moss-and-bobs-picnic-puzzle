@@ -1794,6 +1794,7 @@
         {
          "draworder":"topdown",
          "id":24,
+         "locked":true,
          "name":"SpawnPoints",
          "objects":[
                 {
