@@ -48,7 +48,7 @@ export function addInventoryUI(
   collectable: CollectableProps,
 ) {
   const currentItem = getItemFromInventoryUI(player);
-  const newItem = calculateNewItem(currentItem, collectable);
+  const newItem = calculateNextItem(currentItem, collectable);
 
   if (collectablesMatch(currentItem, newItem)) {
     return;
@@ -78,29 +78,27 @@ export function addInventoryUI(
   k.play("collect", { loop: false, volume: 1.0 });
 }
 
-function calculateNewItem(
+function calculateNextItem(
   currentItem: CollectableProps | null | undefined,
   newItem: CollectableProps,
 ): CollectableProps {
   // We have no existing item, so return new item
   if (!currentItem) {
-    return newItem;
+    return { ...newItem };
   }
 
   // If we have just picked up a color, then change the color of the existing
   // item
   if (newItem.item === "color") {
-    newItem.item = currentItem.item;
-    return newItem;
+    return { ...currentItem, color: newItem.color };
   }
 
   // If we have picked up a blank item (an item with no color) then change
   // existing items type while preserving the existing items color
   if (newItem.color === "any") {
-    newItem.color = currentItem.color;
-    return newItem;
+    return { ...currentItem, item: newItem.item };
   }
 
   // We have picked up a colored item so return
-  return newItem;
+  return { ...newItem };
 }

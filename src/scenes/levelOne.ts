@@ -5,10 +5,7 @@ import { drawScene, setCamScale } from "../utils";
 import { SCALE_FACTOR } from "../contants";
 import { makeModal } from "../entities/modal";
 import { gameState } from "../state";
-
-export interface Entities {
-  player: GameObj;
-}
+import { addInventoryUI } from "../entities/inventory";
 
 const mapDims = {
   width: mapData.width * mapData.tilewidth * SCALE_FACTOR,
@@ -21,11 +18,7 @@ export default function levelOne() {
   const map = k.add([k.pos(0)]);
   const bgMusic = k.play("music", { loop: true, volume: 0.4 });
 
-  const entities: Entities = {
-    player: null,
-  };
-
-  drawScene(k, map, mapData, entities);
+  const entities = drawScene(k, map, mapData);
 
   k.setCamPos(mapDims.width / 2, mapDims.height / 2);
   setCamScale(k);
@@ -46,7 +39,7 @@ export default function levelOne() {
 
   k.onUpdate(() => {
     // When the intro modal is shown
-    if (gameState.getMode() === "intro") {
+    if (lastGameMode !== "intro" && gameState.getMode() === "intro") {
       lastGameMode = gameState.getMode();
 
       k.setCamPos(mapDims.width / 2, mapDims.height / 2);
@@ -58,6 +51,9 @@ export default function levelOne() {
     // Move camera from center of map to focus on the player
     if (lastGameMode === "intro" && gameState.getMode() === "playing") {
       lastGameMode = gameState.getMode();
+
+      // Add player inventory with a starting item present
+      addInventoryUI(k, entities.player, { item: "egg", color: "green" });
 
       let newPosX = entities.player.worldPos().x;
       let newPosY = entities.player.worldPos().y;

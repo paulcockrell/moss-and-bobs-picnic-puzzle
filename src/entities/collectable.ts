@@ -31,7 +31,7 @@ export function makeCollectable(
   ]);
 
   collectable.onCollide("player", (player) => {
-    addCollectableToInventory(k, collectable.properties, player);
+    addInventoryUI(k, player, collectable.properties);
   });
 
   collectable.animate("pos", [pos, k.vec2(pos.x, pos.y - 10)], {
@@ -42,14 +42,6 @@ export function makeCollectable(
   });
 
   return collectable;
-}
-
-function addCollectableToInventory(
-  k: KAPLAYCtx,
-  collectable: CollectableProps,
-  player: GameObj,
-) {
-  addInventoryUI(k, player, collectable);
 }
 
 export function generateCollectableCode({

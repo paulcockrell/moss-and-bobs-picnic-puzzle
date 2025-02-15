@@ -5,10 +5,6 @@ import { drawScene, setCamScale } from "../utils";
 import { SCALE_FACTOR } from "../contants";
 import { gameState } from "../state";
 
-export interface Entities {
-  player: GameObj;
-}
-
 const mapDims = {
   width: mapData.width * mapData.tilewidth * SCALE_FACTOR,
   height: mapData.height * mapData.tileheight * SCALE_FACTOR,
@@ -22,11 +18,7 @@ export default function mainMenu() {
 
   const map = k.add([k.pos(0)]);
 
-  const entities: Entities = {
-    player: null,
-  };
-
-  drawScene(k, map, mapData, entities);
+  drawScene(k, map, mapData);
 
   k.add([
     k.scale(SCALE_FACTOR),
@@ -55,7 +47,7 @@ export default function mainMenu() {
   });
 
   k.onKeyPress(["space"], () => {
-    const nextScene = gameState.setScene("levelOne");
+    const nextScene = gameState.setScene("levelTwo");
     k.go(nextScene);
   });
 }

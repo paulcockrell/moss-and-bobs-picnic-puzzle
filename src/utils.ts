@@ -5,11 +5,14 @@ import { SCALE_FACTOR } from "./contants";
 import { makePlayer } from "./entities/player";
 import { CollectableProps, makeCollectable } from "./entities/collectable";
 import { GateOrientation, makeGate } from "./entities/gate";
-import { Item } from "./entities/inventory";
 import { makeDialogueTrigger } from "./entities/dialogueTrigger";
 import { gameState } from "./state";
 import { makeModal } from "./entities/modal";
 import { makeChicken } from "./entities/chicken";
+
+export interface Entities {
+  player: GameObj;
+}
 
 export function makeBackground(k: KAPLAYCtx) {
   k.add([k.rect(k.width(), k.height()), k.color(k.Color.fromHex("#36A6E0"))]);
@@ -48,10 +51,8 @@ export function drawScene(
   k: KAPLAYCtx,
   map: GameObj<PosComp>,
   mapData: tiled.Map,
-  entities: Record<string, any>,
-) {
-  // Maybe we want to deal with the music outside of the map renderer
-  //
+): Entities {
+  let entities: Entities = null;
 
   // This builds an array of `firstgid` values (from Tiled mapdata) that
   // represent the first unique spritesheet icon value per spritesheet used by
@@ -90,11 +91,14 @@ export function drawScene(
       }
 
       if (layer.name === "SpawnPoints") {
-        drawSpawnPoints(k, map, layer, entities);
+        entities = drawSpawnPoints(k, map, layer);
       }
     }
   });
+
+  return entities;
 }
+
 export function drawTiles(
   k: KAPLAYCtx,
   map: GameObj,
@@ -187,8 +191,9 @@ export function drawSpawnPoints(
   k: KAPLAYCtx,
   map: GameObj<PosComp>,
   layer: tiled.AnyLayer,
-  entities: Record<string, any>,
-) {
+): Entities {
+  const entities: Entities = { player: null };
+
   //@ts-expect-error ?
   layer.objects.forEach((spawnPoint) => {
     if (spawnPoint.type === "player") {
@@ -262,6 +267,8 @@ export function drawSpawnPoints(
       map.add(gate);
     }
   });
+
+  return entities;
 }
 
 export function drawBoundaries(
