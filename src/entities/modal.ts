@@ -45,7 +45,7 @@ export function makeModal(
         font: "monogram",
         size: 14,
       }),
-      k.pos(-165, -12),
+      k.pos(-168, -12),
       k.anchor("topleft"),
     ]);
   }
@@ -58,7 +58,7 @@ export function makeModal(
           font: "monogram",
           size: 14,
         }),
-        k.pos(-165, -20 + idx * 20),
+        k.pos(-170, -20 + idx * 20),
         k.anchor("topleft"),
       ]);
     });

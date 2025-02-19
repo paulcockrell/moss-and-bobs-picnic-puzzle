@@ -94,13 +94,14 @@
         },
         "forest_level_1.map.json": {
             "expandedObjectLayers": [
-                24
+                24,
+                29
             ],
             "scale": 2.13,
             "selectedLayer": 12,
             "viewCenter": {
-                "x": 540.1408450704225,
-                "y": 154.92957746478876
+                "x": 240.14084507042253,
+                "y": 159.85915492957747
             }
         },
         "forest_level_1.map.json#ItemsNew": {
@@ -108,13 +109,15 @@
         },
         "forest_level_2.map.json": {
             "expandedObjectLayers": [
-                24
+                26,
+                24,
+                23
             ],
             "scale": 5.454,
-            "selectedLayer": 5,
+            "selectedLayer": 8,
             "viewCenter": {
-                "x": 267.7851118445178,
-                "y": 182.43491015768245
+                "x": 239.91565823248993,
+                "y": 158.87422075540888
             }
         },
         "main_menu.map.json": {

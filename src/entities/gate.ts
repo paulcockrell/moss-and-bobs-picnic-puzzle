@@ -1,6 +1,6 @@
-import { GameObj, KAPLAYCtx, Vec2 } from "kaplay";
+import { AreaCompOpt, GameObj, KAPLAYCtx, Vec2 } from "kaplay";
 import { SCALE_FACTOR } from "../contants";
-import { getItemFromInventoryUI, Item, ItemToHumanMap } from "./inventory";
+import { getItemFromInventoryUI, ItemToHumanMap } from "./inventory";
 import { makeModal } from "./modal";
 import {
   CollectableProps,
@@ -31,12 +31,31 @@ export function makeGate(
       ? k.sprite("gateHorizontal", { anim: "closed" })
       : k.sprite("gateVertical", { anim: "closed" });
 
+  // As the vertical sprite shape is wide to accomodate the open gate doors it
+  // meas the collision area for the sprite is the same dimensions meaning you
+  // collide with the gate from the side the gate doors open into early as you
+  // are not touching it when the doors are closed, but you are in contact with
+  // the collision area.
+  // To solve this we create a custom shape for the area of the vertical gates
+  const areaProps: AreaCompOpt =
+    properties.orientation === "vertical"
+      ? {
+          shape: new k.Polygon([
+            k.vec2(0, 0),
+            k.vec2(20, 0),
+            k.vec2(20, 64),
+            k.vec2(0, 64),
+          ]),
+          offset: k.vec2(-18, -31),
+        }
+      : {}; // empty props, let the area be same size as sprite
+
   const gate = k.make([
     sprite,
     k.anchor("center"),
     k.pos(pos),
     k.scale(SCALE_FACTOR),
-    k.area(),
+    k.area(areaProps),
     k.timer(),
     k.body({ isStatic: true }),
     {
@@ -59,7 +78,7 @@ export function makeGate(
       ];
     const playerItem = ItemToHumanMap[generateCollectableCode(inventoryItem)];
     const dialogue = [
-      `Oh no! You need ${gateItem} to pass,`,
+      `Oh no! You need ${gateItem} to pass`,
       `and you have ${playerItem}.`,
     ];
 

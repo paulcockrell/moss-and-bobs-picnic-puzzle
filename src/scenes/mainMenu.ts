@@ -1,6 +1,5 @@
 import k from "../kaplayCtx";
 import mapData from "../../maps/main_menu.map.json";
-import { GameObj } from "kaplay";
 import { drawScene, setCamScale } from "../utils";
 import { SCALE_FACTOR } from "../contants";
 import { gameState } from "../state";
