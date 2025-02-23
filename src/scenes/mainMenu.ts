@@ -46,7 +46,7 @@ export default function mainMenu() {
   });
 
   k.onKeyPress(["space"], () => {
-    const nextScene = gameState.setScene("levelOne");
+    const nextScene = gameState.setScene("levelTwo");
     k.go(nextScene);
   });
 }

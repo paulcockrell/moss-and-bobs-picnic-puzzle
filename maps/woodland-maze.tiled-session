@@ -113,11 +113,24 @@
                 24,
                 23
             ],
-            "scale": 5.454,
+            "scale": 2.0504,
             "selectedLayer": 8,
             "viewCenter": {
-                "x": 239.91565823248993,
-                "y": 158.87422075540888
+                "x": 240.1970347249317,
+                "y": 157.28638314475225
+            }
+        },
+        "island_level_3.map.json": {
+            "expandedObjectLayers": [
+                26,
+                24,
+                23
+            ],
+            "scale": 1.2089,
+            "selectedLayer": 8,
+            "viewCenter": {
+                "x": 260.1538588799735,
+                "y": 149.72288857639174
             }
         },
         "main_menu.map.json": {

@@ -78,7 +78,7 @@ export function makeGate(
       ];
     const playerItem = ItemToHumanMap[generateCollectableCode(inventoryItem)];
     const dialogue = [
-      `Oh no! You need ${gateItem} to pass`,
+      `You need ${gateItem} to pass`,
       `and you have ${playerItem}.`,
     ];
 

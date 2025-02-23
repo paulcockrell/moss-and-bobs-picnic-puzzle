@@ -11,10 +11,10 @@ export type Item = "milk" | "egg" | "mushroom" | "color";
 export type Color = "red" | "green" | "blue" | "any";
 
 export const ItemToHumanMap = {
-  milkAny: "a jar of cow juice",
-  milkRed: "a jar of red cow juice",
-  milkGreen: "a jar of green cow juice",
-  milkBlue: "a jar of blue cow juice",
+  milkAny: "some cow juice",
+  milkRed: "some red cow juice",
+  milkGreen: "some green cow juice",
+  milkBlue: "some blue cow juice",
   eggAny: "an egg",
   eggRed: "a red egg",
   eggGreen: "a green egg",
@@ -23,9 +23,9 @@ export const ItemToHumanMap = {
   mushroomRed: "a red mushroom",
   mushroomGreen: "a green mushroom",
   mushroomBlue: "a blue mushroom",
-  colorRed: "a red item",
-  colorGreen: "a green item",
-  colorBlue: "a blue item",
+  colorRed: "any red item",
+  colorGreen: "any green item",
+  colorBlue: "any blue item",
 };
 
 export function getItemFromInventoryUI(
