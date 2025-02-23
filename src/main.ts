@@ -2,6 +2,7 @@ import k from "./kaplayCtx";
 import mainMenu from "./scenes/mainMenu";
 import levelOne from "./scenes/levelOne";
 import levelTwo from "./scenes/levelTwo";
+import levelThree from "./scenes/levelThree";
 import ending from "./scenes/ending";
 import { gameState } from "./state";
 
@@ -212,6 +213,7 @@ k.loadSprite("playButtonsLarge", "../maps/PlayButtonsLarge.png", {
 k.scene("mainMenu", mainMenu);
 k.scene("levelOne", levelOne);
 k.scene("levelTwo", levelTwo);
+k.scene("levelThree", levelThree);
 k.scene("ending", ending);
 
 // Start game!

@@ -1,5 +1,5 @@
 import k from "../kaplayCtx";
-import mapData from "../../maps/forest_level_2.map.json";
+import mapData from "../../maps/island_level_3.map.json";
 import { drawScene, setCamScale } from "../utils";
 import { SCALE_FACTOR } from "../contants";
 import { makeModal } from "../entities/modal";
@@ -13,7 +13,7 @@ const mapDims = {
 
 gameState.setMapDimensions(mapDims);
 
-export default function levelTwo() {
+export default function levelThree() {
   const map = k.add([k.pos(0)]);
   const bgMusic = k.play("music", { loop: true, volume: 0.4 });
   const entities = drawScene(k, map, mapData);
@@ -22,7 +22,7 @@ export default function levelTwo() {
   setCamScale(k);
 
   gameState.setMode("intro");
-  makeModal(k, "Level two. This looks harder!", "talk", () =>
+  makeModal(k, "Level Three. Mind the water, it looks wet!", "talk", () =>
     gameState.setMode("playing"),
   );
 
@@ -89,7 +89,7 @@ export default function levelTwo() {
     if (lastGameMode !== "finished" && gameState.getMode() === "finished") {
       lastGameMode = gameState.getMode();
 
-      const nextScene = gameState.setScene("levelThree");
+      const nextScene = gameState.setScene("ending");
       k.go(nextScene);
 
       return;

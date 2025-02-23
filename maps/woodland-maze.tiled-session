@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "forest_level_2.map.json",
+    "activeFile": "",
     "automapping.whileDrawing": true,
     "expandedProjectPaths": [
         "."
@@ -14,7 +14,7 @@
             "scaleInDock": 1
         },
         "Bridges.tsx": {
-            "scaleInDock": 1
+            "scaleInDock": 4.0769
         },
         "Bush_Tiles.tsx": {
             "scaleInDock": 3.86,
@@ -126,19 +126,19 @@
                 24,
                 23
             ],
-            "scale": 1.2089,
-            "selectedLayer": 8,
+            "scale": 1.4587,
+            "selectedLayer": 4,
             "viewCenter": {
-                "x": 260.1538588799735,
-                "y": 149.72288857639174
+                "x": 247.1378624802907,
+                "y": 231.7131692603003
             }
         },
         "main_menu.map.json": {
-            "scale": 1.6921875,
+            "scale": 1.69,
             "selectedLayer": 8,
             "viewCenter": {
-                "x": 240.22160664819947,
-                "y": 160.1477377654663
+                "x": 239.9408284023669,
+                "y": 160.35502958579883
             }
         },
         "test.tmx": {
@@ -156,14 +156,13 @@
     "map.tileHeight": 16,
     "map.tileWidth": 16,
     "openFiles": [
-        "forest_level_2.map.json",
-        "forest_level_1.map.json"
     ],
     "project": "woodland-maze.tiled-project",
     "recentFiles": [
+        "main_menu.map.json",
+        "island_level_3.map.json",
         "forest_level_1.map.json",
         "forest_level_2.map.json",
-        "main_menu.map.json",
         "SignsShapes.tsx",
         "CollectableItemsNew.tsx",
         "ItemsNew.tsx",
@@ -171,8 +170,7 @@
         "Signs.tsx",
         "ItemShadow.tsx",
         "Items.tsx",
-        "Trees_Stumps_Bushes.tsx",
-        "Mushrooms_Flowers_tiles.tsx"
+        "Trees_Stumps_Bushes.tsx"
     ],
     "tileset.lastUsedFilter": "Tiled tileset files (*.tsx *.xml)",
     "tileset.lastUsedFormat": "tsx",
