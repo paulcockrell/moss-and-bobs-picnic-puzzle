@@ -1,6 +1,6 @@
 import k from "../kaplayCtx";
 import mapData from "../../maps/main_menu.map.json";
-import { drawScene, setCamScale } from "../utils";
+import { setCamScale } from "../utils";
 import { SCALE_FACTOR } from "../contants";
 import { gameState } from "../state";
 
@@ -15,64 +15,60 @@ export default function mainMenu() {
   k.setCamPos(mapDims.width / 2, mapDims.height / 2);
   setCamScale(k);
 
-  k.setBackground(k.Color.fromHex("#9bd4c3"));
-
-  const map = k.add([k.pos(0)]);
-
-  drawScene(k, map, mapData);
+  k.setBackground(k.Color.fromHex("#e8b5ac"));
 
   k.add([
     k.scale(SCALE_FACTOR),
-    k.text("Kitties", {
-      font: "arcadeclassic",
-      size: 25,
-    }),
-    k.color(k.Color.fromHex("#FFFFFF")),
-    k.pos(k.getCamPos().x, k.getCamPos().y - 65),
-    k.anchor("center"),
-  ]);
-
-  k.add([
-    k.scale(SCALE_FACTOR),
-    k.text("Memory Maze", {
-      font: "arcadeclassic",
-      size: 25,
-    }),
-    k.color(k.Color.fromHex("#FFFFFF")),
-    k.pos(k.getCamPos()),
-    k.anchor("center"),
-  ]);
-
-  k.add([
-    k.scale(SCALE_FACTOR),
-    k.text("Press SPACE to start", {
+    k.text("Coding: Paul Cockrell (paulcockrell.github.io)", {
       font: "monogram",
       size: 20,
     }),
     k.color(k.Color.fromHex("#FFFFFF")),
-    k.pos(k.getCamPos().x, k.getCamPos().y + 50),
+    k.pos(k.getCamPos().x, k.getCamPos().y - 80),
     k.anchor("center"),
   ]);
 
   k.add([
     k.scale(SCALE_FACTOR),
-    k.text("Press C for credits", {
+    k.text("Game library: Kaplay (kaplayjs.com) ", {
       font: "monogram",
       size: 20,
     }),
     k.color(k.Color.fromHex("#FFFFFF")),
-    k.pos(k.getCamPos().x, k.getCamPos().y + 80),
+    k.pos(k.getCamPos().x, k.getCamPos().y - 50),
     k.anchor("center"),
   ]);
 
   k.add([
     k.scale(SCALE_FACTOR),
-    k.text("Press H for help", {
+    k.text("Artwork: Cupnooble (cupnooble.itch.io)", {
       font: "monogram",
       size: 20,
     }),
     k.color(k.Color.fromHex("#FFFFFF")),
-    k.pos(k.getCamPos().x, k.getCamPos().y + 110),
+    k.pos(k.getCamPos().x, k.getCamPos().y - 20),
+    k.anchor("center"),
+  ]);
+
+  k.add([
+    k.scale(SCALE_FACTOR),
+    k.text("Music: moodmode (pixabay.com) ", {
+      font: "monogram",
+      size: 20,
+    }),
+    k.color(k.Color.fromHex("#FFFFFF")),
+    k.pos(k.getCamPos().x, k.getCamPos().y + 10),
+    k.anchor("center"),
+  ]);
+
+  k.add([
+    k.scale(SCALE_FACTOR),
+    k.text("Press SPACE to return", {
+      font: "monogram",
+      size: 20,
+    }),
+    k.color(k.Color.fromHex("#FFFFFF")),
+    k.pos(k.getCamPos().x, k.getCamPos().y + 60),
     k.anchor("center"),
   ]);
 
@@ -81,17 +77,7 @@ export default function mainMenu() {
   });
 
   k.onKeyPress(["space"], () => {
-    const nextScene = gameState.setScene("levelOne");
-    k.go(nextScene);
-  });
-
-  k.onKeyPress(["c"], () => {
-    const nextScene = gameState.setScene("credits");
-    k.go(nextScene);
-  });
-
-  k.onKeyPress(["h"], () => {
-    const nextScene = gameState.setScene("help");
+    const nextScene = gameState.setScene("mainMenu");
     k.go(nextScene);
   });
 }

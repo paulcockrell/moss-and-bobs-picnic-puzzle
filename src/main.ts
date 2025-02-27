@@ -4,6 +4,8 @@ import levelOne from "./scenes/levelOne";
 import levelTwo from "./scenes/levelTwo";
 import levelThree from "./scenes/levelThree";
 import ending from "./scenes/ending";
+import credits from "./scenes/credits";
+import help from "./scenes/help";
 import { gameState } from "./state";
 
 k.loadRoot("./"); // A good idea for Itch.io publishing later
@@ -12,6 +14,9 @@ k.setLayers(["game", "mask", "ui"], "game");
 
 // Set background color
 k.setBackground(k.Color.fromHex("#9bd4c3"));
+
+// Fonts
+k.loadFont("arcadeclassic", "fonts/ka1.ttf");
 
 // Load SFX
 k.loadSound("music", "sfx/retro-game-arcade-236133.mp3");
@@ -215,6 +220,8 @@ k.scene("levelOne", levelOne);
 k.scene("levelTwo", levelTwo);
 k.scene("levelThree", levelThree);
 k.scene("ending", ending);
+k.scene("credits", credits);
+k.scene("help", help);
 
 // Start game!
 const currentScene = gameState.getScene();
