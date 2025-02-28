@@ -1,5 +1,4 @@
 import k from "../kaplayCtx";
-import mapData from "../../maps/forest_level_1.map.json";
 import { GameObj } from "kaplay";
 import { drawScene, setCamScale } from "../utils";
 import { SCALE_FACTOR } from "../contants";
@@ -7,14 +6,16 @@ import { makeModal } from "../entities/modal";
 import { gameState } from "../state";
 import { addInventoryUI } from "../entities/inventory";
 
-const mapDims = {
-  width: mapData.width * mapData.tilewidth * SCALE_FACTOR,
-  height: mapData.height * mapData.tileheight * SCALE_FACTOR,
-};
+export default async function levelOne() {
+  const mapData = await (await fetch("./maps/forest_level_1.map.json")).json();
 
-gameState.setMapDimensions(mapDims);
+  const mapDims = {
+    width: mapData.width * mapData.tilewidth * SCALE_FACTOR,
+    height: mapData.height * mapData.tileheight * SCALE_FACTOR,
+  };
 
-export default function levelOne() {
+  gameState.setMapDimensions(mapDims);
+
   const map = k.add([k.pos(0)]);
   const bgMusic = k.play("music", { loop: true, volume: 0.4 });
 

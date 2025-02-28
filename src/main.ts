@@ -28,52 +28,52 @@ k.loadSound("win", "sfx/win.mp3");
 
 // Load sprites
 
-k.loadSprite("Soil", "../maps/Soil_Ground_Tiles.png", {
+k.loadSprite("Soil", "maps/Soil_Ground_Tiles.png", {
   sliceX: 11,
   sliceY: 7,
 });
 
-k.loadSprite("Grass", "../maps/Grass_Tile_Layers.png", {
+k.loadSprite("Grass", "maps/Grass_Tile_Layers.png", {
   sliceX: 11,
   sliceY: 7,
 });
 
-k.loadSprite("Dark grass", "../maps/Darker_Grass_Tile_Layers.png", {
+k.loadSprite("Dark grass", "maps/Darker_Grass_Tile_Layers.png", {
   sliceX: 11,
   sliceY: 7,
 });
 
-k.loadSprite("Flowers", "../maps/Mushrooms_Flowers_Tiles.png", {
+k.loadSprite("Flowers", "maps/Mushrooms_Flowers_Tiles.png", {
   sliceX: 12,
   sliceY: 5,
 });
 
-k.loadSprite("Bushes", "../maps/Bush_Tiles.png", {
+k.loadSprite("Bushes", "maps/Bush_Tiles.png", {
   sliceX: 11,
   sliceY: 11,
 });
 
-k.loadSprite("Trees", "../maps/Trees_Stumps_Bushes.png", {
+k.loadSprite("Trees", "maps/Trees_Stumps_Bushes.png", {
   sliceX: 12,
   sliceY: 7,
 });
 
-k.loadSprite("Fences", "../maps/Fences.png", {
+k.loadSprite("Fences", "maps/Fences.png", {
   sliceX: 8,
   sliceY: 4,
 });
 
-k.loadSprite("Bridges", "../maps/Wooden_Bridge_v2.png", {
+k.loadSprite("Bridges", "maps/Wooden_Bridge_v2.png", {
   sliceX: 4,
   sliceY: 3,
 });
 
-k.loadSprite("Water", "../maps/Water.png", {
+k.loadSprite("Water", "maps/Water.png", {
   sliceX: 4,
   sliceY: 1,
 });
 
-k.loadSprite("Chickens", "../maps/Chicken_Baby.png", {
+k.loadSprite("Chickens", "maps/Chicken_Baby.png", {
   sliceX: 8,
   sliceY: 19,
   anims: {
@@ -83,7 +83,7 @@ k.loadSprite("Chickens", "../maps/Chicken_Baby.png", {
   },
 });
 
-k.loadSpriteAtlas("../maps/Fence_Gates.png", {
+k.loadSpriteAtlas("maps/Fence_Gates.png", {
   gateHorizontal: {
     x: 0,
     y: 0,
@@ -112,17 +112,17 @@ k.loadSpriteAtlas("../maps/Fence_Gates.png", {
   },
 });
 
-k.loadSprite("SignsNew", "../maps/SignsNew.png", {
+k.loadSprite("SignsNew", "maps/SignsNew.png", {
   sliceX: 4,
   sliceY: 4,
 });
 
-k.loadSprite("SignsShapes", "../maps/SignsShapes.png", {
+k.loadSprite("SignsShapes", "maps/SignsShapes.png", {
   sliceX: 4,
   sliceY: 4,
 });
 
-k.loadSprite("InventoryBlocks", "../maps/InventoryBlocks.png", {
+k.loadSprite("InventoryBlocks", "maps/InventoryBlocks.png", {
   sliceX: 3,
   sliceY: 3,
   anims: {
@@ -130,12 +130,12 @@ k.loadSprite("InventoryBlocks", "../maps/InventoryBlocks.png", {
   },
 });
 
-k.loadSprite("ItemShadows", "../maps/ItemShadow.png", {
+k.loadSprite("ItemShadows", "maps/ItemShadow.png", {
   sliceX: 1,
   sliceY: 1,
 });
 
-k.loadSprite("ItemsBasket", "../maps/Items.png", {
+k.loadSprite("ItemsBasket", "maps/Items.png", {
   sliceX: 8,
   sliceY: 15,
   anims: {
@@ -157,7 +157,7 @@ k.loadSprite("ItemsBasket", "../maps/Items.png", {
   },
 });
 
-k.loadSprite("ItemsNew", "../maps/ItemsNew.png", {
+k.loadSprite("ItemsNew", "maps/ItemsNew.png", {
   sliceX: 4,
   sliceY: 4,
   anims: {
@@ -179,7 +179,7 @@ k.loadSprite("ItemsNew", "../maps/ItemsNew.png", {
   },
 });
 
-k.loadSprite("player", "../maps/Cat_Basic_Spritesheet.png", {
+k.loadSprite("player", "maps/Cat_Basic_Spritesheet.png", {
   sliceX: 4,
   sliceY: 4,
   anims: {
@@ -194,9 +194,9 @@ k.loadSprite("player", "../maps/Cat_Basic_Spritesheet.png", {
   },
 });
 
-k.loadSprite("dialogBoxLarge", "../maps/DialogBoxLarge.png");
+k.loadSprite("dialogBoxLarge", "maps/DialogBoxLarge.png");
 
-k.loadSprite("dialogCat", "../maps/DialogCat.png", {
+k.loadSprite("dialogCat", "maps/DialogCat.png", {
   sliceX: 5,
   sliceY: 15,
   anims: {
@@ -205,7 +205,7 @@ k.loadSprite("dialogCat", "../maps/DialogCat.png", {
   },
 });
 
-k.loadSprite("playButtonsLarge", "../maps/PlayButtonsLarge.png", {
+k.loadSprite("playButtonsLarge", "maps/PlayButtonsLarge.png", {
   sliceX: 2,
   sliceY: 2,
   anims: {

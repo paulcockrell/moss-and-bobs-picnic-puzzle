@@ -1,19 +1,20 @@
 import k from "../kaplayCtx";
-import mapData from "../../maps/island_level_3.map.json";
 import { drawScene, setCamScale } from "../utils";
 import { SCALE_FACTOR } from "../contants";
 import { makeModal } from "../entities/modal";
 import { gameState } from "../state";
 import { addInventoryUI } from "../entities/inventory";
 
-const mapDims = {
-  width: mapData.width * mapData.tilewidth * SCALE_FACTOR,
-  height: mapData.height * mapData.tileheight * SCALE_FACTOR,
-};
+export default async function levelThree() {
+  const mapData = await (await fetch("./maps/forest_level_3.map.json")).json();
 
-gameState.setMapDimensions(mapDims);
+  const mapDims = {
+    width: mapData.width * mapData.tilewidth * SCALE_FACTOR,
+    height: mapData.height * mapData.tileheight * SCALE_FACTOR,
+  };
 
-export default function levelThree() {
+  gameState.setMapDimensions(mapDims);
+
   const map = k.add([k.pos(0)]);
   const bgMusic = k.play("music", { loop: true, volume: 0.4 });
   const entities = drawScene(k, map, mapData);

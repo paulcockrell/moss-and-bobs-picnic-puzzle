@@ -1,17 +1,18 @@
 import k from "../kaplayCtx";
-import mapData from "../../maps/main_menu.map.json";
 import { setCamScale } from "../utils";
 import { SCALE_FACTOR } from "../contants";
 import { gameState } from "../state";
 
-const mapDims = {
-  width: mapData.width * mapData.tilewidth * SCALE_FACTOR,
-  height: mapData.height * mapData.tileheight * SCALE_FACTOR,
-};
+export default async function help() {
+  const mapData = await (await fetch("./maps/main_menu.map.json")).json();
 
-gameState.setMapDimensions(mapDims);
+  const mapDims = {
+    width: mapData.width * mapData.tilewidth * SCALE_FACTOR,
+    height: mapData.height * mapData.tileheight * SCALE_FACTOR,
+  };
 
-export default function help() {
+  gameState.setMapDimensions(mapDims);
+
   k.setCamPos(mapDims.width / 2, mapDims.height / 2);
   setCamScale(k);
 

@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "",
+    "activeFile": "island_level_3.map.json",
     "automapping.whileDrawing": true,
     "expandedProjectPaths": [
         "."
@@ -14,7 +14,7 @@
             "scaleInDock": 1
         },
         "Bridges.tsx": {
-            "scaleInDock": 4.0769
+            "scaleInDock": 3.521
         },
         "Bush_Tiles.tsx": {
             "scaleInDock": 3.86,
@@ -69,7 +69,7 @@
             "scaleInEditor": 1
         },
         "SignsNew.tsx": {
-            "scaleInDock": 4.4661,
+            "scaleInDock": 3.1663,
             "scaleInEditor": 1
         },
         "SignsShapes.tsx": {
@@ -77,7 +77,7 @@
             "scaleInEditor": 1
         },
         "Soil_Ground_Tiles.tsx": {
-            "scaleInDock": 3.86,
+            "scaleInDock": 1,
             "scaleInEditor": 1
         },
         "Stone_Ground_Tiles.tsx": {
@@ -123,14 +123,14 @@
         "island_level_3.map.json": {
             "expandedObjectLayers": [
                 26,
-                24,
-                23
+                23,
+                24
             ],
-            "scale": 1.4587,
-            "selectedLayer": 4,
+            "scale": 2.3814,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 247.1378624802907,
-                "y": 231.7131692603003
+                "x": 198.8326194675401,
+                "y": 133.32493491223647
             }
         },
         "main_menu.map.json": {
@@ -156,11 +156,12 @@
     "map.tileHeight": 16,
     "map.tileWidth": 16,
     "openFiles": [
+        "island_level_3.map.json"
     ],
     "project": "woodland-maze.tiled-project",
     "recentFiles": [
-        "main_menu.map.json",
         "island_level_3.map.json",
+        "main_menu.map.json",
         "forest_level_1.map.json",
         "forest_level_2.map.json",
         "SignsShapes.tsx",
