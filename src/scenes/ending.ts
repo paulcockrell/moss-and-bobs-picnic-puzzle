@@ -7,7 +7,7 @@ export default function ending() {
 
   k.add([
     k.scale(SCALE_FACTOR),
-    k.text("Kitties", {
+    k.text("Moss and Bobs", {
       font: "arcadeclassic",
       size: 25,
     }),
@@ -18,7 +18,7 @@ export default function ending() {
 
   k.add([
     k.scale(SCALE_FACTOR),
-    k.text("Memory Maze", {
+    k.text("Picnic Puzzle", {
       font: "arcadeclassic",
       size: 25,
     }),

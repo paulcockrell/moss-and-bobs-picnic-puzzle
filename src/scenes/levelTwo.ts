@@ -6,7 +6,7 @@ import { gameState } from "../state";
 import { addInventoryUI } from "../entities/inventory";
 
 export default async function levelTwo() {
-  const mapData = await (await fetch("./maps/forest_level_2.map.json")).json();
+  const mapData = await k.loadJSON("levelTwo", "/maps/forest_level_2.map.json");
 
   const mapDims = {
     width: mapData.width * mapData.tilewidth * SCALE_FACTOR,

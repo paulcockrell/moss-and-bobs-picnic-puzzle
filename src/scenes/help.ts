@@ -4,7 +4,7 @@ import { SCALE_FACTOR } from "../contants";
 import { gameState } from "../state";
 
 export default async function help() {
-  const mapData = await (await fetch("./maps/main_menu.map.json")).json();
+  const mapData = await k.loadJSON("mainMenuMap", "/maps/main_menu.map.json");
 
   const mapDims = {
     width: mapData.width * mapData.tilewidth * SCALE_FACTOR,
@@ -20,7 +20,18 @@ export default async function help() {
 
   k.add([
     k.scale(SCALE_FACTOR),
-    k.text("Objective: Make your way through the maze", {
+    k.text("OBJECTIVE", {
+      font: "monogram",
+      size: 25,
+    }),
+    k.color(k.Color.fromHex("#FFFFFF")),
+    k.pos(k.getCamPos().x, k.getCamPos().y - 160),
+    k.anchor("center"),
+  ]);
+
+  k.add([
+    k.scale(SCALE_FACTOR),
+    k.text("Help Moss find her way to the picnic party!", {
       font: "monogram",
       size: 20,
     }),
@@ -31,7 +42,7 @@ export default async function help() {
 
   k.add([
     k.scale(SCALE_FACTOR),
-    k.text("opening gates as you go by possesing the", {
+    k.text("Make your way through the maze", {
       font: "monogram",
       size: 20,
     }),
@@ -42,7 +53,7 @@ export default async function help() {
 
   k.add([
     k.scale(SCALE_FACTOR),
-    k.text("matching item to unlock them.", {
+    k.text("collecting items along the way to", {
       font: "monogram",
       size: 20,
     }),
@@ -53,7 +64,7 @@ export default async function help() {
 
   k.add([
     k.scale(SCALE_FACTOR),
-    k.text("To complete each level simply get to the", {
+    k.text("unlock the gates.", {
       font: "monogram",
       size: 20,
     }),
@@ -64,7 +75,7 @@ export default async function help() {
 
   k.add([
     k.scale(SCALE_FACTOR),
-    k.text("treasure chest hidden in the maze.", {
+    k.text("Hurry, Bob is waiting with the yummy catfood!", {
       font: "monogram",
       size: 20,
     }),
@@ -75,12 +86,23 @@ export default async function help() {
 
   k.add([
     k.scale(SCALE_FACTOR),
-    k.text("Move: Use arrow keys to move character", {
+    k.text("CONTROLS", {
+      font: "monogram",
+      size: 25,
+    }),
+    k.color(k.Color.fromHex("#FFFFFF")),
+    k.pos(k.getCamPos().x, k.getCamPos().y + 60),
+    k.anchor("center"),
+  ]);
+
+  k.add([
+    k.scale(SCALE_FACTOR),
+    k.text("Use arrow keys to move", {
       font: "monogram",
       size: 20,
     }),
     k.color(k.Color.fromHex("#FFFFFF")),
-    k.pos(k.getCamPos().x, k.getCamPos().y + 60),
+    k.pos(k.getCamPos().x, k.getCamPos().y + 100),
     k.anchor("center"),
   ]);
 
@@ -91,7 +113,7 @@ export default async function help() {
       size: 20,
     }),
     k.color(k.Color.fromHex("#FFFFFF")),
-    k.pos(k.getCamPos().x, k.getCamPos().y + 120),
+    k.pos(k.getCamPos().x, k.getCamPos().y + 180),
     k.anchor("center"),
   ]);
 

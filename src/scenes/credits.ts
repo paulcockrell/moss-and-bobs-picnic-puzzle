@@ -4,7 +4,7 @@ import { SCALE_FACTOR } from "../contants";
 import { gameState } from "../state";
 
 export default async function mainMenu() {
-  const mapData = await (await fetch("./maps/main_menu.map.json")).json();
+  const mapData = await k.loadJSON("mainMenuMap", "/maps/main_menu.map.json");
 
   const mapDims = {
     width: mapData.width * mapData.tilewidth * SCALE_FACTOR,
@@ -20,20 +20,31 @@ export default async function mainMenu() {
 
   k.add([
     k.scale(SCALE_FACTOR),
-    k.text("Coding: Paul Cockrell (paulcockrell.github.io)", {
+    k.text("CODING", {
       font: "monogram",
-      size: 20,
+      size: 25,
     }),
     k.color(k.Color.fromHex("#FFFFFF")),
-    k.pos(k.getCamPos().x, k.getCamPos().y - 80),
+    k.pos(k.getCamPos().x, k.getCamPos().y - 130),
     k.anchor("center"),
   ]);
 
   k.add([
     k.scale(SCALE_FACTOR),
-    k.text("Game library: Kaplay (kaplayjs.com) ", {
+    k.text("Paul Cockrell (paulcockrell.github.io)", {
       font: "monogram",
       size: 20,
+    }),
+    k.color(k.Color.fromHex("#FFFFFF")),
+    k.pos(k.getCamPos().x, k.getCamPos().y - 100),
+    k.anchor("center"),
+  ]);
+
+  k.add([
+    k.scale(SCALE_FACTOR),
+    k.text("GAME LIBRARY ", {
+      font: "monogram",
+      size: 25,
     }),
     k.color(k.Color.fromHex("#FFFFFF")),
     k.pos(k.getCamPos().x, k.getCamPos().y - 50),
@@ -42,7 +53,7 @@ export default async function mainMenu() {
 
   k.add([
     k.scale(SCALE_FACTOR),
-    k.text("Artwork: Cupnooble (cupnooble.itch.io)", {
+    k.text("Kaplay (kaplayjs.com) ", {
       font: "monogram",
       size: 20,
     }),
@@ -53,12 +64,45 @@ export default async function mainMenu() {
 
   k.add([
     k.scale(SCALE_FACTOR),
-    k.text("Music: moodmode (pixabay.com) ", {
+    k.text("ARTWORK", {
+      font: "monogram",
+      size: 25,
+    }),
+    k.color(k.Color.fromHex("#FFFFFF")),
+    k.pos(k.getCamPos().x, k.getCamPos().y + 30),
+    k.anchor("center"),
+  ]);
+
+  k.add([
+    k.scale(SCALE_FACTOR),
+    k.text("Cupnooble (cupnooble.itch.io)", {
       font: "monogram",
       size: 20,
     }),
     k.color(k.Color.fromHex("#FFFFFF")),
-    k.pos(k.getCamPos().x, k.getCamPos().y + 10),
+    k.pos(k.getCamPos().x, k.getCamPos().y + 60),
+    k.anchor("center"),
+  ]);
+
+  k.add([
+    k.scale(SCALE_FACTOR),
+    k.text("MUSIC", {
+      font: "monogram",
+      size: 25,
+    }),
+    k.color(k.Color.fromHex("#FFFFFF")),
+    k.pos(k.getCamPos().x, k.getCamPos().y + 110),
+    k.anchor("center"),
+  ]);
+
+  k.add([
+    k.scale(SCALE_FACTOR),
+    k.text("moodmode (pixabay.com) ", {
+      font: "monogram",
+      size: 20,
+    }),
+    k.color(k.Color.fromHex("#FFFFFF")),
+    k.pos(k.getCamPos().x, k.getCamPos().y + 140),
     k.anchor("center"),
   ]);
 
@@ -69,7 +113,7 @@ export default async function mainMenu() {
       size: 20,
     }),
     k.color(k.Color.fromHex("#FFFFFF")),
-    k.pos(k.getCamPos().x, k.getCamPos().y + 60),
+    k.pos(k.getCamPos().x, k.getCamPos().y + 200),
     k.anchor("center"),
   ]);
 

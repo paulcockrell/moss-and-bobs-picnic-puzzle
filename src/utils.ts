@@ -3,6 +3,7 @@ import { GameObj, KAPLAYCtx, PosComp, Vec2 } from "kaplay";
 import * as tiled from "@kayahr/tiled";
 import { SCALE_FACTOR } from "./contants";
 import { makePlayer } from "./entities/player";
+import { makeBobcat } from "./entities/bobcat";
 import { CollectableProps, makeCollectable } from "./entities/collectable";
 import { GateOrientation, makeGate } from "./entities/gate";
 import { makeDialogueTrigger } from "./entities/dialogueTrigger";
@@ -204,6 +205,15 @@ export function drawSpawnPoints(
       const player = makePlayer(k, pos);
       entities.player = player;
       map.add(player);
+    }
+
+    if (spawnPoint.type === "bobcat") {
+      const pos = k.vec2(
+        (map.pos.x + spawnPoint.x) * SCALE_FACTOR,
+        (map.pos.y + spawnPoint.y) * SCALE_FACTOR,
+      );
+      const bobcat = makeBobcat(k, pos);
+      map.add(bobcat);
     }
 
     if (spawnPoint.type === "chicken") {

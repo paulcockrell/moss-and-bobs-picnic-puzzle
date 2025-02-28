@@ -1,5 +1,4 @@
 import k from "../kaplayCtx";
-import { GameObj } from "kaplay";
 import { drawScene, setCamScale } from "../utils";
 import { SCALE_FACTOR } from "../contants";
 import { makeModal } from "../entities/modal";
@@ -7,7 +6,7 @@ import { gameState } from "../state";
 import { addInventoryUI } from "../entities/inventory";
 
 export default async function levelOne() {
-  const mapData = await (await fetch("./maps/forest_level_1.map.json")).json();
+  const mapData = await k.loadJSON("levelOne", "/maps/forest_level_1.map.json");
 
   const mapDims = {
     width: mapData.width * mapData.tilewidth * SCALE_FACTOR,

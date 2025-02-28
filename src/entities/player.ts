@@ -1,7 +1,6 @@
 import { GameObj, KAPLAYCtx, Vec2 } from "kaplay";
 import { SCALE_FACTOR } from "../contants";
 import { areAnyOfTheseKeysDown } from "../utils";
-import { addInventoryUI } from "./inventory";
 import { gameState } from "../state";
 
 export function makePlayer(k: KAPLAYCtx, pos: Vec2) {

@@ -4,7 +4,8 @@ import { SCALE_FACTOR } from "../contants";
 import { gameState } from "../state";
 
 export default async function mainMenu() {
-  const mapData = await (await fetch("./maps/main_menu.map.json")).json();
+  // Load maps
+  const mapData = await k.loadJSON("mainMenuMap", "/maps/main_menu.map.json");
 
   const mapDims = {
     width: mapData.width * mapData.tilewidth * SCALE_FACTOR,
@@ -24,7 +25,7 @@ export default async function mainMenu() {
 
   k.add([
     k.scale(SCALE_FACTOR),
-    k.text("Kitties", {
+    k.text("Moss and Bobs", {
       font: "arcadeclassic",
       size: 25,
     }),
@@ -35,7 +36,7 @@ export default async function mainMenu() {
 
   k.add([
     k.scale(SCALE_FACTOR),
-    k.text("Memory Maze", {
+    k.text("Picnic Puzzle", {
       font: "arcadeclassic",
       size: 25,
     }),
