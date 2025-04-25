@@ -8,7 +8,7 @@ import credits from "./scenes/credits";
 import help from "./scenes/help";
 import { gameState } from "./state";
 
-k.loadRoot("./kittiemaze"); // A good idea for Itch.io publishing later
+k.loadRoot("./"); // A good idea for Itch.io publishing later
 
 k.setLayers(["game", "mask", "ui"], "game");
 
